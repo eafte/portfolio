@@ -1,70 +1,61 @@
-# Portfolio — Md Eaftekhirul Islam
+# Portfolio - Md Eaftekhirul Islam
 
-A clean, single‑page portfolio optimized for readability and recruiter scanning. Built as a static site suitable for GitHub Pages.
+Live site: https://eafte.github.io/portfolio/
 
-## Overview
+A single-page portfolio for master's and scholarship applications. Static site: no build step, no backend, deploys straight to GitHub Pages.
 
-- Purpose: present projects, skills, and education with a professional tone
-- Stack: HTML, CSS, vanilla JavaScript (no build tooling required)
-- Theme: metallic blue palette with subtle, distant background animation
-- Accessibility: honors `prefers-reduced-motion` and keeps content contrast high
+## What's on the page
 
-## Features
+- Hero: headline, focus areas (Software, AI/ML, LLM, Cybersecurity), quick facts
+- Projects: featured LLM Guard Bench (adversarial LLM security benchmark) plus two web/Python projects
+- Skills: only items actually used in the projects above
+- Experience: work, student venture, 2025 China International College Students' Innovation Competition
+- Education: ZZU Software Engineering (BSc, 2027), HSK-4 certified, HSC
+- Contact: master's programs (Fall 2027), internships, research opportunities
 
-- Dark/Light theme toggle with persistence (`localStorage`)
-- Full‑page canvas background (Three.js) tuned for calm visuals
-- Micro‑interactions (hover lift, gradient accent, scroll reveal)
-- Secure external links (`rel="noopener noreferrer"`)
-- JSON‑LD Person schema (basic metadata)
+## Stack
 
-## File Structure
+- HTML, CSS, vanilla JavaScript - no build tooling required
+- Three.js full-page canvas background (calm, distant animation)
+- Dark/light theme toggle persisted in localStorage
+- Inter font, JSON-LD person metadata, secure external links (rel="noopener noreferrer")
 
-```
-index.html    # page markup and JSON-LD
-styles.css    # theme, layout, animations
-script.js     # theme toggle, background animation, reveals
-favicon.svg   # site icon
-.gitignore    # repo hygiene
-```
+## Run locally
 
-## Local Preview
+Open `index.html` directly in a browser, or serve the folder:
 
-You can open `index.html` directly in a browser. For a nicer experience, use a simple static server:
-
-```
-# Option 1: Python (if installed)
+```sh
 python -m http.server 8000
-
-# Option 2: Node.js (if installed)
-npx serve .
 ```
 
-Then visit `http://localhost:8000` (or the address printed by the server).
+Then visit http://localhost:8000.
 
-## Deployment (GitHub Pages)
+## Deploy
 
-1. Push this folder to a GitHub repository (e.g., `eafte/portfolio`).
-2. On GitHub: Settings → Pages → Build and deployment
-   - Source: Deploy from a branch
-   - Branch: `main` (root)
-3. Your site will be available at `https://<username>.github.io/<repo>/`.
+GitHub Pages serves the `main` branch (root). Push to `main` and the live site updates. No build step.
 
-Notes:
-- This portfolio is static; no backend required.
-- For full‑stack demos, deploy the backend separately and link it from the portfolio.
+## Files
+
+```text
+index.html    # all page content and metadata
+styles.css    # theme, layout, animations
+script.js     # theme toggle, background, scroll reveals
+favicon.svg   # site icon
+```
+
+## Content rules (keep the portfolio professor-safe)
+
+- Every claim must trace to real work: LLM Guard Bench is a hands-on project, not formal research. Research language stays aspirational (interested in, working toward).
+- Skills list only what the projects use. If a skill has no project behind it, it does not go in.
+- Plain punctuation in copy: hyphens, colons, commas. No em/en dashes or fancy unicode.
+- Links use `https://github.com/eafte/...` only (the previous username is dead - never link to it). After editing, curl-check every github.com link returns 200.
+- One soft funding line lives in Contact only. The hero sells merit, not need.
 
 ## Accessibility
 
-- Respects `prefers-reduced-motion: reduce` to disable animations
-- Keyboard‑focus styles are present (`:focus-visible`)
-- High‑contrast text on dark backgrounds
-
-## Maintenance
-
-- Content lives in `index.html`
-- Styling tweaks in `styles.css`
-- Behavior and animation tuning in `script.js`
+- Honors `prefers-reduced-motion: reduce`
+- Visible `:focus-visible` keyboard styles, high-contrast text
 
 ## License
 
-Personal portfolio; licensed for personal use. If you fork, please adjust content and attribution accordingly.
+Personal portfolio. If you fork it, replace the content and attribution with your own.

@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#080c12" />
 
-    <title>Md Eaftekhirul Islam — Portfolio</title>
+    <title>Md Eaftekhirul Islam - Portfolio</title>
     <meta name="description"
-        content="Software Engineering student at Zhengzhou University. Web development projects, research work, and a practical, systems-first approach to problem solving." />
+        content="Software Engineering student at Zhengzhou University. Hands-on projects in LLM security, web development, and applied AI. Interested in software, ML/AI, and cybersecurity research." />
 
-    <meta property="og:title" content="Md Eaftekhirul Islam — Portfolio" />
+    <meta property="og:title" content="Md Eaftekhirul Islam - Portfolio" />
     <meta property="og:description"
-        content="Software Engineering student (ZZU). Web development + research projects. Interested in problem solving and AI." />
+        content="Software Engineering student (ZZU). Hands-on LLM security + web projects. Interested in software, ML/AI, and cybersecurity research." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
@@ -85,14 +85,13 @@
                 <div class="hero__copy">
                     <p class="kicker">Software Engineering Student @ Zhengzhou University</p>
                     <h1>
-                        I build clean, functional web experiences—
-                        <span class="accent">and I love understanding systems.</span>
+                        I build clean, functional software.
+                        <span class="accent">I’m working toward research in AI and security.</span>
                     </h1>
                     <p class="lede">
                         I’m <strong>Md Eaftekhirul Islam</strong>. I work on academic and practical projects across
-                        web development, documentation, and product thinking. I’m preparing for master’s studies in
-                        software engineering / computer science, with a long-term interest in AI-driven problem
-                        solving.
+                        web development, applied AI, and hands-on security projects. I’m preparing for master’s studies in
+                        software engineering / computer science, with growing interests in machine learning, AI, LLMs, and cybersecurity.
                     </p>
 
                     <div class="hero__cta">
@@ -104,9 +103,10 @@
                     </div>
 
                     <ul class="hero__highlights" aria-label="Highlights">
-                        <li>Full‑stack B2B app (React + TS + Express + Prisma)</li>
+                        <li>Adversarial LLM security benchmark (Python asyncio + LLM-as-a-Judge)</li>
+                        <li>Full-stack B2B app (React + TS + Express + Prisma)</li>
                         <li>Python GUI app (Tkinter + SQLite) with 80+ passing tests</li>
-                        <li>Research/report writing + structured documentation</li>
+                        <li>Technical report writing + structured documentation</li>
                     </ul>
                 </div>
 
@@ -118,16 +118,16 @@
                         </div>
                         <div class="card__row">
                             <div class="card__label">Languages</div>
-                            <div class="card__value">Bengali (native) • English • Chinese (HSK 4)</div>
+                            <div class="card__value">Bengali (native) • English • Chinese (HSK 4 certified)</div>
                         </div>
                         <div class="card__row">
                             <div class="card__label">Focus</div>
-                            <div class="card__value">Web Dev • Systems Thinking • Research</div>
+                            <div class="card__value">Software • AI/ML • LLM • Cybersecurity</div>
                         </div>
                         <div class="card__row">
                             <div class="card__label">Open to</div>
                             <div class="card__value">Master’s programs (Fall 2027) • Internships • Research
-                                collaborations</div>
+                                opportunities</div>
                         </div>
                         <div class="card__row">
                             <div class="card__label">GitHub</div>
@@ -144,12 +144,48 @@
                 <div class="section__head">
                     <h2>Projects</h2>
                     <p>
-                        A small selection of projects from coursework and hands-on practice.
+                        A small selection of hands-on projects from self-directed learning and coursework.
                         Each one focuses on real features, clear structure, and learning by building.
                     </p>
                 </div>
 
                 <div class="grid">
+                    <article class="project project--lead">
+                        <p class="project__badge">Featured • Hands-on project</p>
+                        <div class="project__top">
+                            <h3>LLM Guard Bench: Adversarial LLM Security Benchmark</h3>
+                            <p class="muted">Self-directed project: 5 attack categories against 4 local models
+                                via Ollama (40 pilot-scale runs).</p>
+                        </div>
+                        <ul class="tags" aria-label="Tech stack">
+                            <li>Python</li>
+                            <li>asyncio</li>
+                            <li>aiohttp</li>
+                            <li>Pydantic v2</li>
+                            <li>Ollama</li>
+                            <li>Groq (LLM-as-a-Judge)</li>
+                            <li>SQLite + JSONL</li>
+                            <li>Docker</li>
+                        </ul>
+                        <ul class="bullets">
+                            <li>Adversarial attack benchmark for LLM robustness: 5 attack categories incl.
+                                prompt injection, DAN jailbreak, refusal bypass, and system-prompt leakage</li>
+                            <li>Async pipeline with concurrency control; two-stage evaluation (keyword
+                                heuristics → LLM-as-a-Judge)</li>
+                            <li>Dual persistence (SQLite + JSONL audit trail), retry/backoff, reproducible
+                                Docker setup</li>
+                            <li>Preliminary result (40 runs): prompt injection &amp; DAN jailbreaks most
+                                effective; system-prompt leakage &amp; refusal bypass fully blocked</li>
+                            <li>MIT licensed, with CITATION.cff and contribution guidelines</li>
+                        </ul>
+                        <div class="project__links">
+                            <a class="btn btn--ghost" href="https://github.com/eafte/llm-guard-bench"
+                                target="_blank" rel="noopener noreferrer">Repo</a>
+                            <a class="btn btn--ghost" href="https://github.com/eafte/llm-guard-bench#architecture"
+                                target="_blank" rel="noopener noreferrer">Architecture</a>
+                        </div>
+                    </article>
+
                     <article class="project">
                         <div class="project__top">
                             <h3>Electrical Supplier Website (B2B)</h3>
@@ -180,7 +216,7 @@
 
                     <article class="project">
                         <div class="project__top">
-                            <h3>IODEX — GUI Expense Tracker</h3>
+                            <h3>IODEX: GUI Expense Tracker</h3>
                             <p class="muted">Personal expense tracker with analysis tools and strong testing.</p>
                         </div>
                         <ul class="tags" aria-label="Tech stack">
@@ -206,37 +242,6 @@
                                 target="_blank" rel="noopener noreferrer">Quickstart</a>
                         </div>
                     </article>
-
-                    <article class="project">
-                        <div class="project__top">
-                            <h3>Discrete Mathematics Project — Group 11</h3>
-                            <p class="muted">Final course submission: PDF report + PPTX presentation slides.</p>
-                        </div>
-                        <ul class="tags" aria-label="Deliverables">
-                            <li>Coursework</li>
-                            <li>PDF report</li>
-                            <li>PPTX slides</li>
-                            <li>Status: archived</li>
-                        </ul>
-                        <ul class="bullets">
-                            <li>Includes the final written report (problem statement, methods/solutions, conclusions)
-                            </li>
-                            <li>Topic: AI integration in industrial robotics (as covered in the report)</li>
-                            <li>Includes presentation slides prepared for viva/class presentation</li>
-                            <li>Completed course deliverables (no further development planned)</li>
-                        </ul>
-                        <div class="project__links">
-                            <a class="btn btn--ghost"
-                                href="https://github.com/eafte/The-Integration-of-AI-in-Industrial-Robotics"
-                                target="_blank" rel="noopener noreferrer">Repo</a>
-                            <a class="btn btn--ghost"
-                                href="https://github.com/eafte/The-Integration-of-AI-in-Industrial-Robotics/blob/main/Report%20-%20Google%20Docs.pdf"
-                                target="_blank" rel="noopener noreferrer">Read report</a>
-                            <a class="btn btn--ghost"
-                                href="https://github.com/eafte/The-Integration-of-AI-in-Industrial-Robotics/blob/main/PROJECT%20OF%20Discrete%20Math.pptx"
-                                target="_blank" rel="noopener noreferrer">Slides (PPTX download)</a>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
@@ -245,7 +250,7 @@
             <div class="container">
                 <div class="section__head">
                     <h2>Skills</h2>
-                    <p>Core skills and fundamentals I practice through coursework and projects.</p>
+                    <p>Every skill below was used in the projects above. Nothing listed that I haven’t built with.</p>
                 </div>
 
                 <div class="skills">
@@ -264,24 +269,17 @@
                             <li>Node.js + Express</li>
                             <li>Prisma ORM</li>
                             <li>SQLite</li>
+                            <li>Docker &amp; docker-compose</li>
                         </ul>
                     </div>
 
                     <div class="skillBlock">
                         <h3>Python</h3>
                         <ul>
+                            <li>Async pipelines (asyncio, aiohttp, Pydantic)</li>
                             <li>Tkinter GUI development</li>
                             <li>Data analysis with Pandas</li>
                             <li>Testing with pytest</li>
-                        </ul>
-                    </div>
-
-                    <div class="skillBlock">
-                        <h3>Professional</h3>
-                        <ul>
-                            <li>Documentation & report writing</li>
-                            <li>Analytical & systems thinking</li>
-                            <li>Structured prompting & AI tools</li>
                         </ul>
                     </div>
                 </div>
@@ -292,14 +290,14 @@
             <div class="container">
                 <div class="section__head">
                     <h2>Experience</h2>
-                    <p>Real-world exposure through a family business and leadership initiatives.</p>
+                    <p>Real-world exposure through a family business, leadership initiatives, and an innovation competition.</p>
                 </div>
 
                 <div class="timeline">
                     <div class="timelineItem">
                         <div class="timelineItem__title">
-                            <h3>Analyst — MR INTERNATIONAL (family business)</h3>
-                            <span class="muted">2016 — Present</span>
+                            <h3>Analyst at MR INTERNATIONAL (family business)</h3>
+                            <span class="muted">2016 - Present</span>
                         </div>
                         <ul class="bullets">
                             <li>Support business decisions with analysis and structured problem-solving</li>
@@ -310,12 +308,22 @@
 
                     <div class="timelineItem">
                         <div class="timelineItem__title">
-                            <h3>Chief Executive Officer — JRSphere</h3>
-                            <span class="muted">Student venture • May 2025 — Present</span>
+                            <h3>Chief Executive Officer at JRSphere</h3>
+                            <span class="muted">Student venture • May 2025 - Present</span>
                         </div>
                         <ul class="bullets">
                             <li>Leadership experience: organizing goals, communication, and execution</li>
                             <li>Building habits around systems thinking and continuous learning</li>
+                        </ul>
+                    </div>
+
+                    <div class="timelineItem">
+                        <div class="timelineItem__title">
+                            <h3>Participant - China International College Students’ Innovation Competition</h3>
+                            <span class="muted">2025</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Project: "UrbanAl: Al-Driven Urban Planning Platform for Smart Cities"</li>
                         </ul>
                     </div>
                 </div>
@@ -326,17 +334,23 @@
             <div class="container">
                 <div class="section__head">
                     <h2>Education</h2>
-                    <p>Academic foundat                       <p class="muted">BSc — Software Engineering • Sep 2023 — Jun 2027</p>
+                    <p>Academic foundation in software engineering and science.</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3>Zhengzhou University</h3>
+                        <p class="muted">BSc in Software Engineering • Sep 2023 - Jun 2027</p>
                         <ul class="bullets">
                             <li>Coursework includes programming foundations, discrete mathematics, and engineering
                                 practices</li>
-                            <li>Chinese language proficiency: HSK Level 4 (汉语水平考试四级)</li>
+                            <li>Chinese language proficiency: HSK Level 4 (certified, score 194/300, 16 May 2026, 汉语水平考试四级)</li>
                         </ul>
                     </div>
 
                     <div class="card">
                         <h3>Sabujbagh Government College</h3>
-                        <p class="muted">HSC — Science • Jul 2019 — Feb 2022</p>
+                        <p class="muted">HSC in Science • Jul 2019 - Feb 2022</p>
                         <ul class="bullets">
                             <li>Activities: Cricket, Football, Volleyball</li>
                         </ul>
@@ -351,7 +365,7 @@
                     <h2>Contact</h2>
                     <p>
                         Want to collaborate, discuss projects, or offer an internship opportunity?
-                        Reach out—happy to connect.
+                        Reach out - happy to connect.
                     </p>
                 </div>
 
@@ -370,8 +384,8 @@
                     <div class="card">
                         <h3>What I’m looking for</h3>
                         <ul class="bullets">
-                            <li>Master’s programs in Software Engineering / Computer Science (Fall 2027 entry)</li>
-                            <li>Research collaborations and internships (Software Engineering / Web Development)</li>
+                            <li>Master’s programs in Software Engineering / Computer Science (Fall 2027 entry), especially programs with scholarship or financial support</li>
+                            <li>Research opportunities and internships (Software, ML/AI, Cybersecurity)</li>
                             <li>Opportunities to deepen problem-solving skills and grow toward AI-focused work</li>
                         </ul>
                         <p class="note">
@@ -386,15 +400,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© <span id="year"></span> Md Eaftekhirul Islam. Built for GitHub Pages.</p>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-    <script src="script.js"></script>
-</body>
-
-</html> Eaftekhirul Islam. Built for GitHub Pages.</p>
+            <p>© <span id="year"></span> Md Eaftekhirul Islam.</p>
         </div>
     </footer>
 
