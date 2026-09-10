@@ -48,7 +48,7 @@ favicon.svg   # site icon
 - Every claim must trace to real work: LLM Guard Bench is a hands-on project, not formal research. Research language stays aspirational (interested in, working toward).
 - Skills list only what the projects use. If a skill has no project behind it, it does not go in.
 - Plain punctuation in copy: hyphens, colons, commas. No em/en dashes or fancy unicode.
-- Links use `https://github.com/eafte/...` only (`eis-1` is a dead username). After editing, curl-check every github.com link returns 200.
+- Links use `https://github.com/eafte/...` only (the previous username is dead - never link to it). After editing, curl-check every github.com link returns 200.
 - One soft funding line lives in Contact only. The hero sells merit, not need.
 
 ## Accessibility
