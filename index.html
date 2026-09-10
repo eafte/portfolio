@@ -8,11 +8,11 @@
 
     <title>Md Eaftekhirul Islam — Portfolio</title>
     <meta name="description"
-        content="Software Engineering student at Zhengzhou University. Web development projects, research work, and a practical, systems-first approach to problem solving." />
+        content="Software Engineering student at Zhengzhou University. LLM security research (adversarial benchmarking pilot study), web development projects, and a practical, systems-first approach to problem solving." />
 
     <meta property="og:title" content="Md Eaftekhirul Islam — Portfolio" />
     <meta property="og:description"
-        content="Software Engineering student (ZZU). Web development + research projects. Interested in problem solving and AI." />
+        content="Software Engineering student (ZZU). LLM security research + web development projects. Adversarial benchmarking pilot study author." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
@@ -104,6 +104,7 @@
                     </div>
 
                     <ul class="hero__highlights" aria-label="Highlights">
+                        <li>Adversarial LLM security benchmark (Python asyncio + LLM-as-a-Judge)</li>
                         <li>Full‑stack B2B app (React + TS + Express + Prisma)</li>
                         <li>Python GUI app (Tkinter + SQLite) with 80+ passing tests</li>
                         <li>Research/report writing + structured documentation</li>
@@ -122,7 +123,7 @@
                         </div>
                         <div class="card__row">
                             <div class="card__label">Focus</div>
-                            <div class="card__value">Web Dev • Systems Thinking • Research</div>
+                            <div class="card__value">Web Dev • LLM Security • Research</div>
                         </div>
                         <div class="card__row">
                             <div class="card__label">Open to</div>
@@ -144,12 +145,48 @@
                 <div class="section__head">
                     <h2>Projects</h2>
                     <p>
-                        A small selection of projects from coursework and hands-on practice.
+                        A small selection of research, coursework, and hands-on projects.
                         Each one focuses on real features, clear structure, and learning by building.
                     </p>
                 </div>
 
                 <div class="grid">
+                    <article class="project project--lead">
+                        <p class="project__badge">Featured · Research pilot study</p>
+                        <div class="project__top">
+                            <h3>LLM Guard Bench — Adversarial LLM Security Benchmark</h3>
+                            <p class="muted">Pilot study: 5 attack categories against 4 local models via Ollama
+                                (40 total runs).</p>
+                        </div>
+                        <ul class="tags" aria-label="Tech stack">
+                            <li>Python</li>
+                            <li>asyncio</li>
+                            <li>aiohttp</li>
+                            <li>Pydantic v2</li>
+                            <li>Ollama</li>
+                            <li>Groq (LLM-as-a-Judge)</li>
+                            <li>SQLite + JSONL</li>
+                            <li>Docker</li>
+                        </ul>
+                        <ul class="bullets">
+                            <li>Adversarial attack benchmark for LLM robustness: 5 attack categories incl.
+                                prompt injection, DAN jailbreak, refusal bypass, and system-prompt leakage</li>
+                            <li>Async pipeline with concurrency control; two-stage evaluation (keyword
+                                heuristics → LLM-as-a-Judge)</li>
+                            <li>Dual persistence (SQLite + JSONL audit trail), retry/backoff, reproducible
+                                Docker setup</li>
+                            <li>Pilot finding: prompt injection &amp; DAN jailbreaks most effective;
+                                system-prompt leakage &amp; refusal bypass fully blocked</li>
+                            <li>MIT licensed, with CITATION.cff and contribution guidelines</li>
+                        </ul>
+                        <div class="project__links">
+                            <a class="btn btn--ghost" href="https://github.com/eafte/llm-guard-bench"
+                                target="_blank" rel="noopener noreferrer">Repo</a>
+                            <a class="btn btn--ghost" href="https://github.com/eafte/llm-guard-bench#architecture"
+                                target="_blank" rel="noopener noreferrer">Architecture</a>
+                        </div>
+                    </article>
+
                     <article class="project">
                         <div class="project__top">
                             <h3>Electrical Supplier Website (B2B)</h3>
@@ -264,12 +301,14 @@
                             <li>Node.js + Express</li>
                             <li>Prisma ORM</li>
                             <li>SQLite</li>
+                            <li>Docker &amp; docker-compose</li>
                         </ul>
                     </div>
 
                     <div class="skillBlock">
                         <h3>Python</h3>
                         <ul>
+                            <li>Async pipelines (asyncio, aiohttp, Pydantic)</li>
                             <li>Tkinter GUI development</li>
                             <li>Data analysis with Pandas</li>
                             <li>Testing with pytest</li>
@@ -326,7 +365,13 @@
             <div class="container">
                 <div class="section__head">
                     <h2>Education</h2>
-                    <p>Academic foundat                       <p class="muted">BSc — Software Engineering • Sep 2023 — Jun 2027</p>
+                    <p>Academic foundation in software engineering and science.</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3>Zhengzhou University</h3>
+                        <p class="muted">BSc — Software Engineering • Sep 2023 — Jun 2027</p>
                         <ul class="bullets">
                             <li>Coursework includes programming foundations, discrete mathematics, and engineering
                                 practices</li>
@@ -387,14 +432,6 @@
     <footer class="footer">
         <div class="container">
             <p>© <span id="year"></span> Md Eaftekhirul Islam. Built for GitHub Pages.</p>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-    <script src="script.js"></script>
-</body>
-
-</html> Eaftekhirul Islam. Built for GitHub Pages.</p>
         </div>
     </footer>
 
