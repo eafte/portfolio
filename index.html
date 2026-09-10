@@ -14,11 +14,13 @@
     <meta property="og:description"
         content="Software Engineering student (ZZU). Web development + research projects. Interested in problem solving and AI." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eafte.github.io/portfolio/" />
+    <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
@@ -30,7 +32,7 @@
                 "email": "eafte1@outlook.com",
         "sameAs": [
           "https://www.linkedin.com/in/eaftekhirul/",
-          "https://github.com/eis-1"
+          "https://github.com/eafte"
         ],
         "affiliation": {
           "@type": "CollegeOrUniversity",
@@ -54,7 +56,7 @@
                 <span class="brand__text">Eaftekhirul</span>
             </a>
 
-            <nav class="nav" aria-label="Primary">
+            <nav class="nav" id="nav" aria-label="Primary">
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
@@ -66,7 +68,13 @@
                 <button class="btn btn--ghost" id="themeToggle" type="button" aria-label="Toggle theme">
                     Theme
                 </button>
-                <a class="btn" href="#contact">Let’s connect</a>
+                <a class="btn header__cta" href="#contact">Let’s connect</a>
+                <button class="navToggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false"
+                    aria-controls="nav">
+                    <span class="navToggle__bar" aria-hidden="true"></span>
+                    <span class="navToggle__bar" aria-hidden="true"></span>
+                    <span class="navToggle__bar" aria-hidden="true"></span>
+                </button>
             </div>
         </div>
     </header>
@@ -82,13 +90,14 @@
                     </h1>
                     <p class="lede">
                         I’m <strong>Md Eaftekhirul Islam</strong>. I work on academic and practical projects across
-                        web development, documentation, and product thinking. Long-term, I want to grow into
-                        problem-solving roles and explore AI-driven solutions.
+                        web development, documentation, and product thinking. I’m preparing for master’s studies in
+                        software engineering / computer science, with a long-term interest in AI-driven problem
+                        solving.
                     </p>
 
                     <div class="hero__cta">
                         <a class="btn" href="#projects">View projects</a>
-                        <a class="btn btn--ghost" href="https://github.com/eis-1" target="_blank"
+                        <a class="btn btn--ghost" href="https://github.com/eafte" target="_blank"
                             rel="noopener noreferrer">GitHub</a>
                         <a class="btn btn--ghost" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
                             rel="noopener noreferrer">LinkedIn</a>
@@ -108,17 +117,22 @@
                             <div class="card__value">Zhengzhou, China</div>
                         </div>
                         <div class="card__row">
+                            <div class="card__label">Languages</div>
+                            <div class="card__value">Bengali (native) • English • Chinese (HSK 4)</div>
+                        </div>
+                        <div class="card__row">
                             <div class="card__label">Focus</div>
                             <div class="card__value">Web Dev • Systems Thinking • Research</div>
                         </div>
                         <div class="card__row">
                             <div class="card__label">Open to</div>
-                            <div class="card__value">Internships • Collaborations</div>
+                            <div class="card__value">Master’s programs (Fall 2027) • Internships • Research
+                                collaborations</div>
                         </div>
                         <div class="card__row">
                             <div class="card__label">GitHub</div>
-                            <div class="card__value"><a href="https://github.com/eis-1" target="_blank"
-                                    rel="noopener noreferrer">github.com/eis-1</a></div>
+                            <div class="card__value"><a href="https://github.com/eafte" target="_blank"
+                                    rel="noopener noreferrer">github.com/eafte</a></div>
                         </div>
                     </div>
                 </div>
@@ -156,10 +170,10 @@
                             <li>Single-port deployment (Express serves API + built frontend)</li>
                         </ul>
                         <div class="project__links">
-                            <a class="btn btn--ghost" href="https://github.com/eis-1/electrical-supplier-website"
+                            <a class="btn btn--ghost" href="https://github.com/eafte/electrical-supplier-website"
                                 target="_blank" rel="noopener noreferrer">Repo</a>
                             <a class="btn btn--ghost"
-                                href="https://github.com/eis-1/electrical-supplier-website#-quick-start" target="_blank"
+                                href="https://github.com/eafte/electrical-supplier-website#quick-start" target="_blank"
                                 rel="noopener noreferrer">Run locally</a>
                         </div>
                     </article>
@@ -185,10 +199,10 @@
                             <li>80+ unit tests passing; documented developer workflow</li>
                         </ul>
                         <div class="project__links">
-                            <a class="btn btn--ghost" href="https://github.com/eis-1/IODEX_Expense_Tracker"
+                            <a class="btn btn--ghost" href="https://github.com/eafte/IODEX_Expense_Tracker"
                                 target="_blank" rel="noopener noreferrer">Repo</a>
                             <a class="btn btn--ghost"
-                                href="https://github.com/eis-1/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
+                                href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
                                 target="_blank" rel="noopener noreferrer">Quickstart</a>
                         </div>
                     </article>
@@ -213,14 +227,14 @@
                         </ul>
                         <div class="project__links">
                             <a class="btn btn--ghost"
-                                href="https://github.com/eis-1/The-Integration-of-AI-in-Industrial-Robotics"
+                                href="https://github.com/eafte/The-Integration-of-AI-in-Industrial-Robotics"
                                 target="_blank" rel="noopener noreferrer">Repo</a>
                             <a class="btn btn--ghost"
-                                href="https://github.com/eis-1/The-Integration-of-AI-in-Industrial-Robotics/blob/main/Report%20-%20Google%20Docs.pdf"
+                                href="https://github.com/eafte/The-Integration-of-AI-in-Industrial-Robotics/blob/main/Report%20-%20Google%20Docs.pdf"
                                 target="_blank" rel="noopener noreferrer">Read report</a>
                             <a class="btn btn--ghost"
-                                href="https://github.com/eis-1/The-Integration-of-AI-in-Industrial-Robotics/blob/main/PROJECT%20OF%20Discrete%20Math.pptx"
-                                target="_blank" rel="noopener noreferrer">View slides</a>
+                                href="https://github.com/eafte/The-Integration-of-AI-in-Industrial-Robotics/blob/main/PROJECT%20OF%20Discrete%20Math.pptx"
+                                target="_blank" rel="noopener noreferrer">Slides (PPTX download)</a>
                         </div>
                     </article>
                 </div>
@@ -231,34 +245,34 @@
             <div class="container">
                 <div class="section__head">
                     <h2>Skills</h2>
-                    <p>Core skills and fundamentals I’m actively practicing through coursework and projects.</p>
+                    <p>Core skills and fundamentals I practice through coursework and projects.</p>
                 </div>
 
                 <div class="skills">
                     <div class="skillBlock">
                         <h3>Web</h3>
                         <ul>
-                            <li>HTML, CSS, JavaScript (fundamentals)</li>
-                            <li>React + Vite (basics)</li>
-                            <li>TypeScript (basics)</li>
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>React + Vite</li>
+                            <li>TypeScript</li>
                         </ul>
                     </div>
 
                     <div class="skillBlock">
                         <h3>Backend</h3>
                         <ul>
-                            <li>Node.js + Express (basics)</li>
-                            <li>Prisma ORM (basics)</li>
-                            <li>SQLite (fundamentals)</li>
+                            <li>Node.js + Express</li>
+                            <li>Prisma ORM</li>
+                            <li>SQLite</li>
                         </ul>
                     </div>
 
                     <div class="skillBlock">
                         <h3>Python</h3>
                         <ul>
-                            <li>Tkinter GUI (basics)</li>
-                            <li>Data analysis (Pandas basics)</li>
-                            <li>Testing (pytest basics)</li>
+                            <li>Tkinter GUI development</li>
+                            <li>Data analysis with Pandas</li>
+                            <li>Testing with pytest</li>
                         </ul>
                     </div>
 
@@ -266,8 +280,8 @@
                         <h3>Professional</h3>
                         <ul>
                             <li>Documentation & report writing</li>
-                            <li>Analytical thinking</li>
-                            <li>Prompting & structured outputs (fundamentals)</li>
+                            <li>Analytical & systems thinking</li>
+                            <li>Structured prompting & AI tools</li>
                         </ul>
                     </div>
                 </div>
@@ -284,24 +298,20 @@
                 <div class="timeline">
                     <div class="timelineItem">
                         <div class="timelineItem__title">
-                            <h3>Analyst — MR INTERNATIONAL</h3>
-                            <span class="muted">Family business • 2016 — Present</span>
+                            <h3>Analyst — MR INTERNATIONAL (family business)</h3>
+                            <span class="muted">2016 — Present</span>
                         </div>
                         <ul class="bullets">
                             <li>Support business decisions with analysis and structured problem-solving</li>
                             <li>Explore and practice web presence improvements through side builds</li>
                             <li>Work closely with real constraints: pricing, customer needs, and operations</li>
                         </ul>
-                        <p class="note">
-                            Note: This is a family business role. Portfolio examples are for learning/practice unless
-                            explicitly deployed.
-                        </p>
                     </div>
 
                     <div class="timelineItem">
                         <div class="timelineItem__title">
-                            <h3>Chief Executive Officer — JRSphere™</h3>
-                            <span class="muted">May 2025 — Present</span>
+                            <h3>Chief Executive Officer — JRSphere</h3>
+                            <span class="muted">Student venture • May 2025 — Present</span>
                         </div>
                         <ul class="bullets">
                             <li>Leadership experience: organizing goals, communication, and execution</li>
@@ -316,16 +326,11 @@
             <div class="container">
                 <div class="section__head">
                     <h2>Education</h2>
-                    <p>Academic foundation in software engineering with ongoing coursework.</p>
-                </div>
-
-                <div class="cards">
-                    <div class="card">
-                        <h3>Zhengzhou University</h3>
-                        <p class="muted">BSc — Software Engineering • Sep 2023 — Jun 2027</p>
+                    <p>Academic foundat                       <p class="muted">BSc — Software Engineering • Sep 2023 — Jun 2027</p>
                         <ul class="bullets">
                             <li>Coursework includes programming foundations, discrete mathematics, and engineering
                                 practices</li>
+                            <li>Chinese language proficiency: HSK Level 4 (汉语水平考试四级)</li>
                         </ul>
                     </div>
 
@@ -356,7 +361,7 @@
                         <ul class="links">
                             <li><a href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
                                     rel="noopener noreferrer">LinkedIn</a></li>
-                            <li><a href="https://github.com/eis-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <li><a href="https://github.com/eafte" target="_blank" rel="noopener noreferrer">GitHub</a>
                             </li>
                         </ul>
                         <p class="small muted">Email: <a href="mailto:eafte1@outlook.com">eafte1@outlook.com</a></p>
@@ -365,9 +370,9 @@
                     <div class="card">
                         <h3>What I’m looking for</h3>
                         <ul class="bullets">
-                            <li>Internships (Software Engineering / Web Development)</li>
-                            <li>Project collaborations (frontend, full-stack basics, documentation)</li>
-                            <li>Opportunities to learn problem-solving and grow toward AI-focused work</li>
+                            <li>Master’s programs in Software Engineering / Computer Science (Fall 2027 entry)</li>
+                            <li>Research collaborations and internships (Software Engineering / Web Development)</li>
+                            <li>Opportunities to deepen problem-solving skills and grow toward AI-focused work</li>
                         </ul>
                         <p class="note">
                             Best way to reach me is via LinkedIn. If you email, please include a short description of
@@ -382,6 +387,14 @@
     <footer class="footer">
         <div class="container">
             <p>© <span id="year"></span> Md Eaftekhirul Islam. Built for GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html> Eaftekhirul Islam. Built for GitHub Pages.</p>
         </div>
     </footer>
 

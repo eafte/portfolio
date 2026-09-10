@@ -26,11 +26,12 @@
       root.setAttribute("data-theme", "light");
       updateToggleUi("light");
       updateThemeColor("light");
-      return;
+    } else {
+      root.removeAttribute("data-theme");
+      updateToggleUi("dark");
+      updateThemeColor("dark");
     }
-    root.removeAttribute("data-theme");
-    updateToggleUi("dark");
-    updateThemeColor("dark");
+    document.dispatchEvent(new CustomEvent("portfolio:themechange", { detail: { theme } }));
   }
 
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -46,6 +47,34 @@
       const next = current === "light" ? "dark" : "light";
       localStorage.setItem(STORAGE_KEY, next);
       applyTheme(next);
+    });
+  }
+
+  // Mobile navigation toggle
+  const navToggle = document.getElementById("navToggle");
+  const nav = document.getElementById("nav");
+  if (navToggle && nav) {
+    navToggle.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+
+    // Close the menu after choosing a link, or when clicking outside
+    nav.addEventListener("click", (ev) => {
+      if (ev.target.closest("a")) {
+        nav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open menu");
+      }
+    });
+
+    document.addEventListener("click", (ev) => {
+      if (!nav.contains(ev.target) && !navToggle.contains(ev.target)) {
+        nav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open menu");
+      }
     });
   }
 
@@ -135,7 +164,7 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
 
     const scene = new THREE.Scene();
-    // Fog for depth and calm atmosphere
+    // Fog for depth and calm atmosphere (color follows the active theme)
     scene.fog = new THREE.Fog(0x080c12, 60, 180);
 
     const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 300);
@@ -144,6 +173,38 @@
     // Soft ambient light
     const ambient = new THREE.AmbientLight(0x5b8cb8, 0.2);
     scene.add(ambient);
+
+    // Per-theme palettes so the background works in dark AND light mode
+    const PALETTES = {
+      dark: {
+        fog: 0x080c12,
+        ambient: 0x5b8cb8,
+        ambientIntensity: 0.2,
+        particle: 0x7ba3c7,
+        particleAlpha: 0.5,
+        additive: true,
+        grid1: 0x3a6d99,
+        grid2: 0x2a5580,
+        gridOpacity: 0.08,
+        shape: 0x5b8cb8,
+        shapeEmissive: 0x3a6d99,
+        shapeOpacity: 0.15,
+      },
+      light: {
+        fog: 0xf4f7fa,
+        ambient: 0xffffff,
+        ambientIntensity: 0.7,
+        particle: 0x3a6d99,
+        particleAlpha: 0.35,
+        additive: false,
+        grid1: 0x9db8d2,
+        grid2: 0xbccfe2,
+        gridOpacity: 0.4,
+        shape: 0x5b8cb8,
+        shapeEmissive: 0x7ba3c7,
+        shapeOpacity: 0.12,
+      },
+    };
 
     // Subtle point lights - positioned far away
     const pointLight = new THREE.PointLight(0x5b8cb8, 0.8, 200);
@@ -183,6 +244,7 @@
       uniforms: {
         uTime: { value: 0 },
         uColor: { value: new THREE.Color(0x7ba3c7) },
+        uAlpha: { value: 0.5 },
       },
       vertexShader: `
         attribute float size;
@@ -206,6 +268,7 @@
       fragmentShader: `
         varying float vOpacity;
         uniform vec3 uColor;
+        uniform float uAlpha;
         
         void main() {
           float dist = length(gl_PointCoord - vec2(0.5));
@@ -214,7 +277,7 @@
           float alpha = 1.0 - smoothstep(0.2, 0.5, dist);
           alpha *= vOpacity;
           
-          gl_FragColor = vec4(uColor, alpha * 0.5);
+          gl_FragColor = vec4(uColor, alpha * uAlpha);
         }
       `,
       transparent: true,
@@ -226,12 +289,18 @@
     scene.add(particles);
 
     // Subtle grid lines in the distance for depth perception
-    const gridHelper = new THREE.GridHelper(200, 40, 0x3a6d99, 0x2a5580);
-    gridHelper.position.y = -50;
-    gridHelper.position.z = -30;
-    gridHelper.material.opacity = 0.08;
-    gridHelper.material.transparent = true;
-    scene.add(gridHelper);
+    // (two variants — GridHelper bakes colors into geometry, so we swap visibility per theme)
+    const gridDark = new THREE.GridHelper(200, 40, PALETTES.dark.grid1, PALETTES.dark.grid2);
+    const gridLight = new THREE.GridHelper(200, 40, PALETTES.light.grid1, PALETTES.light.grid2);
+    [gridDark, gridLight].forEach((g) => {
+      g.position.y = -50;
+      g.position.z = -30;
+      g.material.transparent = true;
+      g.visible = false;
+      scene.add(g);
+    });
+    gridDark.material.opacity = PALETTES.dark.gridOpacity;
+    gridLight.material.opacity = PALETTES.light.gridOpacity;
 
     // A few distant, slowly rotating geometric shapes (very subtle)
     const shapes = [];
@@ -261,6 +330,30 @@
         rotSpeed: { x: 0.001, y: 0.0015 },
       });
       scene.add(mesh);
+    });
+
+    // Apply a palette to the whole scene (fog, particles, lights, grid, shapes)
+    function applyPalette(name) {
+      const p = PALETTES[name] || PALETTES.dark;
+      scene.fog.color.setHex(p.fog);
+      ambient.color.setHex(p.ambient);
+      ambient.intensity = p.ambientIntensity;
+      particleMaterial.uniforms.uColor.value.setHex(p.particle);
+      particleMaterial.uniforms.uAlpha.value = p.particleAlpha;
+      particleMaterial.blending = p.additive ? THREE.AdditiveBlending : THREE.NormalBlending;
+      particleMaterial.needsUpdate = true;
+      gridDark.visible = name !== "light";
+      gridLight.visible = name === "light";
+      shapes.forEach((s) => {
+        s.mesh.material.color.setHex(p.shape);
+        s.mesh.material.emissive.setHex(p.shapeEmissive);
+        s.mesh.material.opacity = p.shapeOpacity;
+      });
+    }
+
+    applyPalette(root.getAttribute("data-theme") === "light" ? "light" : "dark");
+    document.addEventListener("portfolio:themechange", (ev) => {
+      applyPalette(ev.detail.theme);
     });
 
     let w = window.innerWidth;
@@ -339,6 +432,10 @@
         cancelAnimationFrame(raf);
         particleGeometry.dispose();
         particleMaterial.dispose();
+        gridDark.geometry.dispose();
+        gridDark.material.dispose();
+        gridLight.geometry.dispose();
+        gridLight.material.dispose();
         shapeConfigs.forEach((c) => c.geo.dispose());
         renderer.dispose();
       },
@@ -346,3 +443,4 @@
     );
   })();
 })();
+

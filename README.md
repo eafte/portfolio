@@ -43,7 +43,7 @@ Then visit `http://localhost:8000` (or the address printed by the server).
 
 ## Deployment (GitHub Pages)
 
-1. Push this folder to a GitHub repository (e.g., `eis-1/portfolio`).
+1. Push this folder to a GitHub repository (e.g., `eafte/portfolio`).
 2. On GitHub: Settings → Pages → Build and deployment
    - Source: Deploy from a branch
    - Branch: `main` (root)
