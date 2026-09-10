@@ -289,7 +289,7 @@
     scene.add(particles);
 
     // Subtle grid lines in the distance for depth perception
-    // (two variants — GridHelper bakes colors into geometry, so we swap visibility per theme)
+    // (two variants - GridHelper bakes colors into geometry, so we swap visibility per theme)
     const gridDark = new THREE.GridHelper(200, 40, PALETTES.dark.grid1, PALETTES.dark.grid2);
     const gridLight = new THREE.GridHelper(200, 40, PALETTES.light.grid1, PALETTES.light.grid2);
     [gridDark, gridLight].forEach((g) => {

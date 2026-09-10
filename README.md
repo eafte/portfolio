@@ -1,6 +1,6 @@
-# Portfolio — Md Eaftekhirul Islam
+# Portfolio - Md Eaftekhirul Islam
 
-A clean, single‑page portfolio optimized for readability and recruiter scanning. Built as a static site suitable for GitHub Pages.
+A clean, single-page portfolio optimized for readability and recruiter scanning. Built as a static site suitable for GitHub Pages.
 
 ## Overview
 
@@ -12,10 +12,10 @@ A clean, single‑page portfolio optimized for readability and recruiter scannin
 ## Features
 
 - Dark/Light theme toggle with persistence (`localStorage`)
-- Full‑page canvas background (Three.js) tuned for calm visuals
-- Micro‑interactions (hover lift, gradient accent, scroll reveal)
+- Full-page canvas background (Three.js) tuned for calm visuals
+- Micro-interactions (hover lift, gradient accent, scroll reveal)
 - Secure external links (`rel="noopener noreferrer"`)
-- JSON‑LD Person schema (basic metadata)
+- JSON-LD Person schema (basic metadata)
 
 ## File Structure
 
@@ -51,13 +51,13 @@ Then visit `http://localhost:8000` (or the address printed by the server).
 
 Notes:
 - This portfolio is static; no backend required.
-- For full‑stack demos, deploy the backend separately and link it from the portfolio.
+- For full-stack demos, deploy the backend separately and link it from the portfolio.
 
 ## Accessibility
 
 - Respects `prefers-reduced-motion: reduce` to disable animations
-- Keyboard‑focus styles are present (`:focus-visible`)
-- High‑contrast text on dark backgrounds
+- Keyboard-focus styles are present (`:focus-visible`)
+- High-contrast text on dark backgrounds
 
 ## Maintenance
 

@@ -588,7 +588,7 @@ a:hover {
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
@@ -676,11 +676,11 @@ a:hover {
 }
 
 #contact {
-  padding-bottom: 80px;
+  padding-bottom: 48px;
 }
 
 .footer {
-  padding: 56px 0;
+  padding: 28px 0;
   color: var(--faint);
   text-align: center;
   border-top: 1px solid var(--border);
