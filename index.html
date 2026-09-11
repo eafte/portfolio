@@ -4,23 +4,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#080c12" />
+    <meta name="theme-color" content="#f7f4ec" />
 
-    <title>Md Eaftekhirul Islam - Portfolio</title>
+    <title>Md Eaftekhirul Islam - Software Engineering @ Zhengzhou University</title>
     <meta name="description"
-        content="Software Engineering student at Zhengzhou University. Hands-on projects in LLM security, web development, and applied AI. Interested in software, ML/AI, and cybersecurity research." />
+        content="Software Engineering undergraduate at Zhengzhou University. Well-tested, well-documented projects in LLM security, full-stack web, and applied AI. Preparing for master's studies in software engineering / computer science." />
 
-    <meta property="og:title" content="Md Eaftekhirul Islam - Portfolio" />
+    <meta property="og:title" content="Md Eaftekhirul Islam - Software Engineering @ Zhengzhou University" />
     <meta property="og:description"
-        content="Software Engineering student (ZZU). Hands-on LLM security + web projects. Interested in software, ML/AI, and cybersecurity research." />
+        content="Software Engineering undergraduate (ZZU). Hands-on LLM security benchmark, full-stack web, and applied AI projects. Preparing for master's studies." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
@@ -29,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Md Eaftekhirul Islam",
-                "email": "eafte1@outlook.com",
+        "email": "eafte1@outlook.com",
         "sameAs": [
           "https://www.linkedin.com/in/eaftekhirul/",
           "https://github.com/eafte"
@@ -44,20 +46,20 @@
 </head>
 
 <body>
-    <!-- Full-page animated background -->
-    <canvas id="bgCanvas" aria-hidden="true"></canvas>
-
     <a class="skip" href="#content">Skip to content</a>
 
     <header class="header">
         <div class="container header__inner">
-            <a class="brand" href="#top" aria-label="Go to top">
-                <span class="brand__mark">EI</span>
-                <span class="brand__text">Eaftekhirul</span>
+            <a class="brand" href="#top" aria-label="Back to top">
+                <span class="brand__mark" aria-hidden="true">E</span>
+                <span class="brand__text">
+                    <strong>Md Eaftekhirul Islam</strong>
+                    <em>Software Engineering</em>
+                </span>
             </a>
 
             <nav class="nav" id="nav" aria-label="Primary">
-                <a href="#projects">Projects</a>
+                <a href="#work">Work</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
                 <a href="#education">Education</a>
@@ -65,10 +67,17 @@
             </nav>
 
             <div class="header__actions">
-                <button class="btn btn--ghost" id="themeToggle" type="button" aria-label="Toggle theme">
-                    Theme
+                <button class="theme" id="themeToggle" type="button" aria-label="Switch to dark mode">
+                    <svg class="theme__icon theme__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4.2" />
+                        <path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" />
+                    </svg>
+                    <svg class="theme__icon theme__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.3 14.6A8.5 8.5 0 0 1 9.4 3.7a8.5 8.5 0 1 0 10.9 10.9Z" />
+                    </svg>
+                    <span class="theme__label">Dark mode</span>
                 </button>
-                <a class="btn header__cta" href="#contact">Let’s connect</a>
+                <a class="btn btn--primary header__cta" href="#contact">Get in touch</a>
                 <button class="navToggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false"
                     aria-controls="nav">
                     <span class="navToggle__bar" aria-hidden="true"></span>
@@ -80,83 +89,178 @@
     </header>
 
     <main id="content">
+        <!-- ============ HERO ============ -->
         <section class="hero" id="top">
-            <div class="container hero__inner">
-                <div class="hero__copy">
-                    <p class="kicker">Software Engineering Student @ Zhengzhou University</p>
-                    <h1>
-                        I build clean, functional software.
-                        <span class="accent">I’m working toward research in AI and security.</span>
-                    </h1>
-                    <p class="lede">
-                        I’m <strong>Md Eaftekhirul Islam</strong>. I work on academic and practical projects across
-                        web development, applied AI, and hands-on security projects. I’m preparing for master’s studies in
-                        software engineering / computer science, with growing interests in machine learning, AI, LLMs, and cybersecurity.
-                    </p>
-
-                    <div class="hero__cta">
-                        <a class="btn" href="#projects">View projects</a>
-                        <a class="btn btn--ghost" href="https://github.com/eafte" target="_blank"
-                            rel="noopener noreferrer">GitHub</a>
-                        <a class="btn btn--ghost" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a>
-                    </div>
-
-                    <ul class="hero__highlights" aria-label="Highlights">
-                        <li>Adversarial LLM security benchmark (Python asyncio + LLM-as-a-Judge)</li>
-                        <li>Full-stack B2B app (React + TS + Express + Prisma)</li>
-                        <li>Python GUI app (Tkinter + SQLite) with 80+ passing tests</li>
-                        <li>Technical report writing + structured documentation</li>
-                    </ul>
+            <div class="container">
+                <div class="hero__art" aria-hidden="true">
+                    <svg viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g class="hero__art-edges">
+                            <path d="M44,86 L180,62 M44,86 L180,128 M44,86 L180,192 M44,86 L180,258
+                                     M44,160 L180,62 M44,160 L180,128 M44,160 L180,192 M44,160 L180,258
+                                     M44,234 L180,62 M44,234 L180,128 M44,234 L180,192 M44,234 L180,258
+                                     M180,62 L316,112 M180,62 L316,208
+                                     M180,128 L316,112 M180,128 L316,208
+                                     M180,192 L316,112 M180,192 L316,208
+                                     M180,258 L316,112 M180,258 L316,208" />
+                        </g>
+                        <g class="hero__art-nodes">
+                            <circle cx="44" cy="86" r="4.5" />
+                            <circle cx="44" cy="234" r="4.5" />
+                            <circle cx="180" cy="62" r="4.5" />
+                            <circle cx="180" cy="128" r="4.5" />
+                            <circle cx="180" cy="192" r="4.5" />
+                            <circle cx="180" cy="258" r="4.5" />
+                            <circle cx="316" cy="112" r="4.5" />
+                            <circle cx="316" cy="208" r="4.5" />
+                        </g>
+                        <circle class="hero__art-seed" cx="44" cy="160" r="5.5" />
+                    </svg>
                 </div>
 
-                <div class="hero__card" aria-label="Quick facts">
-                    <div class="card">
-                        <div class="card__row">
-                            <div class="card__label">Location</div>
-                            <div class="card__value">Zhengzhou, China</div>
+                <div class="hero__grid">
+                    <div class="hero__copy">
+                        <p class="eyebrow">Software Engineering - Zhengzhou University</p>
+                        <h1 class="hero__title">Md Eaftekhirul Islam<span class="dot" aria-hidden="true">.</span></h1>
+                        <p class="hero__sub">
+                            I build software the way I want to do research: careful, measured, and
+                            <em>reproducible</em>.
+                        </p>
+                        <p class="lede">
+                            I am a software engineering undergraduate who treats every project as a small
+                            research problem: define the question, build carefully, measure,
+                            and document. My work spans an adversarial LLM security benchmark, a
+                            full-stack B2B platform, and a desktop analytics tool - all published with tests,
+                            documentation, and reproducible setup. I am preparing for master's studies in
+                            software engineering / computer science.
+                        </p>
+
+                        <p class="research">
+                            <span class="research__label">Research interests</span>
+                            <span class="research__text">Adversarial robustness of large language models, AI
+                                safety and alignment, applied machine learning, and cybersecurity.</span>
+                        </p>
+
+                        <p class="research research--q">
+                            <span class="research__label">Current question</span>
+                            <span class="research__text">Can jailbreak resistance be measured and improved
+                                across open-weight models without expensive human annotation?</span>
+                        </p>
+
+                        <div class="hero__cta">
+                            <a class="btn btn--primary" href="#work">View my work</a>
+                            <a class="btn btn--ghost" href="cv-ats.docx" download>Download CV</a>
+                            <a class="btn btn--ghost" href="https://github.com/eafte" target="_blank"
+                                rel="noopener noreferrer">GitHub</a>
+                            <a class="btn btn--ghost" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
+                                rel="noopener noreferrer">LinkedIn</a>
                         </div>
-                        <div class="card__row">
-                            <div class="card__label">Languages</div>
-                            <div class="card__value">Bengali (native) • English • Chinese (HSK 4 certified)</div>
-                        </div>
-                        <div class="card__row">
-                            <div class="card__label">Focus</div>
-                            <div class="card__value">Software • AI/ML • LLM • Cybersecurity</div>
-                        </div>
-                        <div class="card__row">
-                            <div class="card__label">Open to</div>
-                            <div class="card__value">Master’s programs (Fall 2027) • Internships • Research
-                                opportunities</div>
-                        </div>
-                        <div class="card__row">
-                            <div class="card__label">GitHub</div>
-                            <div class="card__value"><a href="https://github.com/eafte" target="_blank"
-                                    rel="noopener noreferrer">github.com/eafte</a></div>
-                        </div>
+
+                        <ul class="chips" aria-label="Areas of focus">
+                            <li>LLM Security</li>
+                            <li>Full-stack Web</li>
+                            <li>Applied AI</li>
+                            <li>Python Tooling</li>
+                        </ul>
                     </div>
+
+                    <aside class="hero__aside">
+                        <div class="profile">
+                            <div class="profile__head">
+                                <span class="profile__avatar" aria-hidden="true">EI</span>
+                                <div>
+                                    <p class="profile__name">Md Eaftekhirul Islam</p>
+                                    <p class="profile__role">Software Engineering Undergraduate</p>
+                                </div>
+                            </div>
+                            <div class="profile__status">
+                                <span class="statusDot" aria-hidden="true"></span>
+                                Open to master's programs, internships, and research
+                            </div>
+                            <dl class="profile__list">
+                                <div class="profile__row">
+                                    <dt>Location</dt>
+                                    <dd>Zhengzhou, China</dd>
+                                </div>
+                                <div class="profile__row">
+                                    <dt>Degree</dt>
+                                    <dd>BSc Software Engineering</dd>
+                                </div>
+                                <div class="profile__row">
+                                    <dt>Scholarship</dt>
+                                    <dd>Henan Provincial Government Scholarship - full tuition (2023-present)</dd>
+                                </div>
+                                <div class="profile__row">
+                                    <dt>Languages</dt>
+                                    <dd>Bengali, English, Chinese (HSK 4)</dd>
+                                </div>
+                                <div class="profile__row">
+                                    <dt>Focus</dt>
+                                    <dd>Software - AI/ML - LLM - Security</dd>
+                                </div>
+                                <div class="profile__row">
+                                    <dt>GitHub</dt>
+                                    <dd><a href="https://github.com/eafte" target="_blank"
+                                            rel="noopener noreferrer">github.com/eafte</a></dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </aside>
                 </div>
+
+                <dl class="metrics" aria-label="Key metrics">
+                    <div class="metric">
+                        <dt class="metric__num">5</dt>
+                        <dd class="metric__label">Adversarial attack categories</dd>
+                        <dd class="metric__src">LLM Guard Bench</dd>
+                    </div>
+                    <div class="metric">
+                        <dt class="metric__num">40</dt>
+                        <dd class="metric__label">Pilot-scale evaluation runs</dd>
+                        <dd class="metric__src">4 local models via Ollama</dd>
+                    </div>
+                    <div class="metric">
+                        <dt class="metric__num">80+</dt>
+                        <dd class="metric__label">Unit tests passing</dd>
+                        <dd class="metric__src">IODEX Expense Tracker</dd>
+                    </div>
+                    <div class="metric">
+                        <dt class="metric__num">450+</dt>
+                        <dd class="metric__label">Timezones in shipped tool</dd>
+                        <dd class="metric__src">IODEX Expense Tracker</dd>
+                    </div>
+                    <div class="metric">
+                        <dt class="metric__num">HSK&nbsp;4</dt>
+                        <dd class="metric__label">Chinese proficiency</dd>
+                        <dd class="metric__src">194 / 300 - certified</dd>
+                    </div>
+                </dl>
             </div>
         </section>
 
-        <section class="section" id="projects">
+        <!-- ============ WORK ============ -->
+        <section class="section" id="work">
             <div class="container">
-                <div class="section__head">
-                    <h2>Projects</h2>
-                    <p>
-                        A small selection of hands-on projects from self-directed learning and coursework.
-                        Each one focuses on real features, clear structure, and learning by building.
+                <header class="sec">
+                    <span class="sec__tag">Selected Work</span>
+                    <h2 class="sec__title">Built, tested, and documented</h2>
+                    <p class="sec__lede">
+                        Three hands-on projects from self-directed learning and coursework. Each one is a
+                        complete piece of engineering, not a tutorial - real features, clean structure, and
+                        learning by building.
                     </p>
-                </div>
+                </header>
 
-                <div class="grid">
-                    <article class="project project--lead">
-                        <p class="project__badge">Featured • Hands-on project</p>
-                        <div class="project__top">
-                            <h3>LLM Guard Bench: Adversarial LLM Security Benchmark</h3>
-                            <p class="muted">Self-directed project: 5 attack categories against 4 local models
-                                via Ollama (40 pilot-scale runs).</p>
+                <div class="work">
+                    <article class="feature">
+                        <div class="feature__head">
+                            <span class="feature__no">01</span>
+                            <span class="feature__tag">Featured</span>
                         </div>
+                        <h3 class="feature__title">LLM Guard Bench: Adversarial LLM Security Benchmark</h3>
+                        <p class="feature__tagline">
+                            Self-directed research-style project: five attack categories tested against four
+                            local models via Ollama (40 pilot-scale runs).
+                        </p>
                         <ul class="tags" aria-label="Tech stack">
                             <li>Python</li>
                             <li>asyncio</li>
@@ -167,94 +271,117 @@
                             <li>SQLite + JSONL</li>
                             <li>Docker</li>
                         </ul>
-                        <ul class="bullets">
-                            <li>Adversarial attack benchmark for LLM robustness: 5 attack categories incl.
-                                prompt injection, DAN jailbreak, refusal bypass, and system-prompt leakage</li>
-                            <li>Async pipeline with concurrency control; two-stage evaluation (keyword
-                                heuristics → LLM-as-a-Judge)</li>
-                            <li>Dual persistence (SQLite + JSONL audit trail), retry/backoff, reproducible
-                                Docker setup</li>
-                            <li>Preliminary result (40 runs): prompt injection &amp; DAN jailbreaks most
-                                effective; system-prompt leakage &amp; refusal bypass fully blocked</li>
+                        <ul class="bullets feature__bullets">
+                            <li>Benchmarks LLM robustness across five attack categories: prompt injection,
+                                DAN jailbreak, roleplay exploitation, refusal bypass, and system-prompt
+                                leakage</li>
+                            <li>Async pipeline with concurrency control and a two-stage evaluation
+                                (keyword heuristics, then LLM-as-a-Judge)</li>
+                            <li>Dual persistence (SQLite + JSONL audit trail), retry/backoff, and a
+                                reproducible Docker setup</li>
                             <li>MIT licensed, with CITATION.cff and contribution guidelines</li>
                         </ul>
-                        <div class="project__links">
-                            <a class="btn btn--ghost" href="https://github.com/eafte/llm-guard-bench"
-                                target="_blank" rel="noopener noreferrer">Repo</a>
-                            <a class="btn btn--ghost" href="https://github.com/eafte/llm-guard-bench#architecture"
-                                target="_blank" rel="noopener noreferrer">Architecture</a>
+                        <p class="result">
+                            <strong>Result:</strong> across 40 pilot runs (8 per attack category), prompt
+                            injection and DAN jailbreaks were the most effective vectors; system-prompt
+                            leakage and refusal bypass were fully blocked - 0/8 runs vulnerable across all
+                            4 local models.
+                        </p>
+                        <div class="linksrow">
+                            <a href="https://github.com/eafte/llm-guard-bench" target="_blank"
+                                rel="noopener noreferrer">Repository</a>
+                            <a href="https://github.com/eafte/llm-guard-bench#architecture" target="_blank"
+                                rel="noopener noreferrer">Architecture</a>
                         </div>
                     </article>
 
-                    <article class="project">
-                        <div class="project__top">
-                            <h3>Electrical Supplier Website (B2B)</h3>
-                            <p class="muted">Full-stack platform with quote workflow and admin panel.</p>
-                        </div>
-                        <ul class="tags" aria-label="Tech stack">
-                            <li>React</li>
-                            <li>Vite</li>
-                            <li>TypeScript</li>
-                            <li>Express</li>
-                            <li>Prisma</li>
-                            <li>SQLite</li>
-                        </ul>
-                        <ul class="bullets">
-                            <li>Product catalog with brand & category management</li>
-                            <li>Quote request flow (B2B: quote-first, not cart-first)</li>
-                            <li>Secure admin login + CRUD operations + uploads</li>
-                            <li>Single-port deployment (Express serves API + built frontend)</li>
-                        </ul>
-                        <div class="project__links">
-                            <a class="btn btn--ghost" href="https://github.com/eafte/electrical-supplier-website"
-                                target="_blank" rel="noopener noreferrer">Repo</a>
-                            <a class="btn btn--ghost"
-                                href="https://github.com/eafte/electrical-supplier-website#quick-start" target="_blank"
-                                rel="noopener noreferrer">Run locally</a>
-                        </div>
-                    </article>
+                    <div class="work__grid">
+                        <article class="project">
+                            <div class="project__head">
+                                <span class="project__no">02</span>
+                            </div>
+                            <h3 class="project__title">Electrical Supplier Website (B2B)</h3>
+                            <p class="project__tagline">
+                                Full-stack platform with a quote-first workflow and a secure admin panel.
+                            </p>
+                            <ul class="tags" aria-label="Tech stack">
+                                <li>React</li>
+                                <li>Vite</li>
+                                <li>TypeScript</li>
+                                <li>Express</li>
+                                <li>Prisma</li>
+                                <li>SQLite</li>
+                            </ul>
+                            <ul class="bullets">
+                                <li>Product catalog with brand and category management</li>
+                                <li>Quote request flow built B2B-first (quote, not cart)</li>
+                                <li>Secure admin login with CRUD operations and file uploads</li>
+                                <li>Single-port deployment: Express serves both API and built frontend</li>
+                            </ul>
+                            <p class="result">
+                                <strong>Result:</strong> a production-shaped application that runs end-to-end
+                                from a single command, with authentication and a complete admin workflow.
+                            </p>
+                            <div class="linksrow">
+                                <a href="https://github.com/eafte/electrical-supplier-website" target="_blank"
+                                    rel="noopener noreferrer">Repository</a>
+                                <a href="https://github.com/eafte/electrical-supplier-website#quick-start"
+                                    target="_blank" rel="noopener noreferrer">Run locally</a>
+                            </div>
+                        </article>
 
-                    <article class="project">
-                        <div class="project__top">
-                            <h3>IODEX: GUI Expense Tracker</h3>
-                            <p class="muted">Personal expense tracker with analysis tools and strong testing.</p>
-                        </div>
-                        <ul class="tags" aria-label="Tech stack">
-                            <li>Python</li>
-                            <li>Tkinter</li>
-                            <li>SQLite</li>
-                            <li>Pandas</li>
-                            <li>Plotly</li>
-                            <li>PyInstaller</li>
-                        </ul>
-                        <ul class="bullets">
-                            <li>Add/view/edit/delete expenses with clean UI</li>
-                            <li>SQLite storage + automatic migrations</li>
-                            <li>Charts + category insights + import/export (CSV/JSON)</li>
-                            <li>Timezone system (450+ timezones) + flexible timestamps</li>
-                            <li>80+ unit tests passing; documented developer workflow</li>
-                        </ul>
-                        <div class="project__links">
-                            <a class="btn btn--ghost" href="https://github.com/eafte/IODEX_Expense_Tracker"
-                                target="_blank" rel="noopener noreferrer">Repo</a>
-                            <a class="btn btn--ghost"
-                                href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
-                                target="_blank" rel="noopener noreferrer">Quickstart</a>
-                        </div>
-                    </article>
+                        <article class="project">
+                            <div class="project__head">
+                                <span class="project__no">03</span>
+                            </div>
+                            <h3 class="project__title">IODEX: GUI Expense Tracker</h3>
+                            <p class="project__tagline">
+                                Desktop expense tracker with analysis tools and a strong test suite.
+                            </p>
+                            <ul class="tags" aria-label="Tech stack">
+                                <li>Python</li>
+                                <li>Tkinter</li>
+                                <li>SQLite</li>
+                                <li>Pandas</li>
+                                <li>Plotly</li>
+                                <li>PyInstaller</li>
+                            </ul>
+                            <ul class="bullets">
+                                <li>Add, view, edit, and delete expenses through a clean GUI</li>
+                                <li>SQLite storage with automatic migrations</li>
+                                <li>Charts and category insights with CSV/JSON import and export</li>
+                                <li>Timezone system covering 450+ timezones with flexible timestamps</li>
+                            </ul>
+                            <p class="result">
+                                <strong>Result:</strong> 80+ unit tests passing and a documented developer
+                                workflow, so the code is safe to extend and easy to review.
+                            </p>
+                            <div class="linksrow">
+                                <a href="https://github.com/eafte/IODEX_Expense_Tracker" target="_blank"
+                                    rel="noopener noreferrer">Repository</a>
+                                <a href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
+                                    target="_blank" rel="noopener noreferrer">Quickstart</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- ============ SKILLS ============ -->
         <section class="section" id="skills">
             <div class="container">
-                <div class="section__head">
-                    <h2>Skills</h2>
-                    <p>Every skill below was used in the projects above. Nothing listed that I haven’t built with.</p>
-                </div>
+                <header class="sec">
+                    <span class="sec__tag">Skills</span>
+                    <h2 class="sec__title">What I have actually used</h2>
+                    <p class="sec__lede">
+                        Every skill below appears in the work above. Nothing listed that I have not built
+                        with and tested in practice.
+                    </p>
+                </header>
 
                 <div class="skills">
-                    <div class="skillBlock">
+                    <div class="skill">
                         <h3>Web</h3>
                         <ul>
                             <li>HTML, CSS, JavaScript</li>
@@ -263,7 +390,7 @@
                         </ul>
                     </div>
 
-                    <div class="skillBlock">
+                    <div class="skill">
                         <h3>Backend</h3>
                         <ul>
                             <li>Node.js + Express</li>
@@ -273,7 +400,7 @@
                         </ul>
                     </div>
 
-                    <div class="skillBlock">
+                    <div class="skill">
                         <h3>Python</h3>
                         <ul>
                             <li>Async pipelines (asyncio, aiohttp, Pydantic)</li>
@@ -286,111 +413,158 @@
             </div>
         </section>
 
+        <!-- ============ EXPERIENCE ============ -->
         <section class="section" id="experience">
             <div class="container">
-                <div class="section__head">
-                    <h2>Experience</h2>
-                    <p>Real-world exposure through a family business, leadership initiatives, and an innovation competition.</p>
-                </div>
+                <header class="sec">
+                    <span class="sec__tag">Experience</span>
+                    <h2 class="sec__title">Practice beyond the classroom</h2>
+                    <p class="sec__lede">
+                        Real-world exposure through a family business, a student venture, and a national
+                        innovation competition.
+                    </p>
+                </header>
 
-                <div class="timeline">
-                    <div class="timelineItem">
-                        <div class="timelineItem__title">
-                            <h3>Analyst at MR INTERNATIONAL (family business)</h3>
-                            <span class="muted">2016 - Present</span>
+                <ol class="timeline">
+                    <li class="timeline__item">
+                        <div class="timeline__meta">
+                            <span class="timeline__date">Ongoing</span>
                         </div>
-                        <ul class="bullets">
-                            <li>Support business decisions with analysis and structured problem-solving</li>
-                            <li>Explore and practice web presence improvements through side builds</li>
-                            <li>Work closely with real constraints: pricing, customer needs, and operations</li>
-                        </ul>
-                    </div>
+                        <div class="timeline__body">
+                            <h3>Family business involvement - MR INTERNATIONAL</h3>
+                            <ul class="bullets">
+                                <li>Support business decisions with analysis and structured problem-solving</li>
+                                <li>Explore and practice web presence improvements through side builds</li>
+                                <li>Work closely with real constraints: pricing, customer needs, and operations</li>
+                            </ul>
+                        </div>
+                    </li>
 
-                    <div class="timelineItem">
-                        <div class="timelineItem__title">
-                            <h3>Chief Executive Officer at JRSphere</h3>
-                            <span class="muted">Student venture • May 2025 - Present</span>
+                    <li class="timeline__item">
+                        <div class="timeline__meta">
+                            <span class="timeline__date">May 2025 - Present</span>
                         </div>
-                        <ul class="bullets">
-                            <li>Leadership experience: organizing goals, communication, and execution</li>
-                            <li>Building habits around systems thinking and continuous learning</li>
-                        </ul>
-                    </div>
+                        <div class="timeline__body">
+                            <h3>Founder &amp; Lead at JRSphere (student venture)</h3>
+                            <ul class="bullets">
+                                <li>Leadership experience: organizing goals, communication, and execution</li>
+                                <li>Building habits around systems thinking and continuous learning</li>
+                            </ul>
+                        </div>
+                    </li>
 
-                    <div class="timelineItem">
-                        <div class="timelineItem__title">
-                            <h3>Participant - China International College Students’ Innovation Competition</h3>
-                            <span class="muted">2025</span>
+                    <li class="timeline__item">
+                        <div class="timeline__meta">
+                            <span class="timeline__date">2025</span>
                         </div>
-                        <ul class="bullets">
-                            <li>Project: "UrbanAl: Al-Driven Urban Planning Platform for Smart Cities"</li>
-                        </ul>
-                    </div>
-                </div>
+                        <div class="timeline__body">
+                            <h3>Participant - China International College Students' Innovation Competition (2025)</h3>
+                            <p class="timeline__zh">中国国际大学生创新大赛(2025)</p>
+                            <ul class="bullets">
+                                <li>Project: "UrbanAI: AI-Driven Urban Planning Platform for Smart Cities"</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="timeline__item">
+                        <div class="timeline__meta">
+                            <span class="timeline__date">2024 - 2025</span>
+                        </div>
+                        <div class="timeline__body">
+                            <h3>Volunteer - Zhengzhou University</h3>
+                            <ul class="bullets">
+                                <li>International Students Association (ISA), sports department volunteer (2025)</li>
+                                <li>New student orientation volunteer (2024, 2025)</li>
+                                <li>4th ZZU Bangladesh Premier League volunteer (2024)</li>
+                                <li>Sunshine Sports Meeting volunteer (2024, 2025)</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
             </div>
         </section>
 
+        <!-- ============ EDUCATION ============ -->
         <section class="section" id="education">
             <div class="container">
-                <div class="section__head">
-                    <h2>Education</h2>
-                    <p>Academic foundation in software engineering and science.</p>
-                </div>
+                <header class="sec">
+                    <span class="sec__tag">Education</span>
+                    <h2 class="sec__title">Academic foundation</h2>
+                    <p class="sec__lede">
+                        Formal training in software engineering.
+                    </p>
+                </header>
 
-                <div class="cards">
-                    <div class="card">
-                        <h3>Zhengzhou University</h3>
-                        <p class="muted">BSc in Software Engineering • Sep 2023 - Jun 2027</p>
+                <div class="edu">
+                    <article class="edu__card edu__card--lead">
+                        <div class="edu__head">
+                            <h3>Zhengzhou University</h3>
+                            <span class="edu__dates">Sep 2023 - Jun 2027</span>
+                        </div>
+                        <p class="edu__degree">BSc in Software Engineering</p>
+                        <p class="edu__stats"><strong>108/130</strong> credits completed -
+                            average grade <strong>82.35/100</strong></p>
                         <ul class="bullets">
-                            <li>Coursework includes programming foundations, discrete mathematics, and engineering
-                                practices</li>
-                            <li>Chinese language proficiency: HSK Level 4 (certified, score 194/300, 16 May 2026, 汉语水平考试四级)</li>
+                            <li>Coursework includes programming foundations, discrete mathematics, and
+                                engineering practices</li>
+                            <li>Henan Provincial Government Scholarship (HPGS) recipient - full tuition
+                                coverage (2023-present), renewed annually through evaluation</li>
+                            <li>Chinese language proficiency: HSK Level 4 (certified, score 194/300,
+                                16 May 2026, 汉语水平考试四级)</li>
                         </ul>
-                    </div>
+                    </article>
 
-                    <div class="card">
-                        <h3>Sabujbagh Government College</h3>
-                        <p class="muted">HSC in Science • Jul 2019 - Feb 2022</p>
+                    <article class="edu__card">
+                        <div class="edu__head">
+                            <h3>Sabujbagh Government College, Dhaka</h3>
+                            <span class="edu__dates">Jul 2019 - Feb 2022</span>
+                        </div>
+                        <p class="edu__degree">HSC in Science</p>
+                        <p class="edu__stats">GPA <strong>5.00/5.00</strong> (highest possible score)</p>
                         <ul class="bullets">
                             <li>Activities: Cricket, Football, Volleyball</li>
                         </ul>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
+        <!-- ============ CONTACT ============ -->
         <section class="section" id="contact">
             <div class="container">
-                <div class="section__head">
-                    <h2>Contact</h2>
-                    <p>
-                        Want to collaborate, discuss projects, or offer an internship opportunity?
-                        Reach out - happy to connect.
+                <header class="sec">
+                    <span class="sec__tag">Contact</span>
+                    <h2 class="sec__title">Get in touch</h2>
+                    <p class="sec__lede">
+                        Want to collaborate, discuss projects, or offer an internship? Reach out - I am
+                        happy to connect.
                     </p>
-                </div>
+                </header>
 
                 <div class="contact">
-                    <div class="card">
+                    <div class="contact__panel">
                         <h3>Links</h3>
                         <ul class="links">
                             <li><a href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
                                     rel="noopener noreferrer">LinkedIn</a></li>
-                            <li><a href="https://github.com/eafte" target="_blank" rel="noopener noreferrer">GitHub</a>
-                            </li>
+                            <li><a href="https://github.com/eafte" target="_blank"
+                                    rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="cv-ats.docx" download>Download CV (Word)</a></li>
                         </ul>
-                        <p class="small muted">Email: <a href="mailto:eafte1@outlook.com">eafte1@outlook.com</a></p>
+                        <p class="contact__email">Email: <a href="mailto:eafte1@outlook.com">eafte1@outlook.com</a></p>
                     </div>
 
-                    <div class="card">
-                        <h3>What I’m looking for</h3>
+                    <div class="contact__panel">
+                        <h3>What I'm looking for</h3>
                         <ul class="bullets">
-                            <li>Master’s programs in Software Engineering / Computer Science (Fall 2027 entry), especially programs with scholarship or financial support</li>
+                            <li>Master's programs in Software Engineering / Computer Science, especially
+                                programs with scholarship or financial support</li>
                             <li>Research opportunities and internships (Software, ML/AI, Cybersecurity)</li>
                             <li>Opportunities to deepen problem-solving skills and grow toward AI-focused work</li>
                         </ul>
-                        <p class="note">
-                            Best way to reach me is via LinkedIn. If you email, please include a short description of
-                            the role/project and your timeline.
+                        <p class="contact__note">
+                            The best way to reach me is via LinkedIn. If you email, please include a short
+                            description of the role or project and your timeline.
                         </p>
                     </div>
                 </div>
@@ -399,13 +573,13 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>© <span id="year"></span> Md Eaftekhirul Islam.</p>
+        <div class="container footer__inner">
+            <p class="footer__name">Md Eaftekhirul Islam</p>
+            <p class="footer__meta">&copy; <span id="year"></span> - Software Engineering, Zhengzhou University</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 
 </html>
