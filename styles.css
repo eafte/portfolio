@@ -779,6 +779,28 @@ a:hover {
   max-width: 60ch;
 }
 
+/* Data figure (e.g. the benchmark report) */
+.figure {
+  margin: 22px 0 0;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #0d1b2a;
+}
+
+.figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 70ch;
+}
+
 .tags {
   list-style: none;
   display: flex;

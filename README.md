@@ -15,6 +15,7 @@ well-set document.
 ## What's on the page
 
 - Hero: name, focus areas, short narrative, and a metrics strip (attack categories, evaluation runs, tests passing, timezones, HSK-4)
+- The featured card carries the benchmark's generated report figure (a two-panel latency and vulnerability chart). It is a committed, web-optimised copy in `assets/`, not a link to an external host, so it loads from the same origin everywhere
 - Work: featured LLM Guard Bench (adversarial LLM security benchmark) plus three more projects - a full-stack B2B platform, a desktop expense tracker, and HarmonyCare (team Android app) - each with a plain-language "Result"
 - Skills: only items actually used in the projects above
 - Experience: work, student venture, 2025 China International College Students' Innovation Competition
@@ -49,6 +50,7 @@ styles.css    # theme, layout, animations
 script.js     # theme toggle, scroll reveals
 favicon.svg   # site icon
 cv-ats.docx   # ATS-safe CV (Word) - linked from the hero and contact section
+assets/       # project figures (LLM Guard Bench report, 1800px and 900px)
 ```
 
 ## Content rules (keep the portfolio professor-safe)
