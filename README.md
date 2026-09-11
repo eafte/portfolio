@@ -4,21 +4,28 @@ Live site: https://eafte.github.io/portfolio/
 
 A single-page portfolio for master's and scholarship applications. Static site: no build step, no backend, deploys straight to GitHub Pages.
 
+## Design
+
+A warm, print-editorial look aimed at professors and scholarship committees:
+paper background, ink and vermilion accents, serif display type (Spectral) with
+a modern grotesque for body text (Instrument Sans). No heavy frameworks, no
+background animation, no gradient text - the page loads fast and reads like a
+well-set document.
+
 ## What's on the page
 
-- Hero: headline, focus areas (Software, AI/ML, LLM, Cybersecurity), quick facts
-- Projects: featured LLM Guard Bench (adversarial LLM security benchmark) plus two web/Python projects
+- Hero: name, focus areas, short narrative, and a metrics strip (attack categories, evaluation runs, tests passing, timezones, HSK-4)
+- Work: featured LLM Guard Bench (adversarial LLM security benchmark) plus two web/Python projects, each with a plain-language "Result"
 - Skills: only items actually used in the projects above
 - Experience: work, student venture, 2025 China International College Students' Innovation Competition
 - Education: ZZU Software Engineering (BSc, 2027), HSK-4 certified, HSC
-- Contact: master's programs (Fall 2027), internships, research opportunities
+- Contact: master's programs, internships, research opportunities
 
 ## Stack
 
 - HTML, CSS, vanilla JavaScript - no build tooling required
-- Three.js full-page canvas background (calm, distant animation)
-- Dark/light theme toggle persisted in localStorage
-- Inter font, JSON-LD person metadata, secure external links (rel="noopener noreferrer")
+- Light/dark theme toggle persisted in localStorage
+- Spectral + Instrument Sans (Google Fonts), JSON-LD person metadata, secure external links (rel="noopener noreferrer")
 
 ## Run locally
 
@@ -39,8 +46,9 @@ GitHub Pages serves the `main` branch (root). Push to `main` and the live site u
 ```text
 index.html    # all page content and metadata
 styles.css    # theme, layout, animations
-script.js     # theme toggle, background, scroll reveals
+script.js     # theme toggle, scroll reveals
 favicon.svg   # site icon
+cv-ats.docx   # ATS-safe CV (Word) - linked from the hero and contact section
 ```
 
 ## Content rules (keep the portfolio professor-safe)
