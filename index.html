@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -129,9 +129,11 @@
                             I am a software engineering undergraduate who treats every project as a small
                             research problem: define the question, build carefully, measure,
                             and document. My work spans an adversarial LLM security benchmark, a
-                            full-stack B2B platform, and a desktop analytics tool - all published with tests,
-                            documentation, and reproducible setup. I am preparing for master's studies in
-                            software engineering / computer science.
+                            full-stack B2B platform, a desktop analytics tool, and an Android safety app
+                            built with a course team, where I owned the architecture and testing. All are
+                            published with documentation and a reproducible setup; the expense tracker
+                            ships 80+ unit tests. I am preparing for master's studies in software
+                            engineering / computer science.
                         </p>
 
                         <p class="research">
@@ -159,6 +161,7 @@
                             <li>LLM Security</li>
                             <li>Full-stack Web</li>
                             <li>Applied AI</li>
+                            <li>Android</li>
                             <li>Python Tooling</li>
                         </ul>
                     </div>
@@ -195,7 +198,7 @@
                                 </div>
                                 <div class="profile__row">
                                     <dt>Focus</dt>
-                                    <dd>Software - AI/ML - LLM - Security</dd>
+                                    <dd>Software - AI/ML - LLM - Security - Mobile</dd>
                                 </div>
                                 <div class="profile__row">
                                     <dt>GitHub</dt>
@@ -244,9 +247,9 @@
                     <span class="sec__tag">Selected Work</span>
                     <h2 class="sec__title">Built, tested, and documented</h2>
                     <p class="sec__lede">
-                        Three hands-on projects from self-directed learning and coursework. Each one is a
-                        complete piece of engineering, not a tutorial - real features, clean structure, and
-                        learning by building.
+                        Four projects from self-directed learning and coursework, one of them a team
+                        Android application. Each is a real piece of engineering with the code published,
+                        not a tutorial - real features, clean structure, and learning by building.
                     </p>
                 </header>
 
@@ -363,6 +366,54 @@
                                     target="_blank" rel="noopener noreferrer">Quickstart</a>
                             </div>
                         </article>
+
+                        <article class="project">
+                            <div class="project__head">
+                                <span class="project__no">04</span>
+                                <span class="project__role">Course team project</span>
+                            </div>
+                            <h3 class="project__title">HarmonyCare: Elderly Safety and Volunteer Response</h3>
+                            <p class="project__tagline">
+                                Android application built with a course team: one-touch emergency alerting
+                                for elderly users, and a response and navigation flow for volunteers.
+                            </p>
+                            <ul class="tags" aria-label="Tech stack">
+                                <li>Java</li>
+                                <li>Android SDK 34</li>
+                                <li>Room</li>
+                                <li>MVVM</li>
+                                <li>Material Design</li>
+                                <li>AMap / OSMDroid</li>
+                            </ul>
+                            <p class="project__roleline">
+                                <strong>My role:</strong> architecture and technical design, plus testing.
+                            </p>
+                            <ul class="bullets">
+                                <li>Defined the app architecture: MVVM with a repository layer, a Room data
+                                    model of eight entities, and the offline-first emergency flow the team
+                                    built against</li>
+                                <li>Owned the test plan and manual QA: verified the elderly and volunteer
+                                    journeys end to end, including emergency alerting, map navigation,
+                                    chat, and reminders</li>
+                                <li>Offline-first design: an alert is queued on the device and broadcast
+                                    over the local WiFi network, so nearby volunteers can be reached with
+                                    no server and no internet</li>
+                                <li>Accessibility for elderly users: confirmation countdown before sending
+                                    an alert, text-to-speech and haptic feedback, large-text mode, and
+                                    English / Bengali localization</li>
+                            </ul>
+                            <p class="result">
+                                <strong>Result:</strong> a team project delivered as a 17-screen Android
+                                application (13,000+ lines of Java) spanning two user roles; I owned the
+                                architecture, the technical design, and the testing.
+                            </p>
+                            <div class="linksrow">
+                                <a href="https://github.com/eafte/HarmonyCare" target="_blank"
+                                    rel="noopener noreferrer">Repository</a>
+                                <a href="https://github.com/eafte/HarmonyCare/blob/main/PROJECT_STRUCTURE.md"
+                                    target="_blank" rel="noopener noreferrer">Project structure</a>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -407,6 +458,16 @@
                             <li>Tkinter GUI development</li>
                             <li>Data analysis with Pandas</li>
                             <li>Testing with pytest</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill">
+                        <h3>Mobile</h3>
+                        <ul>
+                            <li>Java on Android (SDK 34)</li>
+                            <li>Room persistence and MVVM</li>
+                            <li>Material Design interfaces</li>
+                            <li>Offline-first networking (local network broadcast)</li>
                         </ul>
                     </div>
                 </div>

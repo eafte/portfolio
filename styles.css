@@ -744,7 +744,8 @@ a:hover {
   color: var(--accent);
 }
 
-.feature__tag {
+.feature__tag,
+.project__role {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -753,6 +754,19 @@ a:hover {
   border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   padding: 4px 10px;
   border-radius: 4px;
+  text-align: right;
+}
+
+.project__roleline {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.project__roleline strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .feature__title {
@@ -872,6 +886,11 @@ a:hover {
   gap: 28px;
 }
 
+/* A lone final card (odd count) spans the full width instead of leaving a gap. */
+.work__grid > .project:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .project {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -919,7 +938,7 @@ a:hover {
 /* ================= Skills ================= */
 .skills {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
 
