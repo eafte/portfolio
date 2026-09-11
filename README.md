@@ -56,6 +56,7 @@ assets/       # project figures (LLM Guard Bench report, 1800px and 900px)
 ## Content rules (keep the portfolio professor-safe)
 
 - Every claim must trace to real work: LLM Guard Bench is a hands-on project, not formal research. Research language stays aspirational (interested in, working toward).
+- Machine learning is framed as a direction, never as a skill. The research line leads with software engineering and security, then says "working toward applied machine learning through that evaluation work". ML frameworks and algorithms stay out of Skills until an ML project exists with a real train and evaluate loop. Never restore a flat "applied machine learning" claim.
 - Do not tag projects with chips like "solo project" or "team project" and do not add role lines to solo work; the Work cards stay clean. Where a project was built by a team, say so plainly inside the card (tagline or one role line) so nothing reads as the owner's own implementation.
 - HarmonyCare was a team course project: the role is a small part of the architecture work, and the application was built by the team. Never claim implementation, technical design, or testing.
 - UrbanAI was a team competition prototype and appears in Experience only, never as a Work card. The role is feature scoping and documentation guidelines - never implementation, concept ownership, or presenting the entry.
