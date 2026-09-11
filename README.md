@@ -15,7 +15,7 @@ well-set document.
 ## What's on the page
 
 - Hero: name, focus areas, short narrative, and a metrics strip (attack categories, evaluation runs, tests passing, timezones, HSK-4)
-- Work: featured LLM Guard Bench (adversarial LLM security benchmark) plus three more projects - a full-stack B2B platform, a desktop expense tracker, and HarmonyCare, a team Android app - each with a plain-language "Result"
+- Work: featured LLM Guard Bench (adversarial LLM security benchmark) plus four more projects - a full-stack B2B platform, a desktop expense tracker, HarmonyCare (team Android app), and UrbanAI (team competition prototype) - each with a plain-language "Result"
 - Skills: only items actually used in the projects above
 - Experience: work, student venture, 2025 China International College Students' Innovation Competition
 - Education: ZZU Software Engineering (BSc, 2027), HSK-4 certified, HSC
@@ -54,7 +54,10 @@ cv-ats.docx   # ATS-safe CV (Word) - linked from the hero and contact section
 ## Content rules (keep the portfolio professor-safe)
 
 - Every claim must trace to real work: LLM Guard Bench is a hands-on project, not formal research. Research language stays aspirational (interested in, working toward).
-- Every project card states whether the work was solo or team, and for team work the exact role. HarmonyCare was a mobile programming course group project: the role on the card is architecture, technical design, and testing - never implementation. The repository README credits the teammate who wrote the application code; keep that credit intact.
+- Every project card states whether the work was solo or team, and for team work the exact role.
+- HarmonyCare was a mobile programming course group project: the role on the card is architecture, technical design, and testing - never implementation.
+- UrbanAI was a team competition prototype: the role on the card is concept, feature scope, and the competition entry - never implementation. The card states that some modules run on demo data and that the AI features are LLM API calls, not trained models.
+- Both team repositories credit the teammate who led implementation. Keep that credit intact; it is what makes the role lines on the cards credible.
 - Skills list only what the projects use. If a skill has no project behind it, it does not go in.
 - Plain punctuation in copy: hyphens, colons, commas. No em/en dashes or fancy unicode.
 - Links use `https://github.com/eafte/...` only (the previous username is dead - never link to it). After editing, curl-check every github.com link returns 200.
