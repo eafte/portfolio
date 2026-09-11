@@ -54,8 +54,8 @@ cv-ats.docx   # ATS-safe CV (Word) - linked from the hero and contact section
 ## Content rules (keep the portfolio professor-safe)
 
 - Every claim must trace to real work: LLM Guard Bench is a hands-on project, not formal research. Research language stays aspirational (interested in, working toward).
-- Every project card states whether the work was solo or team, and for team work the exact role. Solo work carries a "Solo project" chip (the benchmark says "My role: solo project"), team work carries the team chip and a "My role" line in the same place. Keep both formats consistent so a reviewer can scan roles without reading the bullets.
-- HarmonyCare was a mobile programming course group project: the role is architecture, with smaller contributions to technical design and testing - never implementation, and never ownership of the test plan.
+- Do not tag projects with chips like "solo project" or "team project" and do not add role lines to solo work; the Work cards stay clean. Where a project was built by a team, say so plainly inside the card (tagline or one role line) so nothing reads as the owner's own implementation.
+- HarmonyCare was a team course project: the role is a small part of the architecture work, and the application was built by the team. Never claim implementation, technical design, or testing.
 - UrbanAI was a team competition prototype and appears in Experience only, never as a Work card. The role is feature scoping and documentation guidelines - never implementation, concept ownership, or presenting the entry.
 - Skills must trace to work the owner actually built. Next.js, Three.js, and DeepSeek are UrbanAI technologies and never go in the Skills section, because that implementation was a teammate's.
 - Both team repositories credit the teammate who led implementation. Keep that credit intact; it is what makes the role lines on the cards credible.
