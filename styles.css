@@ -491,12 +491,6 @@ a:hover {
   color: var(--ink-soft);
 }
 
-.research--q {
-  margin-top: 14px;
-  padding-top: 0;
-  border-top: none;
-}
-
 .hero__cta {
   margin-top: 26px;
   display: flex;
@@ -755,6 +749,18 @@ a:hover {
   border-radius: 4px;
 }
 
+.project__roleline {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.project__roleline strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .feature__title {
   margin: 0;
   font-family: var(--serif);
@@ -771,6 +777,108 @@ a:hover {
   font-size: 0.98rem;
   line-height: 1.6;
   max-width: 60ch;
+}
+
+/* Data figure (e.g. the benchmark report) */
+.figure {
+  margin: 22px 0 0;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #0d1b2a;
+}
+
+.figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 70ch;
+}
+
+/* Data tables (benchmark results) */
+.results {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.results__title {
+  margin: 0 0 16px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tablewrap + .tablewrap {
+  margin-top: 22px;
+}
+
+.rtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.rtable caption {
+  caption-side: top;
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  padding-bottom: 10px;
+  max-width: 68ch;
+}
+
+.rtable th,
+.rtable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+
+.rtable th {
+  font-weight: 600;
+}
+
+.rtable thead th {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.rtable thead th:first-child,
+.rtable tbody th {
+  text-align: left;
+}
+
+.rtable tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.rtable tbody tr:last-child th,
+.rtable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rtable__total th,
+.rtable__total td {
+  border-top: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.rtable__total th {
+  font-weight: 600;
 }
 
 .tags {
@@ -872,6 +980,11 @@ a:hover {
   gap: 28px;
 }
 
+/* A lone final card (odd count) spans the full width instead of leaving a gap. */
+.work__grid > .project:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .project {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -919,7 +1032,7 @@ a:hover {
 /* ================= Skills ================= */
 .skills {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
 
