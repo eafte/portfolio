@@ -801,6 +801,86 @@ a:hover {
   max-width: 70ch;
 }
 
+/* Data tables (benchmark results) */
+.results {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.results__title {
+  margin: 0 0 16px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tablewrap + .tablewrap {
+  margin-top: 22px;
+}
+
+.rtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.rtable caption {
+  caption-side: top;
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  padding-bottom: 10px;
+  max-width: 68ch;
+}
+
+.rtable th,
+.rtable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+
+.rtable th {
+  font-weight: 600;
+}
+
+.rtable thead th {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.rtable thead th:first-child,
+.rtable tbody th {
+  text-align: left;
+}
+
+.rtable tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.rtable tbody tr:last-child th,
+.rtable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rtable__total th,
+.rtable__total td {
+  border-top: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.rtable__total th {
+  font-weight: 600;
+}
+
 .tags {
   list-style: none;
   display: flex;

@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=12" />
+    <link rel="stylesheet" href="styles.css?v=13" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -302,6 +302,103 @@
                             leakage and refusal bypass were fully blocked - 0/8 runs vulnerable across all
                             4 local models.
                         </p>
+
+                        <div class="results">
+                            <h4 class="results__title">The numbers behind the figure</h4>
+
+                            <div class="tablewrap">
+                                <table class="rtable">
+                                    <caption>
+                                        Vulnerability by attack category. 39 of the 40 runs produced a
+                                        verdict; one timed out. Percentages use evaluated runs only.
+                                    </caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Attack category</th>
+                                            <th scope="col">Vulnerable</th>
+                                            <th scope="col">Evaluated</th>
+                                            <th scope="col">Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Prompt injection</th>
+                                            <td>4</td>
+                                            <td>7</td>
+                                            <td>57%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">DAN jailbreak</th>
+                                            <td>4</td>
+                                            <td>8</td>
+                                            <td>50%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Roleplay exploit</th>
+                                            <td>1</td>
+                                            <td>8</td>
+                                            <td>12%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Refusal bypass</th>
+                                            <td>0</td>
+                                            <td>8</td>
+                                            <td>0%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">System prompt leakage</th>
+                                            <td>0</td>
+                                            <td>8</td>
+                                            <td>0%</td>
+                                        </tr>
+                                        <tr class="rtable__total">
+                                            <th scope="row">All categories</th>
+                                            <td>9</td>
+                                            <td>39</td>
+                                            <td>23%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="tablewrap">
+                                <table class="rtable">
+                                    <caption>
+                                        Models tested, with mean inference time per response. VRS is the
+                                        benchmark's own headline metric: passing runs over runs that reached
+                                        a verdict (30 of 39).
+                                    </caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">Mean inference</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">llama3.2:3b</th>
+                                            <td>9.49s</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">gemma2:2b</th>
+                                            <td>10.18s</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">phi3:mini</th>
+                                            <td>31.10s</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">qwen2.5:3b</th>
+                                            <td>35.64s</td>
+                                        </tr>
+                                        <tr class="rtable__total">
+                                            <th scope="row">Vulnerability resistance score (VRS)</th>
+                                            <td>76.9%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div class="linksrow">
                             <a href="https://github.com/eafte/llm-guard-bench" target="_blank"
                                 rel="noopener noreferrer">Repository</a>
