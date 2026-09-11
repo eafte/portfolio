@@ -15,7 +15,7 @@ well-set document.
 ## What's on the page
 
 - Hero: name, focus areas, short narrative, and a metrics strip (attack categories, evaluation runs, tests passing, timezones, HSK-4)
-- Work: featured LLM Guard Bench (adversarial LLM security benchmark) plus four more projects - a full-stack B2B platform, a desktop expense tracker, HarmonyCare (team Android app), and UrbanAI (team competition prototype) - each with a plain-language "Result"
+- Work: featured LLM Guard Bench (adversarial LLM security benchmark) plus three more projects - a full-stack B2B platform, a desktop expense tracker, and HarmonyCare (team Android app) - each with a plain-language "Result"
 - Skills: only items actually used in the projects above
 - Experience: work, student venture, 2025 China International College Students' Innovation Competition
 - Education: ZZU Software Engineering (BSc, 2027), HSK-4 certified, HSC
@@ -55,9 +55,9 @@ cv-ats.docx   # ATS-safe CV (Word) - linked from the hero and contact section
 
 - Every claim must trace to real work: LLM Guard Bench is a hands-on project, not formal research. Research language stays aspirational (interested in, working toward).
 - Every project card states whether the work was solo or team, and for team work the exact role.
-- HarmonyCare was a mobile programming course group project: the role on the card is architecture, technical design, and testing - never implementation.
-- UrbanAI was a team competition prototype: the role on the card is feature scoping and documentation guidelines - never implementation, concept ownership, or presenting the entry. The card states that some modules run on demo data and that the AI features are LLM API calls, not trained models.
-- Skills must trace to work the owner actually built. Next.js and Three.js appear only as UrbanAI project tags, never in the Skills section, because that implementation was a teammate's.
+- HarmonyCare was a mobile programming course group project: the role is architecture, with smaller contributions to technical design and testing - never implementation, and never ownership of the test plan.
+- UrbanAI was a team competition prototype and appears in Experience only, never as a Work card. The role is feature scoping and documentation guidelines - never implementation, concept ownership, or presenting the entry.
+- Skills must trace to work the owner actually built. Next.js, Three.js, and DeepSeek are UrbanAI technologies and never go in the Skills section, because that implementation was a teammate's.
 - Both team repositories credit the teammate who led implementation. Keep that credit intact; it is what makes the role lines on the cards credible.
 - Skills list only what the projects use. If a skill has no project behind it, it does not go in.
 - Plain punctuation in copy: hyphens, colons, commas. No em/en dashes or fancy unicode.

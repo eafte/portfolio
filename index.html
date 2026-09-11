@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=7" />
+    <link rel="stylesheet" href="styles.css?v=8" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -129,10 +129,9 @@
                             I am a software engineering undergraduate who treats every project as a small
                             research problem: define the question, build carefully, measure,
                             and document. My work spans an adversarial LLM security benchmark, a
-                            full-stack B2B platform, a desktop analytics tool, and two team projects: an
-                            Android safety app where I owned the architecture and testing, and a
-                            smart-city competition prototype where I worked on feature scoping and
-                            documentation. All are
+                            full-stack B2B platform, a desktop analytics tool, and an Android safety app
+                            built with a course team, where I worked on the architecture and took part in
+                            testing. All are
                             published with documentation and a reproducible setup; the expense tracker
                             ships 80+ unit tests. I am preparing for master's studies in software
                             engineering / computer science.
@@ -249,8 +248,8 @@
                     <span class="sec__tag">Selected Work</span>
                     <h2 class="sec__title">Built, tested, and documented</h2>
                     <p class="sec__lede">
-                        Five projects from self-directed learning, coursework, and competition work -
-                        two of them team projects. Each is a real piece of engineering with the code
+                        Four projects from self-directed learning and coursework, one of them a team
+                        Android application. Each is a real piece of engineering with the code
                         published, not a tutorial - real features, clean structure, and learning by
                         building.
                     </p>
@@ -389,26 +388,28 @@
                                 <li>AMap / OSMDroid</li>
                             </ul>
                             <p class="project__roleline">
-                                <strong>My role:</strong> architecture and technical design, plus testing.
+                                <strong>My role:</strong> architecture, with smaller contributions to
+                                technical design and testing. The application code was written by a
+                                teammate.
                             </p>
                             <ul class="bullets">
-                                <li>Defined the app architecture: MVVM with a repository layer, a Room data
-                                    model of eight entities, and the offline-first emergency flow the team
-                                    built against</li>
-                                <li>Owned the test plan and manual QA: verified the elderly and volunteer
-                                    journeys end to end, including emergency alerting, map navigation,
-                                    chat, and reminders</li>
-                                <li>Offline-first design: an alert is queued on the device and broadcast
-                                    over the local WiFi network, so nearby volunteers can be reached with
-                                    no server and no internet</li>
+                                <li>Defined the app architecture: MVVM with a repository layer over Room,
+                                    and a data model of eight entities that the team built against</li>
+                                <li>Took part in technical design reviews and in testing the elderly and
+                                    volunteer journeys: emergency alerting, map navigation, chat, and
+                                    reminders</li>
+                                <li>What the team built: an offline-first alert path - queued on the
+                                    device, then broadcast over the local WiFi network, so nearby
+                                    volunteers can be reached with no server and no internet</li>
                                 <li>Accessibility for elderly users: confirmation countdown before sending
                                     an alert, text-to-speech and haptic feedback, large-text mode, and
                                     English / Bengali localization</li>
                             </ul>
                             <p class="result">
                                 <strong>Result:</strong> a team project delivered as a 17-screen Android
-                                application (13,000+ lines of Java) spanning two user roles; I owned the
-                                architecture, the technical design, and the testing.
+                                application (13,000+ lines of Java) spanning two user roles. My part was
+                                the architecture, with smaller contributions to technical design and
+                                testing.
                             </p>
                             <div class="linksrow">
                                 <a href="https://github.com/eafte/HarmonyCare" target="_blank"
@@ -418,56 +419,6 @@
                             </div>
                         </article>
 
-                        <article class="project">
-                            <div class="project__head">
-                                <span class="project__no">05</span>
-                                <span class="project__role">Team project - competition</span>
-                            </div>
-                            <h3 class="project__title">UrbanAI: Smart City Planning Prototype</h3>
-                            <p class="project__tagline">
-                                Team prototype entered in the 2025 China International College Students'
-                                Innovation Competition: a multi-module dashboard for urban planning
-                                decisions.
-                            </p>
-                            <ul class="tags" aria-label="Tech stack">
-                                <li>Next.js</li>
-                                <li>React</li>
-                                <li>TypeScript</li>
-                                <li>Prisma</li>
-                                <li>Three.js</li>
-                                <li>Leaflet</li>
-                                <li>DeepSeek API</li>
-                            </ul>
-                            <p class="project__roleline">
-                                <strong>My role:</strong> team member - contributed feature scoping and
-                                documentation guidelines. The implementation was led by a teammate; I did
-                                not write the application code.
-                            </p>
-                            <ul class="bullets">
-                                <li>Contributed to the feature scope for the dashboard modules (traffic,
-                                    resources, green spaces, weather, environmental goals, and
-                                    simulations) and to the documentation guidelines the team worked to</li>
-                                <li>The team built the prototype on Next.js with TypeScript and Prisma,
-                                    with a 3D city view (react-three-fiber), Leaflet maps, and JWT
-                                    authentication</li>
-                                <li>The AI features are LLM API calls rather than trained models: the
-                                    assistant and analysis routes call the DeepSeek API and fall back to
-                                    deterministic analysis when no key is configured</li>
-                                <li>Some modules run on demo data - the honest boundary between a
-                                    competition prototype and a product</li>
-                            </ul>
-                            <p class="result">
-                                <strong>Result:</strong> a team prototype taken to a competition demo and
-                                no further. My part was scope and documentation; the repository shows the
-                                16-module codebase the team produced.
-                            </p>
-                            <div class="linksrow">
-                                <a href="https://github.com/eafte/UrbanAI" target="_blank"
-                                    rel="noopener noreferrer">Repository</a>
-                                <a href="https://github.com/eafte/UrbanAI/blob/main/prisma/schema.prisma"
-                                    target="_blank" rel="noopener noreferrer">Data model</a>
-                            </div>
-                        </article>
                     </div>
                 </div>
             </div>
