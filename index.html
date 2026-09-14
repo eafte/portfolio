@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=14" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -65,7 +65,9 @@
     <header class="header">
         <div class="container header__inner">
             <a class="brand" href="#top" aria-label="Back to top">
-                <span class="brand__mark" aria-hidden="true">E</span>
+                <span class="brand__mark" aria-hidden="true">E<img class="brand__photo" src="assets/photo.jpg"
+                        alt="Md Eaftekhirul Islam" width="80" height="80" fetchpriority="high"
+                        onload="this.classList.add('is-loaded')" onerror="this.remove()" /></span>
                 <span class="brand__text">
                     <strong>Md Eaftekhirul Islam</strong>
                     <em>Software Engineering</em>
@@ -141,23 +143,19 @@
                         </p>
                         <p class="lede">
                             I am a software engineering undergraduate who treats every project as a small
-                            research problem: define the question, build carefully, measure,
-                            and document. My work spans an adversarial LLM security benchmark, a
-                            full-stack B2B platform, a desktop analytics tool, and an Android safety app
-                            built with a course team, where I contributed a small part of the
-                            architecture. All are
-                            published with documentation and a reproducible setup; the expense tracker
-                            ships 80+ unit tests. I am preparing for master's studies in software
-                            engineering / computer science.
+                            research problem: define the question, build carefully, measure, and document.
+                            My work spans an adversarial LLM security benchmark, a full-stack B2B platform,
+                            a desktop analytics tool with 80+ unit tests, and a team-built Android safety
+                            app &mdash; all published with documentation and reproducible setups. I am
+                            preparing for master's studies in software engineering / computer science.
                         </p>
 
                         <p class="research">
                             <span class="research__label">Research interests</span>
-                            <span class="research__text">Software engineering and security, focused on how AI
-                                systems are tested and evaluated: the robustness of large language models,
-                                and the measurement methods we use to judge them. Working toward applied
-                                machine learning through that evaluation work, rather than by claiming
-                                training experience I do not have yet.</span>
+                            <span class="research__text">Software engineering and security: how AI systems
+                                are tested and evaluated, from LLM robustness to the measurement methods
+                                we use to judge them. Currently building applied-ML foundations through
+                                this evaluation work.</span>
                         </p>
 
                         <div class="hero__cta">
