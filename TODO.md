@@ -9,8 +9,7 @@ Work through P0 → P1 → P2. Check boxes as you go.
       to JSON-LD (`url`, `image`); create 1200×630 social card image
 - [x] **2. Add `robots.txt` + `sitemap.xml`** at site root
 - [x] **3. Favicon fallbacks** — add PNG favicon + `apple-touch-icon`
-- [ ] **4. Real headshot** — code wired ✅ (`assets/photo.jpg` + EI fallback); **needs photo
-      file**: re-attach the portrait here or upload `photo.jpg` to `assets/` on GitHub
+- [x] **4. Real headshot** — `assets/photo.jpg` live (512px square crop, 27 KB)
 - [ ] **5. CV as PDF** — export `Md-Eaftekhirul-Islam-CV.pdf`, make it the primary button;
       keep `.docx` as secondary ATS download
 - [ ] **6. Fix metrics row** — hero shows `HSK 4 · Certified` (move `194/300` to Education
