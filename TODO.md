@@ -12,23 +12,23 @@ Work through P0 → P1 → P2. Check boxes as you go.
 - [x] **4. Real headshot** — `assets/photo.jpg` live (512px square crop, 27 KB)
 - [ ] **5. CV as PDF** — export `Md-Eaftekhirul-Islam-CV.pdf`, make it the primary button;
       keep `.docx` as secondary ATS download
-- [ ] **6. Fix metrics row** — hero shows `HSK 4 · Certified` (move `194/300` to Education
+- [x] **6. Fix metrics row** — hero shows `HSK 4 · Certified` (move `194/300` to Education
       only); replace `450+ timezones` metric with an earned one
       (e.g. `5.00/5.00 HSC GPA`, `Full-tuition scholarship`, or `13k+ lines`)
-- [ ] **7. Fix Result wording** (LLM Guard Bench) — clarify "0/8 runs vulnerable across
+- [x] **7. Fix Result wording** (LLM Guard Bench) — clarify "0/8 runs vulnerable across
       all 4 local models" → "0 vulnerable out of 8 runs per category — holding across
       all 4 models"
-- [ ] **8. Reframe research-interests line** — replace "rather than by claiming training
+- [x] **8. Reframe research-interests line** — replace "rather than by claiming training
       experience I do not have yet" with a positive framing
       (e.g. "Currently building applied-ML foundations through evaluation work…")
 
 ## 🟡 P1 — Medium impact (~1 weekend)
 
-- [ ] **9. Project visuals** — add 1 screenshot/mockup each: B2B site (browser frame),
+- [x] **9. Project visuals** — add 1 screenshot/mockup each: B2B site (browser frame),
       IODEX (desktop window), HarmonyCare (phone frame)
-- [ ] **10. Trim hero copy** — cut lede to ~50 words, 2 short paragraphs; remove
+- [x] **10. Trim hero copy** — cut lede to ~50 words, 2 short paragraphs; remove
       repeated "reproducible / measure / carefully" (appears 4–5×)
-- [ ] **11. Collapsible result tables** — wrap "The numbers behind the figure" in
+- [x] **11. Collapsible result tables** — wrap "The numbers behind the figure" in
       `<details>` so scanners see chart + result first
 - [ ] **12. Prove or reframe JRSphere** — add 1 concrete line (what it is, what shipped)
       + link; or downgrade "Founder & Lead" framing

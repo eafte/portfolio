@@ -24,6 +24,20 @@
 
   --max: 1120px;
   --radius: 7px;
+  --radius-sm: 5px;
+
+  /* Spacing scale - one rhythm for the whole page */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s7: 32px;
+  --s8: 40px;
+  --s9: 48px;
+  --s10: 64px;
+  --s11: 88px;
 
   --serif: "Spectral", "Georgia", "Times New Roman", serif;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -82,13 +96,13 @@ a:hover {
 *:focus-visible {
   outline: none;
   box-shadow: var(--ring);
-  border-radius: 4px;
+  border-radius: var(--s1);
 }
 
 .skip {
   position: absolute;
   left: -999px;
-  top: 8px;
+  top: var(--s2);
   padding: 10px 14px;
   background: var(--panel);
   border: 1px solid var(--line-strong);
@@ -98,7 +112,7 @@ a:hover {
 }
 
 .skip:focus {
-  left: 12px;
+  left: var(--s3);
 }
 
 .container {
@@ -121,35 +135,59 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 13px 0;
+  gap: var(--s6);
+  padding: 10px 0;
+  min-height: 64px;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
+  gap: var(--s3);
   line-height: 1.1;
+  min-width: 0;
 }
 
+/* Round photo avatar in the navbar. The accent disc with the "E"
+   initial sits underneath as a fallback - the photo covers it when loaded,
+   and onerror removes the img so the monogram shows if the file is missing. */
 .brand__mark {
+  position: relative;
+  overflow: hidden;
   flex: 0 0 auto;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background: var(--accent);
   color: #fbf8f0;
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  box-shadow: 0 0 0 1px var(--line-strong), 0 1px 3px rgba(26, 23, 18, 0.18);
+}
+
+.brand__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  opacity: 0;
+  transition: opacity 300ms var(--ease);
+}
+
+.brand__photo.is-loaded {
+  opacity: 1;
 }
 
 .brand__text {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .brand__text strong {
@@ -157,6 +195,7 @@ a:hover {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .brand__text em {
@@ -169,15 +208,16 @@ a:hover {
 
 .nav {
   display: flex;
-  gap: 2px;
+  gap: var(--s1);
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav a {
   color: var(--ink-soft);
   font-weight: 600;
   font-size: 0.92rem;
-  padding: 8px 12px;
+  padding: 9px 14px;
   border-radius: 6px;
   position: relative;
   transition: color 160ms var(--ease), background 160ms var(--ease);
@@ -191,8 +231,8 @@ a:hover {
 .nav a::after {
   content: "";
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 14px;
+  right: 14px;
   bottom: 4px;
   height: 2px;
   background: var(--accent);
@@ -208,7 +248,8 @@ a:hover {
 .header__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--s3);
+  flex: 0 0 auto;
 }
 
 /* ================= Buttons ================= */
@@ -216,9 +257,10 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--s2);
+  min-height: 44px;
   border-radius: 6px;
-  padding: 11px 20px;
+  padding: 11px 22px;
   border: 1px solid transparent;
   font-family: var(--sans);
   font-weight: 600;
@@ -257,8 +299,9 @@ a:hover {
 .theme {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 43px;
+  justify-content: center;
+  gap: var(--s2);
+  height: 44px;
   padding: 0 14px;
   border-radius: 6px;
   border: 1px solid var(--line);
@@ -311,10 +354,10 @@ a:hover {
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
-  width: 42px;
-  height: 42px;
-  padding: 11px;
+  gap: var(--s1);
+  width: 44px;
+  height: 44px;
+  padding: 12px;
   border-radius: 6px;
   border: 1px solid var(--line);
   background: transparent;
@@ -350,9 +393,9 @@ a:hover {
 /* ================= Hero ================= */
 .hero {
   position: relative;
-  padding: 60px 0 40px;
+  padding: var(--s10) 0 var(--s9);
   border-bottom: 1px solid var(--line);
-  scroll-margin-top: 84px;
+  scroll-margin-top: 80px;
 }
 
 .hero .container {
@@ -362,7 +405,7 @@ a:hover {
 /* Neural-network line drawing - quiet schematic behind the profile card */
 .hero__art {
   position: absolute;
-  top: -34px;
+  top: -40px;
   right: -40px;
   width: 470px;
   color: var(--faint);
@@ -401,15 +444,15 @@ a:hover {
   z-index: 1;
   display: grid;
   grid-template-columns: 1.45fr 1fr;
-  gap: 48px;
+  gap: var(--s10);
   align-items: start;
 }
 
 .eyebrow {
-  margin: 0 0 20px;
+  margin: 0 0 var(--s6);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--s3);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -426,7 +469,7 @@ a:hover {
 }
 
 .hero__title {
-  margin: 0 0 8px;
+  margin: 0 0 var(--s3);
   font-family: var(--serif);
   font-weight: 600;
   font-size: clamp(2.9rem, 7vw, 4.7rem);
@@ -439,7 +482,7 @@ a:hover {
 }
 
 .hero__sub {
-  margin: 0 0 22px;
+  margin: 0 0 var(--s6);
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
@@ -463,8 +506,8 @@ a:hover {
 }
 
 .research {
-  margin: 22px 0 0;
-  padding-top: 16px;
+  margin: var(--s6) 0 0;
+  padding-top: var(--s5);
   border-top: 1px solid var(--line);
   display: flex;
   align-items: baseline;
@@ -492,9 +535,9 @@ a:hover {
 }
 
 .hero__cta {
-  margin-top: 26px;
+  margin-top: var(--s7);
   display: flex;
-  gap: 12px;
+  gap: var(--s3);
   flex-wrap: wrap;
 }
 
@@ -502,8 +545,8 @@ a:hover {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 26px 0 0;
+  gap: var(--s2);
+  margin: var(--s6) 0 0;
   padding: 0;
 }
 
@@ -512,7 +555,7 @@ a:hover {
   font-weight: 600;
   color: var(--ink-soft);
   padding: 6px 13px;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--line-strong);
   background: var(--panel);
 }
@@ -532,7 +575,7 @@ a:hover {
   display: flex;
   gap: 14px;
   align-items: center;
-  padding: 20px 20px 0;
+  padding: var(--s6) var(--s6) 0;
 }
 
 .profile__avatar {
@@ -577,7 +620,7 @@ a:hover {
 }
 
 .profile__role {
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   font-size: 0.82rem;
   color: var(--muted);
 }
@@ -585,9 +628,9 @@ a:hover {
 .profile__status {
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin: 0 20px;
-  padding: 16px 0;
+  gap: 10px;
+  margin: 0 var(--s6);
+  padding: var(--s4) 0;
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--ink-soft);
@@ -605,13 +648,13 @@ a:hover {
 
 .profile__list {
   margin: 0;
-  padding: 4px 20px 14px;
+  padding: var(--s2) var(--s6) var(--s4);
 }
 
 .profile__row {
   display: grid;
   grid-template-columns: 92px 1fr;
-  gap: 12px;
+  gap: var(--s3);
   padding: 11px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -644,7 +687,7 @@ a:hover {
 
 /* Metrics */
 .metrics {
-  margin: 40px 0 0;
+  margin: var(--s9) 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -658,7 +701,7 @@ a:hover {
 
 .metric {
   margin: 0;
-  padding: 18px 20px;
+  padding: var(--s5) var(--s5);
   background: var(--bg);
   position: relative;
 }
@@ -666,14 +709,14 @@ a:hover {
 .metric__num {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: 2.1rem;
+  font-size: 2rem;
   line-height: 1;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
 
 .metric__label {
-  margin: 9px 0 0;
+  margin: var(--s2) 0 0;
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--ink-soft);
@@ -681,23 +724,24 @@ a:hover {
 }
 
 .metric__src {
-  margin: 5px 0 0;
+  margin: 6px 0 0;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--faint);
+  line-height: 1.45;
 }
 
 /* ================= Sections ================= */
 .section {
-  padding: 84px 0;
+  padding: var(--s11) 0;
   border-bottom: 1px solid var(--line);
-  scroll-margin-top: 84px;
+  scroll-margin-top: 80px;
 }
 
 .sec {
   max-width: 720px;
-  margin-bottom: 44px;
+  margin-bottom: var(--s9);
 }
 
 .sec__tag {
@@ -710,7 +754,7 @@ a:hover {
 }
 
 .sec__title {
-  margin: 12px 0 0;
+  margin: var(--s3) 0 0;
   font-family: var(--serif);
   font-weight: 600;
   font-size: clamp(1.9rem, 4vw, 2.6rem);
@@ -719,7 +763,7 @@ a:hover {
 }
 
 .sec__lede {
-  margin: 14px 0 0;
+  margin: var(--s4) 0 0;
   color: var(--muted);
   line-height: 1.7;
   max-width: 62ch;
@@ -728,7 +772,7 @@ a:hover {
 /* ================= Work ================= */
 .work {
   display: grid;
-  gap: 28px;
+  gap: var(--s7);
 }
 
 .feature {
@@ -736,8 +780,10 @@ a:hover {
   border: 1px solid var(--line);
   border-left: 4px solid var(--accent);
   border-radius: var(--radius);
-  padding: 34px 38px;
+  padding: var(--s8) var(--s8);
   box-shadow: var(--shadow);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .feature__head,
@@ -745,8 +791,8 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: var(--s3);
+  margin-bottom: var(--s4);
 }
 
 .feature__no,
@@ -764,12 +810,12 @@ a:hover {
   text-transform: uppercase;
   color: var(--accent);
   border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: var(--s1) 10px;
+  border-radius: var(--s1);
 }
 
 .project__roleline {
-  margin: 14px 0 0;
+  margin: var(--s4) 0 0;
   color: var(--muted);
   font-size: 0.93rem;
   line-height: 1.6;
@@ -791,7 +837,7 @@ a:hover {
 }
 
 .feature__tagline {
-  margin: 10px 0 0;
+  margin: var(--s3) 0 0;
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.6;
@@ -800,7 +846,7 @@ a:hover {
 
 /* Data figure (e.g. the benchmark report) */
 .figure {
-  margin: 22px 0 0;
+  margin: var(--s6) 0 0;
 }
 
 .figure img {
@@ -813,33 +859,97 @@ a:hover {
 }
 
 .figure figcaption {
-  margin-top: 10px;
+  margin-top: var(--s3);
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.5;
   max-width: 70ch;
 }
 
-/* Data tables (benchmark results) */
+/* Data tables (benchmark results) - collapsed by default so the card
+   stays scannable; the summary works like a native button. */
 .results {
-  margin-top: 26px;
-  padding-top: 22px;
+  margin-top: var(--s7);
+  padding-top: var(--s5);
   border-top: 1px solid var(--line);
 }
 
+.results__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px 0;
+}
+
+.results__summary::-webkit-details-marker {
+  display: none;
+}
+
 .results__title {
-  margin: 0 0 16px;
+  margin: 0;
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.results__title::after {
+  content: "+";
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 200ms var(--ease);
+}
+
+.results[open] .results__title::after {
+  transform: rotate(45deg);
+}
+
+.results__hint {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.results[open] .results__hint {
+  visibility: hidden;
+}
+
+.results__summary:hover .results__title {
+  color: var(--accent);
+}
+
+.results .tablewrap:first-of-type {
+  margin-top: var(--s4);
+}
+
+/* Tables keep a readable minimum width and scroll sideways on small
+   screens instead of forcing the whole card off-screen. */
+.tablewrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  border-radius: var(--radius-sm);
 }
 
 .tablewrap + .tablewrap {
-  margin-top: 22px;
+  margin-top: var(--s6);
 }
 
 .rtable {
   width: 100%;
+  min-width: 540px;
   border-collapse: collapse;
   font-size: 0.9rem;
   font-variant-numeric: tabular-nums;
@@ -851,13 +961,13 @@ a:hover {
   color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.5;
-  padding-bottom: 10px;
+  padding-bottom: var(--s3);
   max-width: 68ch;
 }
 
 .rtable th,
 .rtable td {
-  padding: 8px 10px;
+  padding: 10px var(--s3);
   border-bottom: 1px solid var(--line);
   text-align: right;
 }
@@ -905,7 +1015,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin: 18px 0 0;
+  margin: var(--s5) 0 0;
   padding: 0;
 }
 
@@ -917,7 +1027,7 @@ a:hover {
   background: var(--bg-2);
   border: 1px solid var(--line);
   padding: 5px 11px;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
 }
 
 .bullets {
@@ -932,7 +1042,15 @@ a:hover {
 .bullets li {
   position: relative;
   padding-left: 18px;
-  margin: 8px 0;
+  margin: var(--s2) 0;
+}
+
+.bullets li:first-child {
+  margin-top: 0;
+}
+
+.bullets li:last-child {
+  margin-bottom: 0;
 }
 
 .bullets li::before {
@@ -946,12 +1064,12 @@ a:hover {
 }
 
 .feature .bullets {
-  margin-top: 18px;
+  margin-top: var(--s5);
 }
 
 .feature__bullets {
   columns: 2;
-  column-gap: 40px;
+  column-gap: var(--s8);
 }
 
 .feature__bullets li {
@@ -960,8 +1078,8 @@ a:hover {
 }
 
 .result {
-  margin: 18px 0 0;
-  padding: 13px 16px;
+  margin: var(--s5) 0 0;
+  padding: 14px var(--s4);
   border-left: 3px solid var(--green);
   background: color-mix(in srgb, var(--green) 6%, transparent);
   border-radius: 0 6px 6px 0;
@@ -977,8 +1095,8 @@ a:hover {
 .linksrow {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 18px;
+  gap: var(--s6);
+  margin-top: var(--s5);
 }
 
 .linksrow a {
@@ -996,7 +1114,7 @@ a:hover {
 .work__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: var(--s7);
 }
 
 /* A lone final card (odd count) spans the full width instead of leaving a gap. */
@@ -1008,11 +1126,82 @@ a:hover {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 26px 28px;
+  padding: 0 0 var(--s7);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Schematic screenshot band at the top of every project card. */
+.project__media {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.project__media svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project > :not(.project__media):not(.project__content),
+.project__content {
+  padding-left: var(--s7);
+  padding-right: var(--s7);
+}
+
+.project__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Head sits right under the media band. */
+.project .project__head {
+  margin-top: 0;
+  padding-top: var(--s7);
+}
+
+/* Result + links pinned to the bottom so card rows align. */
+.project__foot {
+  margin-top: auto;
+  padding-top: var(--s4);
+}
+
+.project__foot .result {
+  margin-top: 0;
+}
+
+.project__foot .linksrow {
+  margin-top: 0;
+  padding-top: var(--s4);
+}
+
+/* Full-width team card: media beside content on desktop. */
+.project--wide {
+  display: grid;
+  grid-template-columns: minmax(300px, 42%) 1fr;
+  align-items: stretch;
+}
+
+.project--wide .project__media {
+  border-bottom: none;
+  border-right: 1px solid var(--line);
+}
+
+.project--wide .project__media svg {
+  height: 100%;
+}
+
+.project--wide .project__content {
+  padding: var(--s7) var(--s7) 0;
+}
+
+.project--wide .project__foot {
+  padding-top: var(--s5);
 }
 
 .project__title {
@@ -1025,43 +1214,36 @@ a:hover {
 }
 
 .project__tagline {
-  margin: 8px 0 0;
+  margin: var(--s2) 0 0;
   color: var(--muted);
   font-size: 0.93rem;
   line-height: 1.6;
 }
 
 .project .tags {
-  margin-top: 14px;
+  margin-top: var(--s4);
 }
 
 .project .bullets {
-  margin-top: 14px;
+  margin-top: var(--s4);
 }
 
-.project .result {
-  margin-top: 16px;
-}
 
-.project .linksrow {
-  margin-top: auto;
-  padding-top: 18px;
-}
 
 /* ================= Skills ================= */
 .skills {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: var(--s8) var(--s7);
 }
 
 .skill {
   border-top: 1px solid var(--ink);
-  padding-top: 18px;
+  padding-top: var(--s5);
 }
 
 .skill h3 {
-  margin: 0 0 12px;
+  margin: 0 0 var(--s3);
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.25rem;
@@ -1077,7 +1259,7 @@ a:hover {
 
 .skill li {
   position: relative;
-  padding-left: 16px;
+  padding-left: var(--s4);
 }
 
 .skill li::before {
@@ -1101,8 +1283,8 @@ a:hover {
 .timeline__item {
   display: grid;
   grid-template-columns: 180px 1fr;
-  gap: 24px;
-  padding: 0 0 30px 30px;
+  gap: var(--s6);
+  padding: 0 0 var(--s7) var(--s7);
   position: relative;
 }
 
@@ -1126,18 +1308,18 @@ a:hover {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
-  padding-top: 4px;
+  padding-top: var(--s1);
 }
 
 .timeline__body h3 {
-  margin: 0 0 10px;
+  margin: 0 0 var(--s3);
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.25rem;
 }
 
 .timeline__zh {
-  margin: -4px 0 10px;
+  margin: calc(-1 * var(--s1)) 0 var(--s3);
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.6;
@@ -1147,15 +1329,16 @@ a:hover {
 .edu {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  gap: 28px;
+  gap: var(--s7);
 }
 
 .edu__card {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: var(--s7);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .edu__card--lead {
@@ -1166,7 +1349,7 @@ a:hover {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--s3);
   flex-wrap: wrap;
 }
 
@@ -1186,14 +1369,14 @@ a:hover {
 }
 
 .edu__degree {
-  margin: 6px 0 8px;
+  margin: var(--s2) 0;
   font-weight: 600;
   color: var(--accent);
   font-size: 0.96rem;
 }
 
 .edu__stats {
-  margin: 0 0 16px;
+  margin: 0 0 var(--s4);
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.5;
@@ -1209,19 +1392,20 @@ a:hover {
 .contact {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 28px;
+  gap: var(--s7);
 }
 
 .contact__panel {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: var(--s7);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .contact__panel h3 {
-  margin: 0 0 14px;
+  margin: 0 0 var(--s4);
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.3rem;
@@ -1232,7 +1416,7 @@ a:hover {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: var(--s2);
 }
 
 .links a {
@@ -1248,8 +1432,8 @@ a:hover {
 }
 
 .contact__email {
-  margin: 20px 0 0;
-  padding-top: 16px;
+  margin: var(--s5) 0 0;
+  padding-top: var(--s4);
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.94rem;
@@ -1261,8 +1445,8 @@ a:hover {
 }
 
 .contact__note {
-  margin: 16px 0 0;
-  padding: 14px 16px;
+  margin: var(--s4) 0 0;
+  padding: 14px var(--s4);
   border-radius: 6px;
   background: var(--bg-2);
   border: 1px dashed var(--line-strong);
@@ -1273,7 +1457,7 @@ a:hover {
 
 /* ================= Footer ================= */
 .footer {
-  padding: 34px 0;
+  padding: var(--s8) 0;
   background: var(--bg);
   border-top: 3px solid var(--ink);
 }
@@ -1282,7 +1466,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--s3);
   flex-wrap: wrap;
 }
 
@@ -1336,13 +1520,29 @@ a:hover {
 }
 
 /* ================= Responsive ================= */
-@media (max-width: 980px) {
+@media (max-width: 1160px) {
+  /* The CTA duplicates the Contact link - drop it before the header
+     gets crowded and the nav has to wrap to a second line. */
+  .header__cta {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  /* Keep the decorative schematic from bleeding past the viewport edge. */
   .hero__art {
     display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero {
+    padding: var(--s9) 0 var(--s8);
   }
 
   .hero__grid {
     grid-template-columns: 1fr;
+    gap: var(--s8);
   }
 
   .metrics {
@@ -1360,6 +1560,10 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .skills {
+    gap: var(--s7);
+  }
+
   .header__cta {
     display: none;
   }
@@ -1372,11 +1576,11 @@ a:hover {
     display: none;
     position: absolute;
     top: calc(100% + 10px);
-    left: 24px;
-    right: 24px;
+    left: var(--s6);
+    right: var(--s6);
     flex-direction: column;
-    gap: 2px;
-    padding: 10px;
+    gap: var(--s1);
+    padding: var(--s3);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--panel);
@@ -1389,38 +1593,137 @@ a:hover {
   }
 
   .nav a {
-    padding: 13px 14px;
+    padding: 14px 16px;
+  }
+
+  /* No animated underlines in the stacked dropdown - touch has no hover,
+     and the collapsed bars left stray raster fragments at the panel edge. */
+  .nav a::after {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Icon-only theme toggle on small screens so the header never crowds. */
+  .theme {
+    width: 44px;
+    padding: 0;
+  }
+
+  .theme__label {
+    display: none;
   }
 }
 
 @media (max-width: 640px) {
   .container {
-    width: calc(100% - 32px);
+    width: calc(100% - 40px);
+  }
+
+  /* Align the dropdown exactly with the page gutters so text behind
+     the panel can't peek out as slivers at the panel's edges. */
+  .nav {
+    left: 20px;
+    right: 20px;
   }
 
   .section {
-    padding: 56px 0;
+    padding: var(--s10) 0;
+  }
+
+  .sec {
+    margin-bottom: var(--s8);
+  }
+
+  .hero {
+    padding: var(--s8) 0;
+  }
+
+  .hero__cta {
+    margin-top: var(--s6);
   }
 
   .feature {
-    padding: 26px 22px;
+    padding: var(--s6) var(--s5);
   }
 
   .feature__bullets {
     columns: 1;
   }
 
-  .timeline__item {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding-left: 24px;
+  .project {
+    padding-bottom: var(--s6);
   }
 
-  .skills {
-    gap: 28px;
+  .project > :not(.project__media):not(.project__content) {
+    padding-left: var(--s6);
+    padding-right: var(--s6);
+  }
+
+  .project__content {
+    padding-left: var(--s6);
+    padding-right: var(--s6);
+  }
+
+  .project .project__head {
+    padding-top: var(--s6);
+  }
+
+  .project--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .project--wide .project__media {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project--wide .project__media svg {
+    height: auto;
+  }
+
+  .edu__card,
+  .contact__panel {
+    padding: var(--s6);
+  }
+
+  .work,
+  .work__grid,
+  .edu,
+  .contact {
+    gap: var(--s6);
+  }
+
+  .metrics {
+    margin-top: var(--s8);
   }
 
   .metric {
-    padding: 15px 16px;
+    padding: var(--s4);
+  }
+
+  .metric__num {
+    font-size: 1.7rem;
+  }
+
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: var(--s2);
+    padding: 0 0 var(--s6) var(--s6);
+  }
+
+  .skills {
+    gap: var(--s6);
+  }
+}
+
+@media (max-width: 420px) {
+  .brand__text em {
+    display: none;
+  }
+
+  .brand__mark {
+    width: 36px;
+    height: 36px;
   }
 }
