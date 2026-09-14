@@ -12,10 +12,10 @@ Work through P0 → P1 → P2. Check boxes as you go.
 - [x] **4. Real headshot** — `assets/photo.jpg` live (512px square crop, 27 KB)
 - [ ] **5. CV as PDF** — export `Md-Eaftekhirul-Islam-CV.pdf`, make it the primary button;
       keep `.docx` as secondary ATS download
-- [ ] **6. Fix metrics row** — hero shows `HSK 4 · Certified` (move `194/300` to Education
+- [x] **6. Fix metrics row** — hero shows `HSK 4 · Certified` (move `194/300` to Education
       only); replace `450+ timezones` metric with an earned one
       (e.g. `5.00/5.00 HSC GPA`, `Full-tuition scholarship`, or `13k+ lines`)
-- [ ] **7. Fix Result wording** (LLM Guard Bench) — clarify "0/8 runs vulnerable across
+- [x] **7. Fix Result wording** (LLM Guard Bench) — clarify "0/8 runs vulnerable across
       all 4 local models" → "0 vulnerable out of 8 runs per category — holding across
       all 4 models"
 - [x] **8. Reframe research-interests line** — replace "rather than by claiming training
