@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=14" />
+    <link rel="stylesheet" href="styles.css?v=15" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -317,8 +317,11 @@
                             per category, holding across all 4 models.
                         </p>
 
-                        <div class="results">
-                            <h4 class="results__title">The numbers behind the figure</h4>
+                        <details class="results">
+                            <summary class="results__summary">
+                                <span class="results__title">The numbers behind the figure</span>
+                                <span class="results__hint" aria-hidden="true">Show tables</span>
+                            </summary>
 
                             <div class="tablewrap">
                                 <table class="rtable">
@@ -412,7 +415,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </details>
                         <div class="linksrow">
                             <a href="https://github.com/eafte/llm-guard-bench" target="_blank"
                                 rel="noopener noreferrer">Repository</a>
@@ -423,6 +426,48 @@
 
                     <div class="work__grid">
                         <article class="project">
+                            <div class="project__media" aria-hidden="true">
+                                <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                    <rect width="640" height="400" fill="var(--bg-2)" />
+                                    <defs>
+                                        <clipPath id="b2b-window"><rect x="70" y="42" width="500" height="316" rx="10" /></clipPath>
+                                    </defs>
+                                    <rect x="70" y="42" width="500" height="316" rx="10" fill="var(--panel)" stroke="var(--line-strong)" />
+                                    <g clip-path="url(#b2b-window)">
+                                        <rect x="70" y="42" width="500" height="36" fill="var(--bg-2)" />
+                                        <rect x="70" y="78" width="96" height="280" fill="var(--bg-2)" opacity="0.55" />
+                                    </g>
+                                    <circle cx="90" cy="60" r="4" fill="var(--line-strong)" />
+                                    <circle cx="108" cy="60" r="4" fill="var(--line-strong)" />
+                                    <circle cx="126" cy="60" r="4" fill="var(--line-strong)" />
+                                    <rect x="250" y="52" width="140" height="16" rx="8" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="295" y="58" width="50" height="4" rx="2" fill="var(--line-strong)" />
+                                    <rect x="86" y="98" width="56" height="6" rx="3" fill="var(--accent)" />
+                                    <rect x="86" y="120" width="44" height="6" rx="3" fill="var(--line-strong)" opacity="0.6" />
+                                    <rect x="86" y="142" width="60" height="6" rx="3" fill="var(--line-strong)" opacity="0.6" />
+                                    <rect x="86" y="164" width="40" height="6" rx="3" fill="var(--line-strong)" opacity="0.6" />
+                                    <rect x="86" y="186" width="52" height="6" rx="3" fill="var(--line-strong)" opacity="0.6" />
+                                    <rect x="190" y="96" width="150" height="9" rx="4" fill="var(--line-strong)" />
+                                    <rect x="474" y="90" width="80" height="24" rx="6" fill="var(--accent)" />
+                                    <rect x="494" y="100" width="40" height="5" rx="2.5" fill="#fbf8f0" />
+                                    <rect x="190" y="128" width="174" height="104" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="200" y="138" width="154" height="42" rx="4" fill="var(--bg-2)" />
+                                    <rect x="200" y="192" width="92" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="200" y="207" width="52" height="7" rx="3" fill="var(--accent)" />
+                                    <rect x="380" y="128" width="174" height="104" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="390" y="138" width="154" height="42" rx="4" fill="var(--bg-2)" />
+                                    <rect x="390" y="192" width="92" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="390" y="207" width="52" height="7" rx="3" fill="var(--accent)" />
+                                    <rect x="190" y="246" width="174" height="96" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="200" y="256" width="154" height="38" rx="4" fill="var(--bg-2)" />
+                                    <rect x="200" y="306" width="92" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="200" y="320" width="52" height="7" rx="3" fill="var(--accent)" />
+                                    <rect x="380" y="246" width="174" height="96" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="390" y="256" width="154" height="38" rx="4" fill="var(--bg-2)" />
+                                    <rect x="390" y="306" width="92" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="390" y="320" width="52" height="7" rx="3" fill="var(--accent)" />
+                                </svg>
+                            </div>
                             <div class="project__head">
                                 <span class="project__no">02</span>
                             </div>
@@ -444,19 +489,67 @@
                                 <li>Secure admin login with CRUD operations and file uploads</li>
                                 <li>Single-port deployment: Express serves both API and built frontend</li>
                             </ul>
-                            <p class="result">
-                                <strong>Result:</strong> a production-shaped application that runs end-to-end
-                                from a single command, with authentication and a complete admin workflow.
-                            </p>
-                            <div class="linksrow">
-                                <a href="https://github.com/eafte/electrical-supplier-website" target="_blank"
-                                    rel="noopener noreferrer">Repository</a>
-                                <a href="https://github.com/eafte/electrical-supplier-website#quick-start"
-                                    target="_blank" rel="noopener noreferrer">Run locally</a>
+                            <div class="project__foot">
+                                <p class="result">
+                                    <strong>Result:</strong> a production-shaped application that runs end-to-end
+                                    from a single command, with authentication and a complete admin workflow.
+                                </p>
+                                <div class="linksrow">
+                                    <a href="https://github.com/eafte/electrical-supplier-website" target="_blank"
+                                        rel="noopener noreferrer">Repository</a>
+                                    <a href="https://github.com/eafte/electrical-supplier-website#quick-start"
+                                        target="_blank" rel="noopener noreferrer">Run locally</a>
+                                </div>
                             </div>
                         </article>
 
                         <article class="project">
+                            <div class="project__media" aria-hidden="true">
+                                <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                    <rect width="640" height="400" fill="var(--bg-2)" />
+                                    <defs>
+                                        <clipPath id="iodex-window"><rect x="70" y="42" width="500" height="316" rx="10" /></clipPath>
+                                    </defs>
+                                    <rect x="70" y="42" width="500" height="316" rx="10" fill="var(--panel)" stroke="var(--line-strong)" />
+                                    <g clip-path="url(#iodex-window)">
+                                        <rect x="70" y="42" width="500" height="36" fill="var(--bg-2)" />
+                                        <rect x="70" y="78" width="240" height="280" fill="var(--bg-2)" opacity="0.55" />
+                                    </g>
+                                    <circle cx="90" cy="60" r="4" fill="var(--line-strong)" />
+                                    <circle cx="108" cy="60" r="4" fill="var(--line-strong)" />
+                                    <circle cx="126" cy="60" r="4" fill="var(--line-strong)" />
+                                    <rect x="402" y="52" width="120" height="16" rx="8" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="436" y="58" width="52" height="4" rx="2" fill="var(--line-strong)" />
+                                    <!-- Expense list rows (left pane) -->
+                                    <rect x="92" y="102" width="196" height="48" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="104" y="114" width="88" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="104" y="130" width="54" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="240" y="118" width="36" height="12" rx="6" fill="var(--accent)" />
+                                    <rect x="92" y="162" width="196" height="48" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="104" y="174" width="72" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="104" y="190" width="46" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="240" y="178" width="36" height="12" rx="6" fill="var(--accent)" />
+                                    <rect x="92" y="222" width="196" height="48" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="104" y="234" width="98" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="104" y="250" width="60" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="240" y="238" width="36" height="12" rx="6" fill="var(--accent)" />
+                                    <rect x="92" y="282" width="196" height="48" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="104" y="294" width="80" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="104" y="310" width="50" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="240" y="298" width="36" height="12" rx="6" fill="var(--accent)" />
+                                    <!-- Chart (right pane) -->
+                                    <rect x="332" y="102" width="216" height="228" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <rect x="348" y="120" width="92" height="7" rx="3" fill="var(--line-strong)" />
+                                    <line x1="352" y1="300" x2="532" y2="300" stroke="var(--line)" />
+                                    <line x1="352" y1="252" x2="532" y2="252" stroke="var(--line)" />
+                                    <line x1="352" y1="204" x2="532" y2="204" stroke="var(--line)" />
+                                    <line x1="352" y1="156" x2="532" y2="156" stroke="var(--line)" />
+                                    <rect x="366" y="196" width="26" height="112" rx="3" fill="var(--accent)" opacity="0.45" />
+                                    <rect x="406" y="148" width="26" height="160" rx="3" fill="var(--accent)" opacity="0.65" />
+                                    <rect x="446" y="224" width="26" height="84" rx="3" fill="var(--accent)" opacity="0.45" />
+                                    <rect x="486" y="172" width="26" height="136" rx="3" fill="var(--accent)" />
+                                </svg>
+                            </div>
                             <div class="project__head">
                                 <span class="project__no">03</span>
                             </div>
@@ -478,60 +571,117 @@
                                 <li>Charts and category insights with CSV/JSON import and export</li>
                                 <li>Timezone system covering 450+ timezones with flexible timestamps</li>
                             </ul>
-                            <p class="result">
-                                <strong>Result:</strong> 80+ unit tests passing and a documented developer
-                                workflow, so the code is safe to extend and easy to review.
-                            </p>
-                            <div class="linksrow">
-                                <a href="https://github.com/eafte/IODEX_Expense_Tracker" target="_blank"
-                                    rel="noopener noreferrer">Repository</a>
-                                <a href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
-                                    target="_blank" rel="noopener noreferrer">Quickstart</a>
+                            <div class="project__foot">
+                                <p class="result">
+                                    <strong>Result:</strong> 80+ unit tests passing and a documented developer
+                                    workflow, so the code is safe to extend and easy to review.
+                                </p>
+                                <div class="linksrow">
+                                    <a href="https://github.com/eafte/IODEX_Expense_Tracker" target="_blank"
+                                        rel="noopener noreferrer">Repository</a>
+                                    <a href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
+                                        target="_blank" rel="noopener noreferrer">Quickstart</a>
+                                </div>
                             </div>
                         </article>
 
-                        <article class="project">
-                            <div class="project__head">
-                                <span class="project__no">04</span>
+                        <article class="project project--wide">
+                            <div class="project__media" aria-hidden="true">
+                                <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false"
+                                    preserveAspectRatio="xMidYMid slice">
+                                    <rect width="640" height="400" fill="var(--bg-2)" />
+                                    <!-- Phone frame -->
+                                    <rect x="232" y="18" width="176" height="364" rx="20" fill="var(--panel)" stroke="var(--line-strong)" />
+                                    <rect x="292" y="30" width="56" height="7" rx="3.5" fill="var(--line)" />
+                                    <rect x="244" y="48" width="152" height="322" rx="8" fill="var(--bg)" stroke="var(--line)" />
+                                    <!-- App header -->
+                                    <rect x="244" y="48" width="152" height="40" rx="8" fill="var(--accent)" />
+                                    <rect x="258" y="64" width="96" height="8" rx="4" fill="#fbf8f0" opacity="0.9" />
+                                    <!-- SOS button -->
+                                    <circle cx="320" cy="158" r="46" fill="var(--accent)" opacity="0.14" />
+                                    <circle cx="320" cy="158" r="34" fill="var(--accent)" />
+                                    <rect x="302" y="152" width="36" height="12" rx="6" fill="#fbf8f0" />
+                                    <rect x="284" y="222" width="72" height="7" rx="3.5" fill="var(--line-strong)" />
+                                    <!-- Alert list -->
+                                    <rect x="256" y="248" width="128" height="34" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <circle cx="270" cy="265" r="4" fill="var(--green)" />
+                                    <rect x="280" y="258" width="70" height="5" rx="2.5" fill="var(--line-strong)" />
+                                    <rect x="280" y="269" width="48" height="4" rx="2" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="256" y="292" width="128" height="34" rx="6" fill="var(--panel)" stroke="var(--line)" />
+                                    <circle cx="270" cy="309" r="4" fill="var(--accent)" opacity="0.55" />
+                                    <rect x="280" y="302" width="62" height="5" rx="2.5" fill="var(--line-strong)" />
+                                    <rect x="280" y="313" width="42" height="4" rx="2" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="256" y="336" width="128" height="24" rx="6" fill="var(--bg-2)" stroke="var(--line)" />
+                                    <rect x="292" y="346" width="56" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
+                                    <!-- Volunteer response panel (left) -->
+                                    <rect x="24" y="86" width="168" height="190" rx="10" fill="var(--panel)" stroke="var(--line-strong)" />
+                                    <rect x="24" y="86" width="168" height="30" rx="10" fill="var(--bg-2)" />
+                                    <rect x="38" y="98" width="76" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="42" y="140" width="52" height="52" rx="26" fill="var(--bg-2)" stroke="var(--line)" />
+                                    <rect x="60" y="158" width="16" height="16" rx="8" fill="var(--accent)" opacity="0.7" />
+                                    <rect x="104" y="146" width="72" height="6" rx="3" fill="var(--line-strong)" />
+                                    <rect x="104" y="160" width="52" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="104" y="174" width="60" height="18" rx="9" fill="var(--accent)" />
+                                    <rect x="122" y="181" width="24" height="5" rx="2.5" fill="#fbf8f0" />
+                                    <rect x="38" y="216" width="140" height="6" rx="3" fill="var(--line)" opacity="0.7" />
+                                    <rect x="38" y="232" width="112" height="6" rx="3" fill="var(--line)" opacity="0.7" />
+                                    <rect x="38" y="248" width="124" height="6" rx="3" fill="var(--line)" opacity="0.7" />
+                                    <!-- Map / navigation panel (right) -->
+                                    <rect x="448" y="86" width="168" height="190" rx="10" fill="var(--panel)" stroke="var(--line-strong)" />
+                                    <rect x="448" y="86" width="168" height="30" rx="10" fill="var(--bg-2)" />
+                                    <rect x="462" y="98" width="84" height="6" rx="3" fill="var(--line-strong)" />
+                                    <path d="M448 170 L616 150 M448 220 L616 210 M500 116 L512 276 M560 116 L548 276" stroke="var(--line)" stroke-width="3" fill="none" />
+                                    <path d="M472 240 C 500 210, 540 206, 566 168" stroke="var(--accent)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="1 9" />
+                                    <circle cx="472" cy="240" r="8" fill="var(--accent)" />
+                                    <circle cx="472" cy="240" r="13" fill="none" stroke="var(--accent)" opacity="0.4" />
+                                    <circle cx="566" cy="168" r="7" fill="#b3452e" />
+                                </svg>
                             </div>
-                            <h3 class="project__title">HarmonyCare: Elderly Safety and Volunteer Response</h3>
-                            <p class="project__tagline">
-                                Android application built with a course team: one-touch emergency alerting
-                                for elderly users, and a response and navigation flow for volunteers.
-                            </p>
-                            <ul class="tags" aria-label="Tech stack">
-                                <li>Java</li>
-                                <li>Android SDK 34</li>
-                                <li>Room</li>
-                                <li>MVVM</li>
-                                <li>Material Design</li>
-                                <li>AMap / OSMDroid</li>
-                            </ul>
-                            <p class="project__roleline">
-                                <strong>My role:</strong> a small part of the architecture work. The
-                                application itself was built by the team.
-                            </p>
-                            <ul class="bullets">
-                                <li>The app is structured as MVVM with a repository layer over Room, with a
-                                    data model of eight entities covering alerts, users, chat, ratings,
-                                    reminders, and offline operations</li>
-                                <li>Offline-first alert path: an alert is queued on the device, then
-                                    broadcast over the local WiFi network, so nearby volunteers can be
-                                    reached with no server and no internet</li>
-                                <li>Accessibility for elderly users: confirmation countdown before sending
-                                    an alert, text-to-speech and haptic feedback, large-text mode, and
-                                    English / Bengali localization</li>
-                            </ul>
-                            <p class="result">
-                                <strong>Result:</strong> a team project delivered as a 17-screen Android
-                                application (13,000+ lines of Java) spanning two user roles, in a stack
-                                outside my other work.
-                            </p>
-                            <div class="linksrow">
-                                <a href="https://github.com/eafte/HarmonyCare" target="_blank"
-                                    rel="noopener noreferrer">Repository</a>
-                                <a href="https://github.com/eafte/HarmonyCare/blob/main/PROJECT_STRUCTURE.md"
-                                    target="_blank" rel="noopener noreferrer">Project structure</a>
+                            <div class="project__content">
+                                <div class="project__head">
+                                    <span class="project__no">04</span>
+                                </div>
+                                <h3 class="project__title">HarmonyCare: Elderly Safety and Volunteer Response</h3>
+                                <p class="project__tagline">
+                                    Android application built with a course team: one-touch emergency alerting
+                                    for elderly users, and a response and navigation flow for volunteers.
+                                </p>
+                                <ul class="tags" aria-label="Tech stack">
+                                    <li>Java</li>
+                                    <li>Android SDK 34</li>
+                                    <li>Room</li>
+                                    <li>MVVM</li>
+                                    <li>Material Design</li>
+                                    <li>AMap / OSMDroid</li>
+                                </ul>
+                                <p class="project__roleline">
+                                    <strong>My role:</strong> a small part of the architecture work. The
+                                    application itself was built by the team.
+                                </p>
+                                <ul class="bullets">
+                                    <li>The app is structured as MVVM with a repository layer over Room, with a
+                                        data model of eight entities covering alerts, users, chat, ratings,
+                                        reminders, and offline operations</li>
+                                    <li>Offline-first alert path: an alert is queued on the device, then
+                                        broadcast over the local WiFi network, so nearby volunteers can be
+                                        reached with no server and no internet</li>
+                                    <li>Accessibility for elderly users: confirmation countdown before sending
+                                        an alert, text-to-speech and haptic feedback, large-text mode, and
+                                        English / Bengali localization</li>
+                                </ul>
+                                <div class="project__foot">
+                                    <p class="result">
+                                        <strong>Result:</strong> a team project delivered as a 17-screen Android
+                                        application (13,000+ lines of Java) spanning two user roles, in a stack
+                                        outside my other work.
+                                    </p>
+                                    <div class="linksrow">
+                                        <a href="https://github.com/eafte/HarmonyCare" target="_blank"
+                                            rel="noopener noreferrer">Repository</a>
+                                        <a href="https://github.com/eafte/HarmonyCare/blob/main/PROJECT_STRUCTURE.md"
+                                            target="_blank" rel="noopener noreferrer">Project structure</a>
+                                    </div>
+                                </div>
                             </div>
                         </article>
 

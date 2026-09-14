@@ -24,11 +24,11 @@ Work through P0 → P1 → P2. Check boxes as you go.
 
 ## 🟡 P1 — Medium impact (~1 weekend)
 
-- [ ] **9. Project visuals** — add 1 screenshot/mockup each: B2B site (browser frame),
+- [x] **9. Project visuals** — add 1 screenshot/mockup each: B2B site (browser frame),
       IODEX (desktop window), HarmonyCare (phone frame)
 - [x] **10. Trim hero copy** — cut lede to ~50 words, 2 short paragraphs; remove
       repeated "reproducible / measure / carefully" (appears 4–5×)
-- [ ] **11. Collapsible result tables** — wrap "The numbers behind the figure" in
+- [x] **11. Collapsible result tables** — wrap "The numbers behind the figure" in
       `<details>` so scanners see chart + result first
 - [ ] **12. Prove or reframe JRSphere** — add 1 concrete line (what it is, what shipped)
       + link; or downgrade "Founder & Lead" framing

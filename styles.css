@@ -866,18 +866,71 @@ a:hover {
   max-width: 70ch;
 }
 
-/* Data tables (benchmark results) */
+/* Data tables (benchmark results) - collapsed by default so the card
+   stays scannable; the summary works like a native button. */
 .results {
   margin-top: var(--s7);
-  padding-top: var(--s6);
+  padding-top: var(--s5);
   border-top: 1px solid var(--line);
 }
 
+.results__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px 0;
+}
+
+.results__summary::-webkit-details-marker {
+  display: none;
+}
+
 .results__title {
-  margin: 0 0 var(--s4);
+  margin: 0;
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.results__title::after {
+  content: "+";
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 200ms var(--ease);
+}
+
+.results[open] .results__title::after {
+  transform: rotate(45deg);
+}
+
+.results__hint {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.results[open] .results__hint {
+  visibility: hidden;
+}
+
+.results__summary:hover .results__title {
+  color: var(--accent);
+}
+
+.results .tablewrap:first-of-type {
+  margin-top: var(--s4);
 }
 
 /* Tables keep a readable minimum width and scroll sideways on small
@@ -1073,12 +1126,82 @@ a:hover {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: var(--s7);
+  padding: 0 0 var(--s7);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 0;
   min-width: 0;
+  overflow: hidden;
+}
+
+/* Schematic screenshot band at the top of every project card. */
+.project__media {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.project__media svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project > :not(.project__media):not(.project__content),
+.project__content {
+  padding-left: var(--s7);
+  padding-right: var(--s7);
+}
+
+.project__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Head sits right under the media band. */
+.project .project__head {
+  margin-top: 0;
+  padding-top: var(--s7);
+}
+
+/* Result + links pinned to the bottom so card rows align. */
+.project__foot {
+  margin-top: auto;
+  padding-top: var(--s4);
+}
+
+.project__foot .result {
+  margin-top: 0;
+}
+
+.project__foot .linksrow {
+  margin-top: 0;
+  padding-top: var(--s4);
+}
+
+/* Full-width team card: media beside content on desktop. */
+.project--wide {
+  display: grid;
+  grid-template-columns: minmax(300px, 42%) 1fr;
+  align-items: stretch;
+}
+
+.project--wide .project__media {
+  border-bottom: none;
+  border-right: 1px solid var(--line);
+}
+
+.project--wide .project__media svg {
+  height: 100%;
+}
+
+.project--wide .project__content {
+  padding: var(--s7) var(--s7) 0;
+}
+
+.project--wide .project__foot {
+  padding-top: var(--s5);
 }
 
 .project__title {
@@ -1105,14 +1228,7 @@ a:hover {
   margin-top: var(--s4);
 }
 
-.project .result {
-  margin-top: var(--s4);
-}
 
-.project .linksrow {
-  margin-top: auto;
-  padding-top: var(--s5);
-}
 
 /* ================= Skills ================= */
 .skills {
@@ -1535,7 +1651,37 @@ a:hover {
     columns: 1;
   }
 
-  .project,
+  .project {
+    padding-bottom: var(--s6);
+  }
+
+  .project > :not(.project__media):not(.project__content) {
+    padding-left: var(--s6);
+    padding-right: var(--s6);
+  }
+
+  .project__content {
+    padding-left: var(--s6);
+    padding-right: var(--s6);
+  }
+
+  .project .project__head {
+    padding-top: var(--s6);
+  }
+
+  .project--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .project--wide .project__media {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project--wide .project__media svg {
+    height: auto;
+  }
+
   .edu__card,
   .contact__panel {
     padding: var(--s6);
