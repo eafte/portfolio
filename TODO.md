@@ -37,7 +37,7 @@ Work through P0 → P1 → P2. Check boxes as you go.
 - [ ] **14. Simplify contact CTA** — one clear path ("Email is best — I reply within
       2 days") instead of conditional LinkedIn/email instructions
 - [ ] **15. Add analytics** — privacy-friendly counter (GoatCounter / Umami / Plausible)
-- [ ] **16. Print stylesheet** — `@media print`: hide nav/toggle, force light theme
+- [x] **16. Print stylesheet** — `@media print`: hide nav/toggle, force light theme
 - [ ] **17. Footer** — add "Last updated: <month year>", tech credit
       ("Built with HTML/CSS/JS · Hosted on GitHub Pages"), back-to-top link
 
@@ -45,9 +45,9 @@ Work through P0 → P1 → P2. Check boxes as you go.
 
 - [ ] **18. WebP/AVIF images** — convert PNGs, keep PNG fallback via `<picture>`/`srcset`
 - [ ] **19. Fonts** — `preload` key fonts or self-host instead of render-blocking Google Fonts
-- [ ] **20. Metrics semantics** — replace `<dt>`-for-numbers with `<div>`/`<span>`
+- [x] **20. Metrics semantics** — replace `<dt>`-for-numbers with `<div>`/`<span>`
       (screen-reader fix)
-- [ ] **21. Skills → add Tools row** — Git, Linux, pytest, CI (already used daily)
+- [x] **21. Skills → add Tools row** — Git, Linux, pytest, CI (already used daily)
 - [ ] **22. Custom domain** (optional) — e.g. `eaftekhirul.com` (~$12/yr)
 - [ ] **23. Live demo for B2B project** (optional) — replace/augment "Run locally" CTA
 

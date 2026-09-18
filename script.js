@@ -51,7 +51,7 @@
 
   function updateThemeColor(theme) {
     if (!themeColor) return;
-    themeColor.setAttribute("content", theme === "dark" ? "#151210" : "#f7f4ec");
+    themeColor.setAttribute("content", theme === "dark" ? "#0b0f19" : "#f8fafc");
   }
 
   function applyTheme(theme) {
@@ -130,5 +130,73 @@
     sections.forEach((s) => io.observe(s));
   } else {
     sections.forEach((s) => s.classList.add("is-visible"));
+  }
+
+  // ---------- Navigation Scrollspy ----------
+  const navLinks = document.querySelectorAll(".nav a[href^='#']");
+  const observedSections = document.querySelectorAll("section[id]");
+
+  if ("IntersectionObserver" in window && navLinks.length && observedSections.length) {
+    const navObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("is-active");
+              } else {
+                link.classList.remove("is-active");
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -70% 0px" }
+    );
+
+    observedSections.forEach((sec) => navObserver.observe(sec));
+  }
+
+  // ---------- Copy Email ----------
+  const copyBtn = document.getElementById("copyEmailBtn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const email = "eafte1@outlook.com";
+      const textSpan = copyBtn.querySelector(".copy__text");
+      const onSuccess = () => {
+        if (textSpan) textSpan.textContent = "Copied!";
+        copyBtn.classList.add("is-copied");
+        setTimeout(() => {
+          if (textSpan) textSpan.textContent = "Copy";
+          copyBtn.classList.remove("is-copied");
+        }, 2000);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(email);
+          onSuccess();
+          return;
+        } catch (e) {
+          /* fallback */
+        }
+      }
+
+      try {
+        const input = document.createElement("input");
+        input.value = email;
+        input.style.position = "fixed";
+        input.style.opacity = "0";
+        document.body.appendChild(input);
+        input.focus();
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        onSuccess();
+      } catch (err) {
+        /* ignore */
+      }
+    });
   }
 })();
