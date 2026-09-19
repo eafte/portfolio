@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=16" />
+    <link rel="stylesheet" href="styles.css?v=22" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -232,12 +232,7 @@
                     <div class="metric">
                         <span class="metric__num">100%</span>
                         <span class="metric__label">Tuition scholarship</span>
-                        <span class="metric__src">Henan Provincial (2023–pres.)</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric__num">HSK&nbsp;4</span>
-                        <span class="metric__label">Chinese proficiency</span>
-                        <span class="metric__src">Certified</span>
+                        <span class="metric__src">Henan Provincial (2023-present)</span>
                     </div>
                 </div>
             </div>
@@ -624,7 +619,7 @@
                                     <circle cx="472" cy="240" r="13" fill="none" stroke="var(--accent)" opacity="0.4" />
                                     <circle cx="566" cy="168" r="7" fill="#ef4444" />
                                 </svg>
-                                <p class="project__mediaNote" style="position:relative; margin:0;">System Architecture &amp; Mobile Flow</p>
+                                <p class="project__mediaNote">System Architecture &amp; Mobile Flow</p>
                             </div>
                             <div class="project__content">
                                 <div class="project__head">
@@ -682,54 +677,84 @@
                 </header>
 
                 <div class="skills">
+                    <!-- Card 1: Software Engineering Core -->
                     <div class="skill">
-                        <h3>Web</h3>
-                        <ul>
-                            <li>HTML, CSS, JavaScript</li>
-                            <li>React + Vite</li>
-                            <li>TypeScript</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill">
-                        <h3>Backend</h3>
+                        <div class="skill__head">
+                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                            </svg>
+                            <h3>Systems &amp; Backend</h3>
+                        </div>
                         <ul>
                             <li>Node.js + Express</li>
+                            <li>TypeScript</li>
                             <li>Prisma ORM</li>
-                            <li>JWT authentication</li>
                             <li>SQLite</li>
-                            <li>Docker &amp; docker-compose</li>
+                            <li>JWT authentication</li>
+                            <li>RESTful APIs</li>
+                            <li>Relational schema design</li>
                         </ul>
                     </div>
 
+                    <!-- Card 2: AI / Machine Learning Core -->
                     <div class="skill">
-                        <h3>Python</h3>
+                        <div class="skill__head">
+                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            <h3>Applied AI &amp; Python</h3>
+                        </div>
                         <ul>
-                            <li>Async pipelines (asyncio, aiohttp, Pydantic)</li>
-                            <li>Tkinter GUI development</li>
+                            <li>Python 3</li>
+                            <li>Async pipelines (asyncio, aiohttp)</li>
+                            <li>Pydantic v2 schemas</li>
+                            <li>Ollama (local LLM inference)</li>
+                            <li>LLM-as-a-Judge evaluation</li>
                             <li>Data analysis with Pandas</li>
-                            <li>Testing with pytest</li>
+                            <li>Plotly visualization</li>
                         </ul>
                     </div>
 
+                    <!-- Card 3: Cybersecurity, Testing & DevOps Core -->
                     <div class="skill">
-                        <h3>Mobile</h3>
+                        <div class="skill__head">
+                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <h3>Testing &amp; Security DevOps</h3>
+                        </div>
                         <ul>
+                            <li>Automated testing with pytest</li>
+                            <li>80+ unit test suites</li>
+                            <li>Adversarial LLM robustness benchmarks</li>
+                            <li>Git &amp; GitHub workflows</li>
+                            <li>Linux environments</li>
+                            <li>Docker &amp; docker-compose</li>
+                            <li>GitHub Actions CI</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 4: Computer Science Core & Mobile -->
+                    <div class="skill">
+                        <div class="skill__head">
+                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                            <h3>Client &amp; Mobile Systems</h3>
+                        </div>
+                        <ul>
+                            <li>React + Vite</li>
                             <li>Java on Android (SDK 34)</li>
-                            <li>Room persistence and MVVM</li>
+                            <li>Room database persistence</li>
+                            <li>MVVM architecture</li>
+                            <li>Offline-first local networking</li>
                             <li>Material Design interfaces</li>
-                            <li>Offline-first networking (local network broadcast)</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill">
-                        <h3>Tools</h3>
-                        <ul>
-                            <li>Git and GitHub</li>
-                            <li>Linux</li>
-                            <li>Docker and docker compose</li>
-                            <li>pytest</li>
-                            <li>GitHub Actions</li>
+                            <li>HTML5 &amp; Modern CSS</li>
                         </ul>
                     </div>
                 </div>
@@ -868,6 +893,13 @@
                         <div class="contact__action">
                             <a class="btn btn--primary" href="mailto:eafte1@outlook.com?subject=Hello%20Eafte%20from%20your%20portfolio">eafte1@outlook.com</a>
                             <button class="btn btn--ghost contact__copy" id="copyEmailBtn" type="button" aria-label="Copy email address" title="Copy email address">
+                                <svg class="copy__icon copy__icon--copy" viewBox="0 0 24 24" aria-hidden="true" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <svg class="copy__icon copy__icon--check" viewBox="0 0 24 24" aria-hidden="true" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
                                 <span class="copy__text">Copy</span>
                             </button>
                         </div>
@@ -877,7 +909,13 @@
                             <li><a href="https://github.com/eafte" target="_blank"
                                     rel="noopener noreferrer">GitHub ↗</a></li>
                             <li><a href="cv-ats.docx" download>Download CV (Word) ↓</a></li>
+                            <li><a href="key.asc" target="_blank"
+                                    rel="noopener noreferrer">PGP Key ↗</a></li>
                         </ul>
+                        <div class="contact__pgp">
+                            <span class="contact__pgp-label">PGP Fingerprint</span>
+                            <code class="contact__pgp-val">6320 37F7 8EE1 4704 7EA0 FC27 FDB2 9EC3 3300 F789</code>
+                        </div>
                     </div>
 
                     <div class="contact__panel">
@@ -904,7 +942,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 
 </html>
