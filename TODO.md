@@ -38,8 +38,9 @@ Work through P0 → P1 → P2. Check boxes as you go.
       2 days") instead of conditional LinkedIn/email instructions
 - [ ] **15. Add analytics** — privacy-friendly counter (GoatCounter / Umami / Plausible)
 - [x] **16. Print stylesheet** — `@media print`: hide nav/toggle, force light theme
-- [ ] **17. Footer** — add "Last updated: <month year>", tech credit
+- [x] **17. Footer** — add "Last updated: <month year>", tech credit
       ("Built with HTML/CSS/JS · Hosted on GitHub Pages"), back-to-top link
+      — implemented Oct 2026 (`<time datetime="2026-10">`; bump manually each release)
 
 ## 🟢 P2 — Polish / technical (when convenient)
 
@@ -51,6 +52,35 @@ Work through P0 → P1 → P2. Check boxes as you go.
 - [ ] **22. Custom domain** (optional) — e.g. `eaftekhirul.com` (~$12/yr)
 - [ ] **23. Live demo for B2B project** (optional) — replace/augment "Run locally" CTA
 
+## ♿ UI/UX polish pass — Oct 2026
+
+Targeted polish only: same type pairing, palette and section structure.
+Verified numerically against WCAG AA rather than by eye.
+
+- [x] **Contrast** — light `--faint` was 2.45:1 (metadata, card labels) and dark
+      `--faint` 3.58:1; both now clear 4.5:1. Light `--muted` 4.55 → 5.75:1.
+- [x] **Dark-mode primary buttons** — white on `#60a5fa` was 2.54:1; button and
+      brand mark now use a dark `--accent-ink` (7.4:1).
+- [x] **"Copied" state** — emerald text was ~2.3:1; added `--green-ink`.
+- [x] **Micro-type floor** — raised 0.64–0.72rem metadata to 0.72–0.75rem.
+- [x] **OS theme** — first visit follows `prefers-color-scheme`; resolved in an
+      inline head script so there is no flash of the wrong theme; live OS changes
+      respected until the visitor picks a theme explicitly.
+- [x] **Hero CTA hierarchy** — 4 identical buttons → 1 primary, 1 secondary,
+      2 quiet links behind a divider.
+- [x] **False affordance** — non-interactive cards no longer lift on hover
+      (buttons and links still do).
+- [x] **Mobile nav** — Escape closes and returns focus, scrollable on short
+      screens, resets when crossing to desktop, `aria-current` on the active link.
+- [x] **Focus rings** — real 2px outline with offset, not shadow only.
+- [x] **Details tables** — 44px touch target; the "Show tables" label now flips to
+      "Hide tables" instead of vanishing.
+- [x] **Sticky header** — gains elevation once the page scrolls.
+- [x] **Misc** — `color-scheme` (native controls/scrollbars), `text-wrap:
+      balance/pretty`, `::selection`, `overflow-x: clip` (safer for sticky),
+      print forces the light token set even in dark mode.
+
 ## Done
 
 - [x] Audit completed (Sep 2026)
+- [x] UI/UX polish pass (Oct 2026)

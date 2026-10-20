@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f8fafc" />
 
+    <script>
+      // Resolve the theme before first paint: a returning visitor keeps their
+      // choice, a first-time visitor gets their OS preference, and the page
+      // never flashes light before switching to dark.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var saved = null;
+        try { saved = localStorage.getItem("ei_portfolio_theme"); } catch (e) { /* sandboxed */ }
+        var theme = saved === "dark" || saved === "light"
+          ? saved
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "dark") root.setAttribute("data-theme", "dark");
+      })();
+    </script>
+
     <title>Md Eaftekhirul Islam | Software Engineering, Applied AI &amp; Security</title>
     <meta name="description"
         content="Software Engineering undergraduate at Zhengzhou University with projects in AI security evaluation, full-stack systems, and tested applications. Preparing for Master's studies in Computer Science, Software Engineering, AI/ML, and Cybersecurity." />
@@ -26,7 +42,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=22" />
+    <link rel="stylesheet" href="styles.css?v=23" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -152,10 +168,11 @@
                         <div class="hero__cta">
                             <a class="btn btn--primary" href="#work">View my work</a>
                             <a class="btn btn--ghost" href="cv-ats.docx" download>Download CV</a>
-                            <a class="btn btn--ghost" href="https://github.com/eafte" target="_blank"
-                                rel="noopener noreferrer">GitHub</a>
-                            <a class="btn btn--ghost" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
-                                rel="noopener noreferrer">LinkedIn</a>
+                            <span class="hero__cta-divider" aria-hidden="true"></span>
+                            <a class="btn btn--quiet" href="https://github.com/eafte" target="_blank"
+                                rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                            <a class="btn btn--quiet" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
+                                rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
                         </div>
 
                         <ul class="chips" aria-label="Areas of focus">
@@ -936,13 +953,17 @@
 
     <footer class="footer">
         <div class="container footer__inner">
-            <p class="footer__name">Md Eaftekhirul Islam</p>
-            <p class="footer__meta">&copy; <span id="year"></span> · Software Engineering, Zhengzhou University</p>
+            <div class="footer__id">
+                <p class="footer__name">Md Eaftekhirul Islam</p>
+                <p class="footer__meta">&copy; <span id="year"></span> · Software Engineering, Zhengzhou University</p>
+                <p class="footer__meta footer__meta--sub">Last updated <time datetime="2026-10">October 2026</time>
+                    · Hand-built with HTML, CSS &amp; JS · Hosted on GitHub Pages</p>
+            </div>
             <a href="#top" class="footer__top">Back to top ↑</a>
         </div>
     </footer>
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
 </body>
 
 </html>

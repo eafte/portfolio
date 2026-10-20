@@ -4,28 +4,40 @@
    ============================================================ */
 
 :root {
-  /* Slate & ink */
+  color-scheme: light;
+
+  /* Slate & ink.
+     --muted and --faint are deliberately darker than the original slate
+     400/500 pair: at 0.68-0.82rem they were 2.5-4.3:1 on these surfaces.
+     Both now clear WCAG AA (4.5:1) on every light surface used here. */
   --bg: #f8fafc;
   --bg-2: #f1f5f9;
   --panel: #ffffff;
   --ink: #0f172a;
   --ink-soft: #334155;
-  --muted: #64748b;
-  --faint: #94a3b8;
+  --muted: #55647a;           /* 5.75:1 on --bg */
+  --faint: #61718a;           /* 4.74:1 on --bg, 4.96:1 on --panel */
   --line: #e2e8f0;
   --line-strong: #cbd5e1;
 
   /* Accents */
   --accent: #2563eb;          /* electric sapphire / tech blue */
   --accent-deep: #1d4ed8;     /* deeper royal blue for hover */
+  --accent-ink: #ffffff;      /* text that sits on top of --accent */
   --green: #10b981;           /* emerald for status/verified */
   --green-deep: #059669;
+  --green-ink: #047857;       /* readable emerald for small text (5.24:1) */
   --shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 16px 36px -24px rgba(15, 23, 42, 0.12);
   --ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
 
   --max: 1120px;
   --radius: 8px;
   --radius-sm: 6px;
+
+  /* Sticky-header height, used for anchor offsets and the nav dropdown.
+     .header__inner is 44px of control + 2 x 10px padding, held at
+     min-height 64px (border-box, so the padding is already included). */
+  --header-h: 64px;
 
   /* Spacing scale - one rhythm for the whole page */
   --s1: 4px;
@@ -56,16 +68,19 @@
   --panel: #131c2e;           /* elevated dark slate panel */
   --ink: #f8fafc;             /* crisp bright slate */
   --ink-soft: #cbd5e1;        /* readable secondary text */
-  --muted: #94a3b8;           /* muted slate */
-  --faint: #64748b;           /* metadata / subtle labels */
+  --muted: #a3b1c4;           /* muted slate - 7.8:1 on --panel */
+  --faint: #94a3b8;           /* metadata / subtle labels - 6.6:1 on --panel */
   --line: #1e293b;            /* slate border */
   --line-strong: #334155;     /* prominent border */
   --accent: #60a5fa;          /* electric blue */
   --accent-deep: #93c5fd;     /* glowing hover blue */
+  --accent-ink: #0b1220;      /* dark text on the light-blue accent (7.4:1) */
   --green: #10b981;           /* emerald */
   --green-deep: #34d399;      /* bright emerald */
+  --green-ink: #34d399;       /* readable emerald for small text */
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 20px 36px -20px rgba(0, 0, 0, 0.75);
   --ring: 0 0 0 3px rgba(96, 165, 250, 0.35);
+  color-scheme: dark;
 }
 
 * {
@@ -74,6 +89,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Belt-and-braces for anchor offset: .section/.hero already carry
+     scroll-margin-top, but this also covers #top, #content and any future
+     target so nothing can land underneath the sticky header. */
+  scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 body {
@@ -83,8 +102,25 @@ body {
   background: var(--bg);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, not hidden: overflow-x:hidden on body can break position:sticky
+     (the header) in WebKit. clip contains the decorative art the same way. */
+  overflow-x: clip;
   transition: background-color 240ms var(--ease), color 240ms var(--ease);
+}
+
+/* Balance long headings, avoid orphans in body copy. Neither changes the
+   type colour or sizing - just how the browser breaks lines. */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p, li, dd, figcaption {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--ink);
 }
 
 a {
@@ -97,7 +133,8 @@ a:hover {
 }
 
 *:focus-visible {
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
   box-shadow: var(--ring);
   border-radius: var(--s1);
 }
@@ -132,6 +169,13 @@ a:hover {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+}
+
+/* Once the page scrolls the header needs to separate from content it covers. */
+.header.is-scrolled {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent),
+    0 8px 24px -18px color-mix(in srgb, var(--ink) 45%, transparent);
 }
 
 .header__inner {
@@ -164,7 +208,7 @@ a:hover {
   place-items: center;
   border-radius: 50%;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--accent-ink);
   font-family: var(--serif);
   font-weight: 700;
   font-size: 1.15rem;
@@ -277,14 +321,14 @@ a:hover {
 
 .btn--primary {
   background: var(--accent);
-  color: #ffffff;
+  color: var(--accent-ink);
   box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2), 0 10px 24px -14px rgba(37, 99, 235, 0.45);
 }
 
 .btn--primary:hover {
   background: var(--accent-deep);
   transform: translateY(-2px);
-  color: #ffffff;
+  color: var(--accent-ink);
   box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25), 0 16px 30px -14px rgba(37, 99, 235, 0.55);
 }
 
@@ -299,6 +343,26 @@ a:hover {
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 6%, transparent);
   transform: translateY(-2px);
+}
+
+/* Quiet tertiary action: reads as a link, not a fourth button.
+   Used for GitHub / LinkedIn in the hero so the eye lands on one CTA. */
+.btn--quiet {
+  min-height: 44px;
+  padding: 11px 4px;
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.btn--quiet:hover {
+  color: var(--accent);
+  background: transparent;
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 /* ================= Theme toggle ================= */
@@ -327,7 +391,9 @@ a:hover {
   background: color-mix(in srgb, var(--accent) 6%, transparent);
 }
 
-.theme[aria-pressed="true"] {
+/* In dark mode the toggle is "active" - keyed off the theme attribute
+   instead of aria-pressed so the button keeps clean toggle semantics. */
+[data-theme="dark"] .theme {
   border-color: color-mix(in srgb, var(--accent) 45%, transparent);
   color: var(--accent);
 }
@@ -552,8 +618,18 @@ a:hover {
 .hero__cta {
   margin-top: var(--s6);
   display: flex;
+  align-items: center;
   gap: var(--s3);
   flex-wrap: wrap;
+}
+
+/* Thin rule separates the two profile links from the two real actions,
+   so the row reads as 2 primary/1 secondary/2 tertiary instead of 4 equals. */
+.hero__cta-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--line-strong);
+  margin: 0 var(--s1);
 }
 
 .chips {
@@ -699,7 +775,7 @@ a:hover {
 }
 
 .profile__row dt {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -740,11 +816,12 @@ a:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   position: relative;
-  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
 }
 
+/* Cards that are not links do not lift on hover - a lift reads as
+   "clickable" and these are not. Border + shadow carry the response. */
 .metric:hover {
-  transform: translateY(-2px);
   border-color: var(--line-strong);
   box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 20px 32px -16px rgba(15, 23, 42, 0.12);
 }
@@ -771,8 +848,8 @@ a:hover {
 .metric__src {
   display: block;
   margin: 8px 0 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--faint);
   line-height: 1.5;
@@ -829,11 +906,10 @@ a:hover {
   box-shadow: var(--shadow);
   min-width: 0;
   overflow: hidden;
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
 }
 
 .feature:hover {
-  transform: translateY(-2px);
   border-color: var(--line-strong);
   border-top-color: var(--accent);
   box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
@@ -937,7 +1013,8 @@ a:hover {
   gap: var(--s4);
   cursor: pointer;
   border-radius: 6px;
-  padding: 6px 0;
+  padding: 10px 0;
+  min-height: 44px;
 }
 
 .results__summary::-webkit-details-marker {
@@ -969,15 +1046,21 @@ a:hover {
 }
 
 .results__hint {
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
+/* Without JS the hint would lie once expanded, so hide it there.
+   With JS the label flips to "Hide tables" and stays useful. */
 .results[open] .results__hint {
-  visibility: hidden;
+  display: none;
+}
+
+.js .results[open] .results__hint {
+  display: inline;
 }
 
 .results__summary:hover .results__title {
@@ -1032,7 +1115,7 @@ a:hover {
 }
 
 .rtable thead th {
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1200,11 +1283,10 @@ a:hover {
   gap: 0;
   min-width: 0;
   overflow: hidden;
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
 }
 
 .project:hover {
-  transform: translateY(-3px);
   border-color: var(--line-strong);
   box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
 }
@@ -1231,7 +1313,7 @@ a:hover {
 }
 
 .project__mediaNote {
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1349,11 +1431,10 @@ a:hover {
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
 }
 
 .skill:hover {
-  transform: translateY(-2px);
   border-color: var(--line-strong);
   border-top-color: var(--accent);
   box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 20px 32px -16px rgba(15, 23, 42, 0.12);
@@ -1479,11 +1560,10 @@ a:hover {
   padding: var(--s7);
   box-shadow: var(--shadow);
   min-width: 0;
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
 }
 
 .edu__card:hover {
-  transform: translateY(-2px);
   border-color: var(--line-strong);
   box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
 }
@@ -1551,7 +1631,7 @@ a:hover {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
 }
 
 .contact__panel:hover {
@@ -1619,7 +1699,7 @@ a:hover {
 
 .contact__copy.is-copied {
   border-color: var(--green);
-  color: var(--green);
+  color: var(--green-ink);
   background: color-mix(in srgb, var(--green) 8%, transparent);
 }
 
@@ -1661,7 +1741,7 @@ a:hover {
 }
 
 .contact__pgp-label {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1708,7 +1788,7 @@ a:hover {
 
 .footer__inner {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: var(--s6);
   flex-wrap: wrap;
@@ -1719,6 +1799,20 @@ a:hover {
   margin: 0;
 }
 
+.footer__id {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Secondary provenance line - quieter than the copyright line above it. */
+.footer__meta--sub {
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  text-transform: none;
+  font-weight: 500;
+}
+
 .footer__name {
   font-family: var(--serif);
   font-weight: 600;
@@ -1726,7 +1820,7 @@ a:hover {
 }
 
 .footer__meta {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1907,6 +2001,17 @@ a:hover {
 
   .nav.is-open {
     display: flex;
+    max-height: calc(100dvh - var(--header-h) - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    animation: navIn 160ms var(--ease);
+  }
+
+  @keyframes navIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
   }
 
   .nav a {
@@ -2058,6 +2163,26 @@ a:hover {
 }
 
 @media print {
+  /* Force the light token set so a dark-mode visitor does not print
+     pale text on white paper. */
+  :root,
+  [data-theme="dark"] {
+    --bg: #ffffff;
+    --bg-2: #ffffff;
+    --panel: #ffffff;
+    --ink: #0f172a;
+    --ink-soft: #334155;
+    --muted: #475569;
+    --faint: #475569;
+    --line: #cbd5e1;
+    --line-strong: #94a3b8;
+    --accent: #1d4ed8;
+    --accent-deep: #1d4ed8;
+    --accent-ink: #ffffff;
+    --green-ink: #047857;
+    color-scheme: light;
+  }
+
   .header, .navToggle, .theme, .header__cta, .hero__art { display: none !important; }
   body { background: #fff !important; color: #0f172a !important; }
   .section { padding: 32px 0 !important; }
