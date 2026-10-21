@@ -894,7 +894,9 @@ a:hover {
 /* ================= Work ================= */
 .work {
   display: grid;
-  gap: var(--s8);
+  /* One rhythm: the gap between the feature and the grid matches the gap
+     between grid rows (was 40px above / 32px below). */
+  gap: var(--s7);
 }
 
 .feature {
@@ -902,7 +904,9 @@ a:hover {
   border: 1px solid var(--line);
   border-top: 3px solid var(--accent);
   border-radius: var(--radius);
-  padding: var(--s8) var(--s8);
+  /* 32px, matching every other card. At 40px the feature's heading sat
+     8px right of every project heading below it. */
+  padding: var(--s7);
   box-shadow: var(--shadow);
   min-width: 0;
   overflow: hidden;
@@ -1267,12 +1271,9 @@ a:hover {
   gap: var(--s7);
 }
 
-/* A lone final card (odd count) spans the full width instead of leaving a gap.
-   The wide team card spans explicitly: relying on parity broke the moment a
-   fourth card was added, which squeezed it into half a column. */
-.work__grid > .project:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-}
+/* Grid placement is explicit via .project--wide. A parity rule
+   (:last-child:nth-child(odd)) used to span the final card, but it silently
+   stopped matching when the card count changed - see the wide-card note below. */
 
 .project {
   background: var(--panel);
@@ -1649,7 +1650,17 @@ a:hover {
 .edu {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  gap: var(--s8);
+  /* Left: ZZU, spanning both rows. Right: HSC on top, certifications
+     beneath it - this fills the dead space the 432px column had when it
+     held only the short HSC card. */
+  grid-template-areas:
+    "lead hsc"
+    "lead certs";
+  gap: var(--s7);
+}
+
+.edu__card--hsc {
+  grid-area: hsc;
 }
 
 .edu__card {
@@ -1668,6 +1679,7 @@ a:hover {
 }
 
 .edu__card--lead {
+  grid-area: lead;
   border-top: 3px solid var(--accent);
 }
 
@@ -1718,7 +1730,7 @@ a:hover {
    using the same shell as .edu__card--lead (accent top border, panel,
    shadow) so it reads as part of the same family. */
 .certs {
-  margin-top: var(--s7);
+  grid-area: certs;
   padding: var(--s7);
   background: var(--panel);
   border: 1px solid var(--line);
@@ -1757,28 +1769,27 @@ a:hover {
   color: var(--ink);
 }
 
-/* Three columns divided by hairlines; the outer edges stay clean. */
+/* Stacked rows divided by hairlines. In a 432px column, three side-by-side
+   columns were too narrow - the 75-character award line wrapped to two lines
+   while its neighbours stayed on one, leaving the row edges ragged. */
 .certs__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  gap: var(--s4);
 }
 
 .cert {
   min-width: 0;
-  padding: 0 var(--s5);
-  border-left: 1px solid var(--line);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
 }
 
 .cert:first-child {
-  padding-left: 0;
-  border-left: none;
-}
-
-.cert:last-child {
-  padding-right: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .cert__name {
@@ -2164,6 +2175,13 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .edu {
+    grid-template-areas:
+      "lead"
+      "hsc"
+      "certs";
+  }
+
   .skills {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--s5);
@@ -2260,7 +2278,7 @@ a:hover {
   }
 
   .feature {
-    padding: var(--s6) var(--s5);
+    padding: var(--s6);
   }
 
   .feature__bullets {
@@ -2311,21 +2329,6 @@ a:hover {
   .certs,
   .contact__panel {
     padding: var(--s6);
-  }
-
-  .certs__list {
-    grid-template-columns: 1fr;
-  }
-
-  .cert {
-    padding: var(--s4) 0 0;
-    border-left: none;
-    border-top: 1px solid var(--line);
-  }
-
-  .cert:first-child {
-    padding-top: 0;
-    border-top: none;
   }
 
   .work,
