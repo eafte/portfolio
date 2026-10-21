@@ -1457,16 +1457,6 @@ a:hover {
   line-height: 1.7;
 }
 
-/* Says where a tool was used. It used to be a bordered "coursework" pill,
-   which carried no information beyond "not a project". Now it reads as a
-   quiet note naming the actual course, or states plainly that nothing has
-   shipped yet - no border, no uppercase, no visual weight of its own. */
-.stack__mark {
-  margin-left: 2px;
-  font-size: 0.84rem;
-  color: var(--faint);
-}
-
 .stack__uses {
   display: inline-flex;
   flex-wrap: wrap;
