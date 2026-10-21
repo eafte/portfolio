@@ -38,9 +38,10 @@ Work through P0 → P1 → P2. Check boxes as you go.
       2 days") instead of conditional LinkedIn/email instructions
 - [ ] **15. Add analytics** — privacy-friendly counter (GoatCounter / Umami / Plausible)
 - [x] **16. Print stylesheet** — `@media print`: hide nav/toggle, force light theme
-- [x] **17. Footer** — add "Last updated: <month year>", tech credit
+- [ ] **17. Footer** — add "Last updated: <month year>", tech credit
       ("Built with HTML/CSS/JS · Hosted on GitHub Pages"), back-to-top link
-      — implemented Oct 2026 (`<time datetime="2026-10">`; bump manually each release)
+      — back-to-top already exists. The rest was reverted Oct 2026 at the site
+      owner's request: footer copy is the owner's to write, not the audit's.
 
 ## 🟢 P2 — Polish / technical (when convenient)
 

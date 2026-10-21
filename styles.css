@@ -1788,7 +1788,7 @@ a:hover {
 
 .footer__inner {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: var(--s6);
   flex-wrap: wrap;
@@ -1797,20 +1797,6 @@ a:hover {
 
 .footer__inner p {
   margin: 0;
-}
-
-.footer__id {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* Secondary provenance line - quieter than the copyright line above it. */
-.footer__meta--sub {
-  letter-spacing: 0.04em;
-  color: var(--faint);
-  text-transform: none;
-  font-weight: 500;
 }
 
 .footer__name {
