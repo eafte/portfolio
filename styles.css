@@ -1528,7 +1528,6 @@ a:hover {
 .paper {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-left: 3px solid var(--accent);
   border-radius: var(--radius);
   padding: var(--s7);
   box-shadow: var(--shadow);
@@ -1541,7 +1540,6 @@ a:hover {
 
 .paper:hover {
   border-color: var(--line-strong);
-  border-left-color: var(--accent);
   box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
