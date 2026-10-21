@@ -2002,7 +2002,9 @@ a:hover {
 
 /* ================= Footer ================= */
 .footer {
-  padding: var(--gap-zone) 0;
+  /* A closing strip, not another section: 24px against the header's 64px
+     bar puts the two ends of the page at the same weight. */
+  padding: var(--s6) 0;
   background: var(--bg);
   border-top: none;
   position: relative;
@@ -2023,9 +2025,8 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s6);
+  gap: var(--s5);
   flex-wrap: wrap;
-  padding-top: var(--s4);
 }
 
 .footer__inner p {
@@ -2035,7 +2036,9 @@ a:hover {
 .footer__name {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: 1.05rem;
+  /* One notch under the header's brand so it signs off rather than
+     restating the name at headline size. */
+  font-size: 0.95rem;
 }
 
 .footer__meta {
@@ -2062,6 +2065,15 @@ a:hover {
 @media (max-width: 640px) {
   .footer::before {
     width: calc(100% - 40px);
+  }
+
+  /* The three items wrap here; keep the wrapped rows close. */
+  .footer {
+    padding: var(--s5) 0;
+  }
+
+  .footer__inner {
+    gap: var(--s2);
   }
 }
 
