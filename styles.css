@@ -1457,19 +1457,14 @@ a:hover {
   line-height: 1.7;
 }
 
-/* Honest marker for tools that have not shipped in a project yet. */
+/* Says where a tool was used. It used to be a bordered "coursework" pill,
+   which carried no information beyond "not a project". Now it reads as a
+   quiet note naming the actual course, or states plainly that nothing has
+   shipped yet - no border, no uppercase, no visual weight of its own. */
 .stack__mark {
-  display: inline-block;
-  margin-left: 4px;
-  padding: 1px 7px;
-  border: 1px solid var(--line-strong);
-  border-radius: 9999px;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  margin-left: 2px;
+  font-size: 0.84rem;
   color: var(--faint);
-  vertical-align: 1px;
 }
 
 .stack__uses {
@@ -1494,7 +1489,8 @@ a:hover {
 
 /* Deep links from the stack land below the sticky header. */
 .feature,
-.project {
+.project,
+.paper {
   scroll-margin-top: calc(var(--header-h) + 24px);
 }
 
