@@ -1491,6 +1491,95 @@ a:hover {
   color: var(--ink);
 }
 
+/* ================= Research ================= */
+.papers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s7);
+}
+
+.paper {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: var(--s7);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  min-width: 0;
+  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+}
+
+.paper:hover {
+  border-color: var(--line-strong);
+  border-left-color: var(--accent);
+  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+}
+
+.paper__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.paper__course {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.paper__year {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.paper__title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.paper__sub {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.paper__body {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.paper__meta {
+  margin: auto 0 0;
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.skills > .skill:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 /* ================= Timeline ================= */
 .timeline {
   list-style: none;
@@ -1615,6 +1704,40 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
+/* Certifications under the education cards */
+.certs {
+  list-style: none;
+  margin: var(--s7) 0 0;
+  padding: var(--s6) 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: var(--s3);
+}
+
+.certs li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.certs li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.certs strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 /* ================= Contact ================= */
 .contact {
   display: grid;
@@ -1727,6 +1850,28 @@ a:hover {
 
 .contact__links a:hover {
   border-bottom-color: var(--accent);
+}
+
+/* Non-link contact detail (e.g. a WeChat handle) reads like the other rows. */
+.contact__static {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.contact__handle {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1px 7px;
 }
 
 .contact__pgp {
@@ -1917,9 +2062,9 @@ a:hover {
 }
 
 /* ================= Responsive ================= */
-@media (max-width: 1160px) {
+@media (max-width: 1220px) {
   /* The CTA duplicates the Contact link - drop it before the header
-     gets crowded and the nav has to wrap to a second line. */
+     gets crowded and the six-item nav has to wrap to a second line. */
   .header__cta {
     display: none;
   }
@@ -1951,6 +2096,7 @@ a:hover {
   }
 
   .work__grid,
+  .papers,
   .edu,
   .contact {
     grid-template-columns: 1fr;
@@ -2097,6 +2243,7 @@ a:hover {
   }
 
   .edu__card,
+  .paper,
   .contact__panel {
     padding: var(--s6);
   }

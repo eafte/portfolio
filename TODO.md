@@ -83,30 +83,40 @@ Verified numerically against WCAG AA rather than by eye.
       balance/pretty`, `::selection`, `overflow-x: clip` (safer for sticky),
       print forces the light token set even in dark mode.
 
-## CV vs site — reconcile before publishing
+## CV vs site — synced Oct 2026 (CV is the source of truth)
 
-The uploaded CV (`10/2026`) contains material the site does not, and a few
-claims that contradict it. The site is now selling itself short in places.
+The PDF CV (`10/2026`) is treated as the source of truth; the site now matches it.
 
-- **Missing project: ML Host Hardening** (`github.com/eafte/ml-host-hardening`) —
-  not on the site at all. Quantified outcomes (ports 22/8000 → 22/80, Lynis
-  61 → 71, systemd exposure 9.2 → 1.4) make it one of the strongest entries you
-  have, and it fits the security theme better than most of what is there.
-- **Missing: Academic Research (course-based)** — 4 pieces (distributed inference,
-  cloud-native security / Log4Shell, wine classification, STM32 voltmeter). The
-  audit flagged the absence of research signals; they exist, they are just not
-  published on the site.
-- **Competition result understated** — site says "Competitor"; CV says
-  **Certificate of Honor**. Update the site.
-- **LLM Guard Bench is described differently** — CV: 717 pytest cases, ~50.2 MiB
-  peak RSS, O(1) memory on 1M+ records, "codebase available upon request".
-  Site: 40 adversarial runs, repo linked publicly. These read as two different
-  projects; decide which story is current (and drop "upon request" if the repo
-  is public).
-- **Dates disagree** — HSC: CV `Jun 2019 – Dec 2021` (result Feb 2022) vs site
-  `Jul 2019 – Feb 2022`. Degree: CV `Current` vs site `Jun 2027`.
-- **Extra contact channels on the CV** — WeChat `khirul_2004`, a 163.com address,
-  Hindi + Urdu. Consider surfacing WeChat on the site for China-based readers.
+- [x] **ML Host Hardening added** as project 02 (`github.com/eafte/ml-host-hardening`),
+      with the port surface (22/8000 → 22/80), Lynis 61 → 71 and systemd
+      exposure 9.2 → 1.4.
+- [x] **Academic Research section added** — the 4 course-based pieces, with a
+      nav entry between Work and Skills.
+- [x] **Competition upgraded** — "Competitor" → **Certificate of Honor**
+      (School of International Education, ZZU, Oct 2025).
+- [x] **LLM Guard Bench** — CV engineering facts folded in (717 pytest cases,
+      ~50.2 MiB peak RSS, O(1) growth to 1M+ records, strict MyPy), keeping the
+      adversarial results already on the page.
+- [x] **Dates corrected** — HSC `Jun 2019 - Dec 2021`; degree marked
+      `Jun 2027 (expected)`.
+- [x] **"Deployed" corrected** — the B2B result no longer claims deployment;
+      it matches the CV's "deploy-ready, in end-to-end testing".
+- [x] **WeChat** `khirul_2004` added to Contact; languages extended with
+      Hindi + Urdu.
+- [x] **Certifications block** — HSK 4 (CTI, May 2026), Udemy Cyber Security &
+      Ethical Hacking (Jan 2026), competition Certificate of Honor.
+- [x] **Scored coursework** — the CV's per-course marks replace the generic
+      "core curriculum" line.
+- [x] **Skills** — added FastAPI, C, scikit-learn, MyPy and a fifth
+      "Security & Host Hardening" card (nmap, nginx, UFW, fail2ban, Lynis,
+      systemd).
+
+Deliberately **not** carried over:
+
+- "Codebase available upon request" — the repos are public and linked, so the
+  line would be false on the site.
+- SSC (Dakhin Banasree) — Europass needs it; a portfolio does not.
+- The 163.com address — one contact route is clearer than three.
 
 ## Done
 
