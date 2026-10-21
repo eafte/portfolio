@@ -1,39 +1,40 @@
 /* ============================================================
    Md Eaftekhirul Islam - portfolio
-   Forest graphite & acid mint: mint-tinted paper in light, deep forest
-   green-black in dark, with two accents that switch roles by theme.
-   Light must use a DEEP green for text (#0E6B4A) because acid mint only
-   reaches 1.6:1 on white; acid mint is reserved for dark mode and for
-   fills that carry --accent-ink.
+   Two deliberately different moods, one per theme:
+     light - cream soda paper, blueberry ink and accent
+     dark  - forest graphite, acid mint
+
+   They cannot share an accent: acid mint reaches only 1.6:1 on white, so
+   it is reserved for dark mode and for fills that carry --accent-ink.
+   Light mode uses blueberry, which holds 7.5:1 on cream.
    ============================================================ */
 
 :root {
   color-scheme: light;
 
-  /* Mint paper, forest ink.
-     Every text colour clears WCAG AA (4.5:1) on both --bg and --panel;
+  /* Cream soda paper, blueberry ink and accent.
+     Every text colour clears WCAG AA (4.5:1) on bg, bg-2 and panel;
      the measured value is noted beside each. */
-  --bg: #f6faf7;              /* mint-tinted paper */
-  --bg-2: #edf4ef;
-  --panel: #ffffff;
-  --ink: #0b1512;             /* 17.6:1 on --bg */
-  --ink-soft: #2c3b34;        /* 11.2:1 on --bg */
-  --muted: #4e635a;           /* 6.12:1 on --bg, 6.45:1 on --panel */
-  --faint: #5e736a;           /* 4.82:1 on --bg, 5.08:1 on --panel */
-  --line: #dce7e0;
-  --line-strong: #c2d3c9;
+  --bg: #f9f3e7;              /* cream soda */
+  --bg-2: #f2e9d9;            /* a shade deeper, for insets */
+  --panel: #fffdf8;           /* warm white, not pure white */
+  --ink: #1f1a14;             /* 15.6:1 on --bg */
+  --ink-soft: #463e33;        /* 9.5:1 on --bg */
+  --muted: #6a5c4c;           /* 5.85:1 on --bg, 5.37:1 on bg-2 */
+  --faint: #6b5d4e;           /* 5.76:1 on --bg, 5.28:1 on bg-2 */
+  --line: #e8dcc6;
+  --line-strong: #d5c5a9;
 
-  /* Accents. Acid mint (#5BF2AE) is unusable as text on white - 1.6:1 -
-     so light mode uses its deep forest sibling and keeps the mint for
-     fills that carry --accent-ink (6.52:1). */
-  --accent: #0e6b4a;          /* forest - 6.19:1 on --bg */
-  --accent-deep: #0a5439;     /* hover */
-  --accent-ink: #ffffff;      /* text on --accent */
+  /* Blueberry. Deep enough to hold body-size text on cream (7.5:1),
+     light enough to read as blue rather than navy-black. */
+  --accent: #3a4a8c;          /* 7.49:1 on --bg, 8.14:1 on --panel */
+  --accent-deep: #2e3c76;     /* hover */
+  --accent-ink: #fffdf8;      /* cream text on blueberry (8.14:1) */
   --accent-glow: 14%;         /* share of accent used in button shadows */
-  --green: #0e8f5f;           /* status / verified */
-  --green-deep: #0a7450;
-  --green-ink: #0e6b4a;       /* readable for small text */
-  --shadow-rgb: 11 21 18;     /* deep forest, used by every shadow */
+  --green: #2e6b4e;           /* status / verified - muted so it sits with cream */
+  --green-deep: #256045;
+  --green-ink: #256045;       /* 6.70:1 on --bg */
+  --shadow-rgb: 31 26 20;     /* warm brown-black, not blue-slate */
   --shadow: 0 1px 3px rgb(var(--shadow-rgb) / 0.05),
     0 16px 36px -24px rgb(var(--shadow-rgb) / 0.12);
   --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
@@ -42,9 +43,12 @@
   --radius: 8px;
   --radius-sm: 6px;
 
-  /* Hero accent wash. Capped at 4%: at 5% the faint text over the wash
-     falls to 4.49:1 and fails AA. Dark mode has far more headroom. */
-  --hero-wash: 4%;
+  /* Hero accent wash. Blueberry leaves headroom for 6%; faint text over
+     the wash still measures 5.27:1. */
+  --hero-wash: 6%;
+
+  /* Quiter on warm cream - 0.12 reads as smudging against a yellow base. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
 
   /* Sticky-header height, used for anchor offsets and the nav dropdown.
      .header__inner is 44px of control + 2 x 10px padding, held at
@@ -98,6 +102,7 @@
   --shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 20px 36px -20px rgb(0 0 0 / 0.75);
   --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
   --hero-wash: 12%;           /* accent still 10.3:1 over this */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
   color-scheme: dark;
 }
 
@@ -120,10 +125,10 @@ body {
   /* Fine grain, painted BEHIND the content rather than over it: every card
      is an opaque --panel, so the texture only shows in gutters and section
      padding. That keeps it off the text entirely - no softening of glyphs,
-     and no extra compositing layer. Mid-grey noise reads correctly on both
-     the light and dark base colours. Tune with the rect opacity (0.12). */
+     and no extra compositing layer. Strength is a token (--grain) because
+     mid-grey noise reads as tooth on cool paper but as dirt on warm cream. */
   background-color: var(--bg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  background-image: var(--grain);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   /* clip, not hidden: overflow-x:hidden on body can break position:sticky
@@ -2372,27 +2377,27 @@ a:hover {
     --bg: #ffffff;
     --bg-2: #ffffff;
     --panel: #ffffff;
-    --ink: #0b1512;
-    --ink-soft: #2c3b34;
-    --muted: #4e635a;
-    --faint: #4e635a;
-    --line: #dce7e0;
-    --line-strong: #c2d3c9;
-    --accent: #0e6b4a;          /* forest reads on paper; acid mint does not */
-    --accent-deep: #0a5439;
+    --ink: #1f1a14;
+    --ink-soft: #463e33;
+    --muted: #6a5c4c;
+    --faint: #6a5c4c;
+    --line: #e8dcc6;
+    --line-strong: #d5c5a9;
+    --accent: #3a4a8c;          /* blueberry reads on paper; acid mint does not */
+    --accent-deep: #2e3c76;
     --accent-ink: #ffffff;
-    --green-ink: #0e6b4a;
-    --shadow-rgb: 11 21 18;
+    --green-ink: #256045;
+    --shadow-rgb: 31 26 20;
     color-scheme: light;
   }
 
   .header, .navToggle, .theme, .header__cta, .hero__art { display: none !important; }
   /* Drop the grain and the hero wash so a printed page stays clean. */
-  body { background: #fff !important; color: #0b1512 !important; }
+  body { background: #fff !important; color: #1f1a14 !important; }
   .hero { background-image: none !important; }
   .section { padding: 32px 0 !important; }
   .profile, .metric, .feature, .project, .edu__card, .contact__panel, .paper, .certs { box-shadow: none !important; border: 1px solid #dce7e0 !important; }
-  a { color: #0e6b4a !important; }
-  .footer::before { background: #c2d3c9 !important; }
+  a { color: #3a4a8c !important; }
+  .footer::before { background: #d5c5a9 !important; }
   .hero, .section { break-inside: avoid; }
 }

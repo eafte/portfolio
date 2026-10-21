@@ -64,7 +64,7 @@
 
   function updateThemeColor(theme) {
     if (!themeColor) return;
-    themeColor.setAttribute("content", theme === "dark" ? "#0b1210" : "#f6faf7");
+    themeColor.setAttribute("content", theme === "dark" ? "#0b1210" : "#f9f3e7");
   }
 
   function applyTheme(theme) {
