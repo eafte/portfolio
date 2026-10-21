@@ -110,6 +110,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Without this, Chrome/Safari can bump text up on small screens. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* Belt-and-braces for anchor offset: .section/.hero already carry
      scroll-margin-top, but this also covers #top, #content and any future
      target so nothing can land underneath the sticky header. */
@@ -585,8 +588,10 @@ a:hover {
   margin: 0 0 var(--s3);
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(2.9rem, 7vw, 4.7rem);
-  line-height: 0.98;
+  /* Floor lowered from 2.9rem: phones were rendering this at 46px.
+     Ceiling and the 7vw ramp are unchanged, so desktop is identical. */
+  font-size: clamp(2.1rem, 7vw, 4.7rem);
+  line-height: 1;
   letter-spacing: -0.02em;
 }
 
@@ -599,8 +604,8 @@ a:hover {
   font-family: var(--serif);
   font-style: normal;
   font-weight: 500;
-  font-size: clamp(1.15rem, 2.1vw, 1.5rem);
-  line-height: 1.35;
+  font-size: clamp(1.02rem, 2.6vw, 1.5rem);
+  line-height: 1.4;
   color: var(--ink-soft);
   max-width: 26ch;
 }
@@ -613,8 +618,8 @@ a:hover {
 .lede {
   margin: 0;
   color: var(--muted);
-  font-size: 1.06rem;
-  line-height: 1.75;
+  font-size: clamp(0.98rem, 2.6vw, 1.06rem);
+  line-height: 1.62;
   max-width: 56ch;
 }
 
@@ -915,7 +920,7 @@ a:hover {
   margin: var(--s3) 0 0;
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-size: clamp(1.55rem, 4.6vw, 2.6rem);
   letter-spacing: -0.015em;
   color: var(--ink);
 }
@@ -998,8 +1003,8 @@ a:hover {
   margin: 0;
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(1.5rem, 2.8vw, 1.95rem);
-  line-height: 1.15;
+  font-size: clamp(1.25rem, 3.4vw, 1.95rem);
+  line-height: 1.2;
   letter-spacing: -0.01em;
   max-width: 24ch;
 }
@@ -1217,7 +1222,7 @@ a:hover {
   padding: 0;
   list-style: none;
   color: var(--ink-soft);
-  line-height: 1.65;
+  line-height: 1.58;
   font-size: 0.96rem;
 }
 
@@ -1455,7 +1460,7 @@ a:hover {
 
 .project .bullets {
   margin-top: var(--s5);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 
@@ -2035,6 +2040,60 @@ a:hover {
   }
 }
 
+/* ================= Back to top (mobile) ================= */
+/* The page carries ~1,900 words; on a phone that is a long scroll. This
+   gives a way back without adding to the footer. Hidden above 980px,
+   where the sticky nav is always on screen. */
+.toTop {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .toTop {
+    position: fixed;
+    right: var(--s4);
+    bottom: calc(var(--s4) + env(safe-area-inset-bottom, 0px));
+    /* Below the sticky header (50) and the open mobile menu (40), so it
+       never pokes through either when they are on screen. */
+    z-index: 35;
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: var(--panel);
+    color: var(--accent);
+    box-shadow: 0 2px 6px rgb(var(--shadow-rgb) / 0.1),
+      0 12px 28px -14px rgb(var(--shadow-rgb) / 0.35);
+    cursor: pointer;
+    /* visibility (not just opacity) keeps it out of the tab order while hidden */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 180ms var(--ease), transform 180ms var(--ease),
+      visibility 180ms var(--ease);
+  }
+
+  .toTop.is-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .toTop:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, var(--panel));
+  }
+}
+
+.toTop__icon {
+  width: 19px;
+  height: 19px;
+}
+
 /* ================= Scroll reveal ================= */
 .reveal {
   opacity: 0;
@@ -2241,12 +2300,14 @@ a:hover {
     right: 20px;
   }
 
+  /* 64px top and bottom on six stacked sections was 768px of empty space
+     on a phone. 48 restores breathing room without the dead air. */
   .section {
-    padding: var(--s10) 0;
+    padding: var(--s9) 0;
   }
 
   .sec {
-    margin-bottom: var(--s8);
+    margin-bottom: var(--s7);
   }
 
   .hero {
@@ -2258,7 +2319,7 @@ a:hover {
   }
 
   .feature {
-    padding: var(--s6);
+    padding: var(--s5);
   }
 
   .feature__bullets {
@@ -2270,13 +2331,13 @@ a:hover {
   }
 
   .project > :not(.project__media):not(.project__content) {
-    padding-left: var(--s6);
-    padding-right: var(--s6);
+    padding-left: var(--s5);
+    padding-right: var(--s5);
   }
 
   .project__content {
-    padding-left: var(--s6);
-    padding-right: var(--s6);
+    padding-left: var(--s5);
+    padding-right: var(--s5);
   }
 
   .project .project__head {
@@ -2308,14 +2369,14 @@ a:hover {
   .paper,
   .certs,
   .contact__panel {
-    padding: var(--s6);
+    padding: var(--s5);
   }
 
   .work,
   .work__grid,
   .edu,
   .contact {
-    gap: var(--s6);
+    gap: var(--s5);
   }
 
   .metrics {
@@ -2340,7 +2401,7 @@ a:hover {
   .stack__row {
     grid-template-columns: 1fr;
     gap: var(--s2);
-    padding: var(--s4) 0;
+    padding: var(--s3) 0;
   }
 
   .stack__use,

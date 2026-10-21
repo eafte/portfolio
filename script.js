@@ -168,6 +168,37 @@
     );
   }
 
+  // ---------- Back to top (mobile) ----------
+  const toTop = document.getElementById("toTop");
+  if (toTop) {
+    const showAfter = () => Math.max(window.innerHeight * 1.2, 600);
+    let toTopTicking = false;
+    const syncToTop = () => {
+      toTop.classList.toggle("is-visible", window.scrollY > showAfter());
+      toTopTicking = false;
+    };
+    syncToTop();
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (toTopTicking) return;
+        toTopTicking = true;
+        window.requestAnimationFrame(syncToTop);
+      },
+      { passive: true }
+    );
+
+    toTop.addEventListener("click", () => {
+      const prefersReduced =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
+      // Keyboard users land back at the top of the document, not mid-page.
+      const brand = document.querySelector(".brand");
+      if (brand) brand.focus({ preventScroll: true });
+    });
+  }
+
   // ---------- Scroll reveal ----------
   const reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
