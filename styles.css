@@ -938,7 +938,6 @@ a:hover {
 .feature {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-top: 3px solid var(--accent);
   border-radius: var(--radius);
   /* 32px, matching every other card. At 40px the feature's heading sat
      8px right of every project heading below it. */
@@ -951,7 +950,6 @@ a:hover {
 
 .feature:hover {
   border-color: var(--line-strong);
-  border-top-color: var(--accent);
   box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
@@ -1694,7 +1692,6 @@ a:hover {
 
 .edu__card--lead {
   grid-area: lead;
-  border-top: 3px solid var(--accent);
 }
 
 .edu__head {
@@ -1748,7 +1745,6 @@ a:hover {
   padding: var(--s7);
   background: var(--panel);
   border: 1px solid var(--line);
-  border-top: 3px solid var(--accent);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   min-width: 0;
@@ -1757,7 +1753,6 @@ a:hover {
 
 .certs:hover {
   border-color: var(--line-strong);
-  border-top-color: var(--accent);
   box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
