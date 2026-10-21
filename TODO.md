@@ -101,8 +101,8 @@ The PDF CV (`10/2026`) is treated as the source of truth; the site now matches i
       `Jun 2027 (expected)`.
 - [x] **"Deployed" corrected** — the B2B result no longer claims deployment;
       it matches the CV's "deploy-ready, in end-to-end testing".
-- [x] **WeChat** `khirul_2004` added to Contact; languages extended with
-      Hindi + Urdu.
+- [x] ~~WeChat `khirul_2004` in Contact~~ — **reverted Oct 2026**, the handle is
+      to stay private. Languages extended with Hindi + Urdu.
 - [x] **Certifications block** — HSK 4 (CTI, May 2026), Udemy Cyber Security &
       Ethical Hacking (Jan 2026), competition Certificate of Honor.
 - [x] **Scored coursework** — the CV's per-course marks replace the generic

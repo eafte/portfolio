@@ -1925,28 +1925,6 @@ a:hover {
   border-bottom-color: var(--accent);
 }
 
-/* Non-link contact detail (e.g. a WeChat handle) reads like the other rows. */
-.contact__static {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-}
-
-.contact__handle {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--accent);
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 1px 7px;
-}
-
 .contact__pgp {
   margin-top: var(--s5);
   padding: 10px 14px;
