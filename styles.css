@@ -1,40 +1,38 @@
 /* ============================================================
    Md Eaftekhirul Islam - portfolio
-   Two deliberately different moods, one per theme:
-     light - cream soda paper, blueberry ink and accent
-     dark  - forest graphite, acid mint
-
-   They cannot share an accent: acid mint reaches only 1.6:1 on white, so
-   it is reserved for dark mode and for fills that carry --accent-ink.
-   Light mode uses blueberry, which holds 7.5:1 on cream.
+   One family, two keys: warm ivory in light, forest graphite in dark.
+   Light carries deep forest ink with a mid-forest accent; dark carries
+   soft ivory with acid mint. Acid mint reaches only 1.6:1 on white, so it
+   stays in dark mode and in fills that carry --accent-ink.
    ============================================================ */
 
 :root {
   color-scheme: light;
 
-  /* Cream soda paper, blueberry ink and accent.
+  /* Warm ivory paper, deep forest ink.
      Every text colour clears WCAG AA (4.5:1) on bg, bg-2 and panel;
      the measured value is noted beside each. */
-  --bg: #f9f3e7;              /* cream soda */
-  --bg-2: #f2e9d9;            /* a shade deeper, for insets */
-  --panel: #fffdf8;           /* warm white, not pure white */
-  --ink: #1f1a14;             /* 15.6:1 on --bg */
-  --ink-soft: #463e33;        /* 9.5:1 on --bg */
-  --muted: #6a5c4c;           /* 5.85:1 on --bg, 5.37:1 on bg-2 */
-  --faint: #6b5d4e;           /* 5.76:1 on --bg, 5.28:1 on bg-2 */
-  --line: #e8dcc6;
-  --line-strong: #d5c5a9;
+  --bg: #f5f5ec;              /* warm ivory */
+  --bg-2: #ededdf;            /* a shade deeper, for insets */
+  --panel: #ffffff;           /* pure white cards */
+  --ink: #20382a;             /* 11.54:1 on --bg, 12.65:1 on --panel */
+  --ink-soft: #44554b;        /* 7.24:1 on --bg */
+  --muted: #52645a;           /* 5.75:1 on --bg, 5.34:1 on bg-2 */
+  --faint: #5a6b5f;           /* 5.17:1 on --bg, 4.80:1 on bg-2 */
+  --line: #d5d8c6;
+  --line-strong: #c6cbb8;
 
-  /* Blueberry. Deep enough to hold body-size text on cream (7.5:1),
-     light enough to read as blue rather than navy-black. */
-  --accent: #3a4a8c;          /* 7.49:1 on --bg, 8.14:1 on --panel */
-  --accent-deep: #2e3c76;     /* hover */
-  --accent-ink: #fffdf8;      /* cream text on blueberry (8.14:1) */
+  /* Accent is a distinct mid-forest, not the heading colour: at 5.75:1 it
+     reads as green rather than as bold text, so eyebrows, section labels,
+     chips and links keep their own voice against #20382a headings. */
+  --accent: #2e6b4e;          /* 5.75:1 on --bg, 6.31:1 on --panel */
+  --accent-deep: #23553d;     /* hover - white on it is 8.61:1 */
+  --accent-ink: #ffffff;      /* white on the accent (6.31:1) */
   --accent-glow: 14%;         /* share of accent used in button shadows */
-  --green: #2e6b4e;           /* status / verified - muted so it sits with cream */
-  --green-deep: #256045;
-  --green-ink: #256045;       /* 6.70:1 on --bg */
-  --shadow-rgb: 31 26 20;     /* warm brown-black, not blue-slate */
+  --green: #2e6b4e;           /* status / verified */
+  --green-deep: #24573e;
+  --green-ink: #2e6b4e;       /* 6.31:1 on --panel */
+  --shadow-rgb: 32 40 34;     /* warm green-black, not blue-slate */
   --shadow: 0 1px 3px rgb(var(--shadow-rgb) / 0.05),
     0 16px 36px -24px rgb(var(--shadow-rgb) / 0.12);
   --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
@@ -43,9 +41,9 @@
   --radius: 8px;
   --radius-sm: 6px;
 
-  /* Hero accent wash. Blueberry leaves headroom for 6%; faint text over
-     the wash still measures 5.27:1. */
-  --hero-wash: 6%;
+  /* Hero accent wash. 8% is the ceiling: faint text over it measures
+     4.64:1, and at 10% it lands exactly on the 4.5:1 line. */
+  --hero-wash: 8%;
 
   /* Quiter on warm cream - 0.12 reads as smudging against a yellow base. */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
@@ -2377,27 +2375,27 @@ a:hover {
     --bg: #ffffff;
     --bg-2: #ffffff;
     --panel: #ffffff;
-    --ink: #1f1a14;
-    --ink-soft: #463e33;
-    --muted: #6a5c4c;
-    --faint: #6a5c4c;
-    --line: #e8dcc6;
-    --line-strong: #d5c5a9;
-    --accent: #3a4a8c;          /* blueberry reads on paper; acid mint does not */
-    --accent-deep: #2e3c76;
+    --ink: #20382a;
+    --ink-soft: #44554b;
+    --muted: #52645a;
+    --faint: #52645a;
+    --line: #d5d8c6;
+    --line-strong: #c6cbb8;
+    --accent: #2e6b4e;          /* forest reads on paper; acid mint does not */
+    --accent-deep: #23553d;
     --accent-ink: #ffffff;
-    --green-ink: #256045;
-    --shadow-rgb: 31 26 20;
+    --green-ink: #2e6b4e;
+    --shadow-rgb: 32 40 34;
     color-scheme: light;
   }
 
   .header, .navToggle, .theme, .header__cta, .hero__art { display: none !important; }
   /* Drop the grain and the hero wash so a printed page stays clean. */
-  body { background: #fff !important; color: #1f1a14 !important; }
+  body { background: #fff !important; color: #20382a !important; }
   .hero { background-image: none !important; }
   .section { padding: 32px 0 !important; }
   .profile, .metric, .feature, .project, .edu__card, .contact__panel, .paper, .certs { box-shadow: none !important; border: 1px solid #dce7e0 !important; }
-  a { color: #3a4a8c !important; }
-  .footer::before { background: #d5c5a9 !important; }
+  a { color: #2e6b4e !important; }
+  .footer::before { background: #c6cbb8 !important; }
   .hero, .section { break-inside: avoid; }
 }
