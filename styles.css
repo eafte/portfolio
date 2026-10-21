@@ -66,6 +66,20 @@
   --s10: 64px;
   --s11: 88px;
 
+  /* Desktop spacing roles. Every gap on the page resolves to one of these,
+     so a block always sits the same distance from its neighbour instead of
+     whatever value the last component happened to use.
+     The important invariant is --gap-card (56) > --pad-card (40): when the
+     gap between two cards equals the padding inside them, the borders stop
+     doing their job and the section reads as one continuous mesh. */
+  --pad-section: 112px;       /* section top and bottom */
+  --gap-zone: 56px;           /* section heading -> its content */
+  --gap-card: 56px;           /* card -> card */
+  --pad-card: 40px;           /* inside a card */
+  --gap-block: 24px;          /* block -> block inside a card */
+  --gap-hair: 8px;            /* a label and its own sub-line */
+  --gap-tile: 24px;           /* small stat tiles, not content cards */
+
   --serif: "Spectral", "Georgia", "Times New Roman", serif;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
@@ -503,7 +517,9 @@ a:hover {
 /* ================= Hero ================= */
 .hero {
   position: relative;
-  padding: var(--s10) 0 var(--s10);
+  /* Heavier at the top than the bottom: the hero should read as a title
+     page, and .metrics adds its own 56px underneath. */
+  padding: 96px 0 80px;
   scroll-margin-top: 80px;
   /* A single soft accent wash, anchored top-right behind the profile card
      and faded out well before the copy column, so no text sits on it. */
@@ -560,7 +576,9 @@ a:hover {
   z-index: 1;
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  gap: var(--s10);
+  /* Same band as the card gutter - the two halves of one composition should
+     not sit further apart than two unrelated cards do. */
+  gap: var(--gap-card);
   align-items: start;
 }
 
@@ -839,11 +857,11 @@ a:hover {
 
 /* Metrics */
 .metrics {
-  margin: var(--s10) 0 0;
+  margin: var(--gap-zone) 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--s4);
+  gap: var(--gap-tile);
   background: transparent;
   border: none;
   overflow: visible;
@@ -851,7 +869,7 @@ a:hover {
 
 .metric {
   margin: 0;
-  padding: var(--s6) var(--s5);
+  padding: 32px 24px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -898,13 +916,13 @@ a:hover {
 
 /* ================= Sections ================= */
 .section {
-  padding: var(--s11) 0;
+  padding: var(--pad-section) 0;
   scroll-margin-top: 80px;
 }
 
 .sec {
   max-width: 720px;
-  margin-bottom: var(--s9);
+  margin-bottom: var(--gap-zone);
 }
 
 .sec__tag {
@@ -936,17 +954,15 @@ a:hover {
 .work {
   display: grid;
   /* One rhythm: the gap between the feature and the grid matches the gap
-     between grid rows (was 40px above / 32px below). */
-  gap: var(--s7);
+     between grid rows. */
+  gap: var(--gap-card);
 }
 
 .feature {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  /* 32px, matching every other card. At 40px the feature's heading sat
-     8px right of every project heading below it. */
-  padding: var(--s7);
+  padding: var(--pad-card);
   box-shadow: var(--shadow);
   min-width: 0;
   overflow: hidden;
@@ -1010,7 +1026,7 @@ a:hover {
 }
 
 .feature__tagline {
-  margin: var(--s3) 0 0;
+  margin: var(--gap-hair) 0 0;
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.6;
@@ -1252,7 +1268,7 @@ a:hover {
 }
 
 .feature .bullets {
-  margin-top: 28px;
+  margin-top: var(--gap-block);
 }
 
 .feature__bullets {
@@ -1266,7 +1282,7 @@ a:hover {
 }
 
 .result {
-  margin: 28px 0 0;
+  margin: var(--gap-block) 0 0;
   padding: 16px var(--s5);
   border-left: 3px solid var(--green);
   background: color-mix(in srgb, var(--green) 8%, transparent);
@@ -1307,7 +1323,7 @@ a:hover {
 .work__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--s7);
+  gap: var(--gap-card);
 }
 
 /* Grid placement is explicit via .project--wide. A parity rule
@@ -1318,7 +1334,7 @@ a:hover {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 0 0 var(--s7);
+  padding: 0 0 var(--pad-card);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
@@ -1369,8 +1385,8 @@ a:hover {
 
 .project > :not(.project__media):not(.project__content),
 .project__content {
-  padding-left: var(--s7);
-  padding-right: var(--s7);
+  padding-left: var(--pad-card);
+  padding-right: var(--pad-card);
 }
 
 .project__content {
@@ -1382,13 +1398,15 @@ a:hover {
 /* Head sits right under the media band. */
 .project .project__head {
   margin-top: 0;
-  padding-top: var(--s7);
+  padding-top: var(--pad-card);
 }
 
 /* Result + links pinned to the bottom so card rows align. */
 .project__foot {
   margin-top: auto;
-  padding-top: var(--s6);
+  /* The largest step inside a card: it marks the summary band as pinned
+     to the bottom rather than flowing with the body. */
+  padding-top: 32px;
 }
 
 .project__foot .result {
@@ -1431,11 +1449,18 @@ a:hover {
 }
 
 .project--wide .project__content {
-  padding: var(--s7) var(--s7) var(--s3);
+  /* No top padding: .project--wide .project__head carries it. The two used
+     to stack, so wide cards opened with 64px while every other card opened
+     with 32. Bottom is 0 so .project__foot's own step is the only gap. */
+  padding: 0 var(--pad-card) 0;
+}
+
+.project--wide .project__head {
+  padding-top: var(--pad-card);
 }
 
 .project--wide .project__foot {
-  padding-top: var(--s6);
+  padding-top: 32px;
 }
 
 .project__title {
@@ -1448,18 +1473,18 @@ a:hover {
 }
 
 .project__tagline {
-  margin: 6px 0 0;
+  margin: var(--gap-hair) 0 0;
   color: var(--muted);
   font-size: 0.93rem;
   line-height: 1.6;
 }
 
 .project .tags {
-  margin-top: var(--s5);
+  margin-top: var(--gap-block);
 }
 
 .project .bullets {
-  margin-top: var(--s5);
+  margin-top: var(--gap-block);
   line-height: 1.6;
 }
 
@@ -1478,7 +1503,7 @@ a:hover {
   grid-template-columns: 172px minmax(0, 1fr) auto;
   gap: var(--s2) var(--s6);
   align-items: baseline;
-  padding: var(--s5) 0;
+  padding: var(--gap-block) 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1527,18 +1552,18 @@ a:hover {
 .papers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--s7);
+  gap: var(--gap-card);
 }
 
 .paper {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: var(--s7);
+  padding: var(--pad-card);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: var(--s3);
+  gap: 16px;
   min-width: 0;
   transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
 }
@@ -1618,7 +1643,7 @@ a:hover {
   display: grid;
   grid-template-columns: 190px 1fr;
   gap: var(--s7);
-  padding: 0 0 var(--s8) var(--s7);
+  padding: 0 0 48px var(--pad-card);
   position: relative;
 }
 
@@ -1671,7 +1696,7 @@ a:hover {
   grid-template-areas:
     "lead hsc"
     "lead certs";
-  gap: var(--s7);
+  gap: var(--gap-card);
 }
 
 .edu__card--hsc {
@@ -1682,7 +1707,7 @@ a:hover {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: var(--s7);
+  padding: var(--pad-card);
   box-shadow: var(--shadow);
   min-width: 0;
   transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
@@ -1728,7 +1753,7 @@ a:hover {
 }
 
 .edu__stats {
-  margin: 0 0 var(--s5);
+  margin: 0 0 var(--gap-block);
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.6;
@@ -1745,7 +1770,7 @@ a:hover {
    shadow) so it reads as part of the same family. */
 .certs {
   grid-area: certs;
-  padding: var(--s7);
+  padding: var(--pad-card);
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1763,7 +1788,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: var(--s5);
+  margin-bottom: var(--gap-block);
 }
 
 .certs__icon {
@@ -1827,14 +1852,14 @@ a:hover {
 .contact {
   display: grid;
   grid-template-columns: 1fr 1.35fr;
-  gap: var(--s8);
+  gap: var(--gap-card);
 }
 
 .contact__panel {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: var(--s7);
+  padding: var(--pad-card);
   box-shadow: var(--shadow);
   min-width: 0;
   display: flex;
@@ -1847,7 +1872,7 @@ a:hover {
 }
 
 .contact__panel h3 {
-  margin: 0 0 var(--s3);
+  margin: 0 0 var(--s4);
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.3rem;
@@ -1855,7 +1880,7 @@ a:hover {
 }
 
 .contact__sub {
-  margin: 0 0 var(--s5);
+  margin: 0 0 var(--gap-block);
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.6;
@@ -1977,7 +2002,7 @@ a:hover {
 
 /* ================= Footer ================= */
 .footer {
-  padding: var(--s8) 0;
+  padding: var(--gap-zone) 0;
   background: var(--bg);
   border-top: none;
   position: relative;
@@ -2217,6 +2242,16 @@ a:hover {
   .edu,
   .contact {
     grid-template-columns: 1fr;
+  }
+
+  /* One column from here down, so the desktop 56px gutter would read as a
+     hole between stacked cards rather than as separation. */
+  .work,
+  .work__grid,
+  .papers,
+  .edu,
+  .contact {
+    gap: 40px;
   }
 
   .edu {
