@@ -1,42 +1,50 @@
 /* ============================================================
    Md Eaftekhirul Islam - portfolio
-   Modern Tech & AI Security: crisp slate, electric sapphire, emerald
+   Forest graphite & acid mint: mint-tinted paper in light, deep forest
+   green-black in dark, with two accents that switch roles by theme.
+   Light must use a DEEP green for text (#0E6B4A) because acid mint only
+   reaches 1.6:1 on white; acid mint is reserved for dark mode and for
+   fills that carry --accent-ink.
    ============================================================ */
 
 :root {
   color-scheme: light;
 
-  /* Slate & ink.
-     --muted and --faint are deliberately darker than the original slate
-     400/500 pair: at 0.68-0.82rem they were 2.5-4.3:1 on these surfaces.
-     Both now clear WCAG AA (4.5:1) on every light surface used here. */
-  --bg: #f8fafc;
-  --bg-2: #f1f5f9;
+  /* Mint paper, forest ink.
+     Every text colour clears WCAG AA (4.5:1) on both --bg and --panel;
+     the measured value is noted beside each. */
+  --bg: #f6faf7;              /* mint-tinted paper */
+  --bg-2: #edf4ef;
   --panel: #ffffff;
-  --ink: #0f172a;
-  --ink-soft: #334155;
-  --muted: #55647a;           /* 5.75:1 on --bg */
-  --faint: #61718a;           /* 4.74:1 on --bg, 4.96:1 on --panel */
-  --line: #e2e8f0;
-  --line-strong: #cbd5e1;
+  --ink: #0b1512;             /* 17.6:1 on --bg */
+  --ink-soft: #2c3b34;        /* 11.2:1 on --bg */
+  --muted: #4e635a;           /* 6.12:1 on --bg, 6.45:1 on --panel */
+  --faint: #5e736a;           /* 4.82:1 on --bg, 5.08:1 on --panel */
+  --line: #dce7e0;
+  --line-strong: #c2d3c9;
 
-  /* Accents */
-  --accent: #2563eb;          /* electric sapphire / tech blue */
-  --accent-deep: #1d4ed8;     /* deeper royal blue for hover */
-  --accent-ink: #ffffff;      /* text that sits on top of --accent */
-  --green: #10b981;           /* emerald for status/verified */
-  --green-deep: #059669;
-  --green-ink: #047857;       /* readable emerald for small text (5.24:1) */
-  --shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 16px 36px -24px rgba(15, 23, 42, 0.12);
-  --ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  /* Accents. Acid mint (#5BF2AE) is unusable as text on white - 1.6:1 -
+     so light mode uses its deep forest sibling and keeps the mint for
+     fills that carry --accent-ink (6.52:1). */
+  --accent: #0e6b4a;          /* forest - 6.19:1 on --bg */
+  --accent-deep: #0a5439;     /* hover */
+  --accent-ink: #ffffff;      /* text on --accent */
+  --accent-glow: 14%;         /* share of accent used in button shadows */
+  --green: #0e8f5f;           /* status / verified */
+  --green-deep: #0a7450;
+  --green-ink: #0e6b4a;       /* readable for small text */
+  --shadow-rgb: 11 21 18;     /* deep forest, used by every shadow */
+  --shadow: 0 1px 3px rgb(var(--shadow-rgb) / 0.05),
+    0 16px 36px -24px rgb(var(--shadow-rgb) / 0.12);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
 
   --max: 1120px;
   --radius: 8px;
   --radius-sm: 6px;
 
-  /* Hero accent wash. Capped at 6%: at 8% accent-coloured text over the
-     wash falls to 4.44:1 and fails AA. Dark mode has more headroom. */
-  --hero-wash: 6%;
+  /* Hero accent wash. Capped at 4%: at 5% the faint text over the wash
+     falls to 4.49:1 and fails AA. Dark mode has far more headroom. */
+  --hero-wash: 4%;
 
   /* Sticky-header height, used for anchor offsets and the nav dropdown.
      .header__inner is 44px of control + 2 x 10px padding, held at
@@ -67,24 +75,29 @@
 }
 
 [data-theme="dark"] {
-  --bg: #090d16;              /* deep slate base */
-  --bg-2: #0f172a;            /* deep slate 900 */
-  --panel: #131c2e;           /* elevated dark slate panel */
-  --ink: #f8fafc;             /* crisp bright slate */
-  --ink-soft: #cbd5e1;        /* readable secondary text */
-  --muted: #a3b1c4;           /* muted slate - 7.8:1 on --panel */
-  --faint: #94a3b8;           /* metadata / subtle labels - 6.6:1 on --panel */
-  --line: #1e293b;            /* slate border */
-  --line-strong: #334155;     /* prominent border */
-  --accent: #60a5fa;          /* electric blue */
-  --accent-deep: #93c5fd;     /* glowing hover blue */
-  --accent-ink: #0b1220;      /* dark text on the light-blue accent (7.4:1) */
-  --green: #10b981;           /* emerald */
-  --green-deep: #34d399;      /* bright emerald */
-  --green-ink: #34d399;       /* readable emerald for small text */
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 20px 36px -20px rgba(0, 0, 0, 0.75);
-  --ring: 0 0 0 3px rgba(96, 165, 250, 0.35);
-  --hero-wash: 10%;           /* accent still 6.72:1 over this */
+  --bg: #0b1210;              /* forest graphite base */
+  --bg-2: #101a16;
+  --panel: #14201b;           /* raised panel */
+  --ink: #edf5f0;             /* 15.1:1 on --panel */
+  --ink-soft: #c2d3c9;        /* 10.8:1 on --panel */
+  --muted: #9db0a5;           /* 7.34:1 on --panel */
+  --faint: #8a9c91;           /* 5.79:1 on --panel */
+  --line: #22322b;
+  --line-strong: #33463d;
+
+  /* Here acid mint IS the text colour: 11.8:1 on --panel. The button
+     text flips to near-black (13.5:1). */
+  --accent: #5bf2ae;          /* acid mint */
+  --accent-deep: #86f7c6;     /* hover */
+  --accent-ink: #06110c;
+  --accent-glow: 22%;
+  --green: #5bf2ae;
+  --green-deep: #86f7c6;
+  --green-ink: #5bf2ae;
+  --shadow-rgb: 0 0 0;
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 20px 36px -20px rgb(0 0 0 / 0.75);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+  --hero-wash: 12%;           /* accent still 10.3:1 over this */
   color-scheme: dark;
 }
 
@@ -223,7 +236,7 @@ a:hover {
   font-family: var(--serif);
   font-weight: 700;
   font-size: 1.15rem;
-  box-shadow: 0 0 0 1px var(--line), 0 1px 3px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 0 0 1px var(--line), 0 1px 3px rgb(var(--shadow-rgb) / 0.12);
 }
 
 .brand__photo {
@@ -333,14 +346,16 @@ a:hover {
 .btn--primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2), 0 10px 24px -14px rgba(37, 99, 235, 0.45);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 10px 24px -14px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .btn--primary:hover {
   background: var(--accent-deep);
   transform: translateY(-2px);
   color: var(--accent-ink);
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25), 0 16px 30px -14px rgba(37, 99, 235, 0.55);
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--accent) 25%, transparent),
+    0 16px 30px -14px color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .btn--ghost {
@@ -841,7 +856,7 @@ a:hover {
    "clickable" and these are not. Border + shadow carry the response. */
 .metric:hover {
   border-color: var(--line-strong);
-  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 20px 32px -16px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 12px -2px rgb(var(--shadow-rgb) / 0.08), 0 20px 32px -16px rgb(var(--shadow-rgb) / 0.12);
 }
 
 .metric__num {
@@ -934,7 +949,7 @@ a:hover {
 .feature:hover {
   border-color: var(--line-strong);
   border-top-color: var(--accent);
-  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .feature__head,
@@ -1008,7 +1023,7 @@ a:hover {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--panel);
-  box-shadow: 0 4px 16px -8px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 16px -8px rgb(var(--shadow-rgb) / 0.12);
 }
 
 .figure figcaption {
@@ -1309,7 +1324,7 @@ a:hover {
 
 .project:hover {
   border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 /* Schematic screenshot band at the top of every project card. */
@@ -1526,7 +1541,7 @@ a:hover {
 .paper:hover {
   border-color: var(--line-strong);
   border-left-color: var(--accent);
-  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .paper__head {
@@ -1671,7 +1686,7 @@ a:hover {
 
 .edu__card:hover {
   border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .edu__card--lead {
@@ -1740,7 +1755,7 @@ a:hover {
 .certs:hover {
   border-color: var(--line-strong);
   border-top-color: var(--accent);
-  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .certs__head {
@@ -2357,24 +2372,27 @@ a:hover {
     --bg: #ffffff;
     --bg-2: #ffffff;
     --panel: #ffffff;
-    --ink: #0f172a;
-    --ink-soft: #334155;
-    --muted: #475569;
-    --faint: #475569;
-    --line: #cbd5e1;
-    --line-strong: #94a3b8;
-    --accent: #1d4ed8;
-    --accent-deep: #1d4ed8;
+    --ink: #0b1512;
+    --ink-soft: #2c3b34;
+    --muted: #4e635a;
+    --faint: #4e635a;
+    --line: #dce7e0;
+    --line-strong: #c2d3c9;
+    --accent: #0e6b4a;          /* forest reads on paper; acid mint does not */
+    --accent-deep: #0a5439;
     --accent-ink: #ffffff;
-    --green-ink: #047857;
+    --green-ink: #0e6b4a;
+    --shadow-rgb: 11 21 18;
     color-scheme: light;
   }
 
   .header, .navToggle, .theme, .header__cta, .hero__art { display: none !important; }
-  body { background: #fff !important; color: #0f172a !important; }
+  /* Drop the grain and the hero wash so a printed page stays clean. */
+  body { background: #fff !important; color: #0b1512 !important; }
+  .hero { background-image: none !important; }
   .section { padding: 32px 0 !important; }
-  .profile, .metric, .feature, .project, .edu__card, .contact__panel { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
-  a { color: #2563eb !important; }
-  .footer::before { background: #cbd5e1 !important; }
+  .profile, .metric, .feature, .project, .edu__card, .contact__panel, .paper, .certs { box-shadow: none !important; border: 1px solid #dce7e0 !important; }
+  a { color: #0e6b4a !important; }
+  .footer::before { background: #c2d3c9 !important; }
   .hero, .section { break-inside: avoid; }
 }
