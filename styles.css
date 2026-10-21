@@ -1704,38 +1704,90 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
-/* Certifications under the education cards */
+/* Certifications sit in their own panel below the education cards,
+   using the same shell as .edu__card--lead (accent top border, panel,
+   shadow) so it reads as part of the same family. */
 .certs {
+  margin-top: var(--s7);
+  padding: var(--s7);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 0;
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+.certs:hover {
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
+  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08), 0 24px 38px -18px rgba(15, 23, 42, 0.14);
+}
+
+.certs__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--s5);
+}
+
+.certs__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.certs__title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+/* Three columns divided by hairlines; the outer edges stay clean. */
+.certs__list {
   list-style: none;
-  margin: var(--s7) 0 0;
-  padding: var(--s6) 0 0;
-  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 0;
   display: grid;
-  gap: var(--s3);
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.certs li {
-  position: relative;
-  padding-left: 18px;
-  color: var(--muted);
-  font-size: 0.93rem;
-  line-height: 1.6;
+.cert {
+  min-width: 0;
+  padding: 0 var(--s5);
+  border-left: 1px solid var(--line);
 }
 
-.certs li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--green);
+.cert:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 
-.certs strong {
+.cert:last-child {
+  padding-right: 0;
+}
+
+.cert__name {
+  display: block;
   color: var(--ink);
   font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.cert__meta {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.55;
 }
 
 /* ================= Contact ================= */
@@ -2244,8 +2296,24 @@ a:hover {
 
   .edu__card,
   .paper,
+  .certs,
   .contact__panel {
     padding: var(--s6);
+  }
+
+  .certs__list {
+    grid-template-columns: 1fr;
+  }
+
+  .cert {
+    padding: var(--s4) 0 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .cert:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 
   .work,

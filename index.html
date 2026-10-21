@@ -42,7 +42,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=24" />
+    <link rel="stylesheet" href="styles.css?v=25" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -1069,11 +1069,31 @@
                     </article>
                 </div>
 
-                <ul class="certs" aria-label="Certifications">
-                    <li><strong>HSK Level 4</strong> — Chinese Proficiency Test, CTI Beijing, May 2026</li>
-                    <li><strong>Cyber Security &amp; Ethical Hacking</strong> — Udemy, January 2026</li>
-                    <li><strong>Certificate of Honor</strong> — China International College Students' Innovation Competition, October 2025</li>
-                </ul>
+                <section class="certs" aria-labelledby="certsTitle">
+                    <header class="certs__head">
+                        <svg class="certs__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                        <h3 class="certs__title" id="certsTitle">Certifications &amp; Awards</h3>
+                    </header>
+
+                    <ul class="certs__list">
+                        <li class="cert">
+                            <span class="cert__name">HSK Level 4 — Chinese Proficiency Test</span>
+                            <span class="cert__meta">CTI Beijing · May 2026</span>
+                        </li>
+                        <li class="cert">
+                            <span class="cert__name">Cyber Security &amp; Ethical Hacking</span>
+                            <span class="cert__meta">Udemy · January 2026</span>
+                        </li>
+                        <li class="cert">
+                            <span class="cert__name">Certificate of Honor</span>
+                            <span class="cert__meta">China International College Students' Innovation Competition · October 2025</span>
+                        </li>
+                    </ul>
+                </section>
             </div>
         </section>
 
@@ -1113,7 +1133,6 @@
                             <li><a href="https://github.com/eafte" target="_blank"
                                     rel="noopener noreferrer">GitHub ↗</a></li>
                             <li><a href="Md-Eaftekhirul-Islam-CV.pdf" download>Download CV (PDF) ↓</a></li>
-                            <li><a href="cv-ats.docx" download>Download CV (Word, ATS) ↓</a></li>
                             <li><span class="contact__static">WeChat <code class="contact__handle">khirul_2004</code></span></li>
                             <li><a href="key.asc" target="_blank"
                                     rel="noopener noreferrer">PGP Key ↗</a></li>
