@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f8fafc" />
+    <meta name="theme-color" content="#f5f5ec" />
+
+    <script>
+      // Resolve the theme before first paint: a returning visitor keeps their
+      // choice, a first-time visitor gets their OS preference, and the page
+      // never flashes light before switching to dark.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var saved = null;
+        try { saved = localStorage.getItem("ei_portfolio_theme"); } catch (e) { /* sandboxed */ }
+        var theme = saved === "dark" || saved === "light"
+          ? saved
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "dark") root.setAttribute("data-theme", "dark");
+      })();
+    </script>
 
     <title>Md Eaftekhirul Islam | Software Engineering, Applied AI &amp; Security</title>
     <meta name="description"
@@ -26,7 +42,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=22" />
+    <link rel="stylesheet" href="styles.css?v=39" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -76,6 +92,7 @@
 
             <nav class="nav" id="nav" aria-label="Primary">
                 <a href="#work">Work</a>
+                <a href="#research">Research</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
                 <a href="#education">Education</a>
@@ -151,11 +168,12 @@
 
                         <div class="hero__cta">
                             <a class="btn btn--primary" href="#work">View my work</a>
-                            <a class="btn btn--ghost" href="cv-ats.docx" download>Download CV</a>
-                            <a class="btn btn--ghost" href="https://github.com/eafte" target="_blank"
-                                rel="noopener noreferrer">GitHub</a>
-                            <a class="btn btn--ghost" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
-                                rel="noopener noreferrer">LinkedIn</a>
+                            <a class="btn btn--ghost" href="Md-Eaftekhirul-Islam-CV.pdf" download>Download CV</a>
+                            <span class="hero__cta-divider" aria-hidden="true"></span>
+                            <a class="btn btn--quiet" href="https://github.com/eafte" target="_blank"
+                                rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                            <a class="btn btn--quiet" href="https://www.linkedin.com/in/eaftekhirul/" target="_blank"
+                                rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
                         </div>
 
                         <ul class="chips" aria-label="Areas of focus">
@@ -197,7 +215,7 @@
                                 </div>
                                 <div class="profile__row">
                                     <dt>Languages</dt>
-                                    <dd>Bengali, English, Chinese (HSK 4)</dd>
+                                    <dd>Bengali, English, Hindi, Urdu, Chinese (HSK 4)</dd>
                                 </div>
                                 <div class="profile__row">
                                     <dt>Focus</dt>
@@ -215,8 +233,8 @@
 
                 <div class="metrics" role="region" aria-label="Key metrics">
                     <div class="metric">
-                        <span class="metric__num">5</span>
-                        <span class="metric__label">Adversarial attack categories</span>
+                        <span class="metric__num">717</span>
+                        <span class="metric__label">Automated pytest cases</span>
                         <span class="metric__src">LLM Guard Bench</span>
                     </div>
                     <div class="metric">
@@ -251,7 +269,7 @@
                 </header>
 
                 <div class="work">
-                    <article class="feature">
+                    <article class="feature" id="p-llm-guard-bench">
                         <div class="feature__head">
                             <span class="feature__no">01</span>
                             <span class="feature__tag">Featured</span>
@@ -291,6 +309,9 @@
                                 and automated LLM-as-a-Judge verdict classification</li>
                             <li>Dual persistence audit trail using SQLite and JSONL, retry logic with
                                 exponential backoff, and a reproducible Docker environment</li>
+                            <li>Built for scale: flat O(1) memory growth (~50.2 MiB peak RSS) across synthetic
+                                datasets of 1M+ records via JSONL streaming and atomic SQLite aggregation,
+                                held to strict MyPy typing and 717 automated pytest cases</li>
                             <li>Open-source framework published with strict Pydantic schemas, benchmark reporting,
                                 and CITATION.cff metadata</li>
                         </ul>
@@ -408,7 +429,87 @@
                     </article>
 
                     <div class="work__grid">
-                        <article class="project">
+                        <article class="project project--wide" id="p-ml-host-hardening">
+                            <div class="project__media" aria-hidden="true">
+                                <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                    <rect width="640" height="400" fill="var(--bg-2)" />
+                                    <defs>
+                                        <clipPath id="hardening-window"><rect x="60" y="40" width="520" height="320" rx="10" /></clipPath>
+                                    </defs>
+                                    <rect x="60" y="40" width="520" height="320" rx="10" fill="var(--panel)" stroke="var(--line-strong)" />
+                                    <g clip-path="url(#hardening-window)">
+                                        <rect x="60" y="40" width="520" height="34" fill="var(--bg-2)" />
+                                        <rect x="60" y="74" width="520" height="286" fill="var(--bg)" opacity="0.72" />
+                                    </g>
+                                    <circle cx="80" cy="57" r="4" fill="var(--line-strong)" />
+                                    <circle cx="98" cy="57" r="4" fill="var(--line-strong)" />
+                                    <circle cx="116" cy="57" r="4" fill="var(--line-strong)" />
+                                    <rect x="80" y="96" width="14" height="7" rx="3" fill="var(--accent)" />
+                                    <rect x="102" y="96" width="132" height="7" rx="3" fill="var(--line-strong)" />
+                                    <rect x="80" y="118" width="196" height="6" rx="3" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="80" y="136" width="164" height="6" rx="3" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="80" y="154" width="212" height="6" rx="3" fill="var(--line-strong)" opacity="0.55" />
+                                    <rect x="80" y="180" width="14" height="7" rx="3" fill="var(--accent)" />
+                                    <rect x="102" y="180" width="104" height="7" rx="3" fill="var(--line-strong)" />
+                                    <rect x="80" y="202" width="148" height="6" rx="3" fill="var(--green)" opacity="0.8" />
+                                    <rect x="80" y="220" width="120" height="6" rx="3" fill="var(--green)" opacity="0.55" />
+                                    <rect x="80" y="252" width="66" height="30" rx="6" fill="var(--panel)" stroke="var(--green)" />
+                                    <rect x="96" y="264" width="34" height="6" rx="3" fill="var(--green)" opacity="0.85" />
+                                    <rect x="158" y="252" width="66" height="30" rx="6" fill="var(--panel)" stroke="var(--green)" />
+                                    <rect x="174" y="264" width="34" height="6" rx="3" fill="var(--green)" opacity="0.85" />
+                                    <rect x="236" y="252" width="78" height="30" rx="6" fill="var(--panel)" stroke="var(--line-strong)" stroke-dasharray="4 4" />
+                                    <line x1="240" y1="278" x2="310" y2="256" stroke="var(--line-strong)" stroke-width="2" />
+                                    <rect x="254" y="264" width="30" height="6" rx="3" fill="var(--line-strong)" opacity="0.5" />
+                                    <rect x="366" y="96" width="188" height="216" rx="10" fill="var(--panel)" stroke="var(--line)" />
+                                    <path d="M460 122 L500 138 V172 C500 196 482 212 460 222 C438 212 420 196 420 172 V138 Z"
+                                        fill="var(--accent)" opacity="0.12" stroke="var(--accent)" stroke-width="2" />
+                                    <path d="M446 172 L456 182 L476 158" fill="none" stroke="var(--accent)" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <rect x="392" y="246" width="136" height="6" rx="3" fill="var(--line-strong)" opacity="0.7" />
+                                    <rect x="392" y="264" width="108" height="6" rx="3" fill="var(--line-strong)" opacity="0.5" />
+                                    <rect x="392" y="282" width="122" height="6" rx="3" fill="var(--line-strong)" opacity="0.5" />
+                                </svg>
+                                <p class="project__mediaNote">Firewall Posture &amp; Open Ports</p>
+                            </div>
+                            <div class="project__content">
+                            <div class="project__head">
+                                <span class="project__no">02</span>
+                            </div>
+                            <h3 class="project__title">ML Host Hardening: Securing an ML Inference Server</h3>
+                            <p class="project__tagline">
+                                Hardening a FastAPI inference service on Ubuntu 24.04: nginx reverse proxy,
+                                no-login service account, default-deny firewall and a systemd sandbox, with
+                                before-and-after measurements at every step.
+                            </p>
+                            <ul class="tags" aria-label="Tech stack">
+                                <li>Ubuntu 24.04</li>
+                                <li>nginx</li>
+                                <li>FastAPI</li>
+                                <li>UFW</li>
+                                <li>systemd</li>
+                                <li>Lynis</li>
+                                <li>SSH</li>
+                            </ul>
+                            <ul class="bullets">
+                                <li>Reduced the exposed attack surface from ports 22 and 8000 to 22 and 80, with nginx proxying only two routes to the inference service</li>
+                                <li>Raised the Lynis hardening index from 61 to 71 and cut the systemd exposure score from 9.2 to 1.4</li>
+                                <li>Applied key-only SSH, UFW default-deny, a no-login service account, and a systemd sandbox restricting filesystem and privilege access</li>
+                                <li>Cross-checked live sysctl values against configuration files, which surfaced two settings being silently overridden by apport and UFW</li>
+                            </ul>
+                            <div class="project__foot">
+                                <p class="result">
+                                    <strong>Result:</strong> every change is measured rather than asserted - port
+                                    surface, Lynis index and systemd exposure score are all reported before and after.
+                                </p>
+                                <div class="linksrow">
+                                    <a href="https://github.com/eafte/ml-host-hardening" target="_blank"
+                                        rel="noopener noreferrer">Repository ↗</a>
+                                </div>
+                            </div>
+                            </div>
+                        </article>
+
+                        <article class="project" id="p-electrical-supplier">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
                                     <rect width="640" height="400" fill="var(--bg-2)" />
@@ -432,7 +533,7 @@
                                     <rect x="86" y="186" width="52" height="6" rx="3" fill="var(--line-strong)" opacity="0.6" />
                                     <rect x="190" y="96" width="150" height="9" rx="4" fill="var(--line-strong)" />
                                     <rect x="474" y="90" width="80" height="24" rx="6" fill="var(--accent)" />
-                                    <rect x="494" y="100" width="40" height="5" rx="2.5" fill="#ffffff" />
+                                    <rect x="494" y="100" width="40" height="5" rx="2.5" fill="var(--accent-ink)" />
                                     <rect x="190" y="128" width="174" height="104" rx="6" fill="var(--panel)" stroke="var(--line)" />
                                     <rect x="200" y="138" width="154" height="42" rx="4" fill="var(--bg-2)" />
                                     <rect x="200" y="192" width="92" height="6" rx="3" fill="var(--line-strong)" />
@@ -453,7 +554,7 @@
                             </div>
                             <p class="project__mediaNote">System Architecture &amp; UI Wireframe</p>
                             <div class="project__head">
-                                <span class="project__no">02</span>
+                                <span class="project__no">03</span>
                             </div>
                             <h3 class="project__title">Electrical Supplier Website (B2B)</h3>
                             <p class="project__tagline">
@@ -475,7 +576,7 @@
                             </ul>
                             <div class="project__foot">
                                 <p class="result">
-                                    <strong>Result:</strong> architected and deployed a self-contained full-stack system with complete authentication, typed contracts, and an automated admin workflow initialized from a single command.
+                                    <strong>Result:</strong> a self-contained full-stack system run end-to-end locally against a seeded database - complete authentication, typed contracts, and an automated admin workflow initialised from a single command.
                                 </p>
                                 <div class="linksrow">
                                     <a href="https://github.com/eafte/electrical-supplier-website" target="_blank"
@@ -486,7 +587,7 @@
                             </div>
                         </article>
 
-                        <article class="project">
+                        <article class="project" id="p-iodex">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
                                     <rect width="640" height="400" fill="var(--bg-2)" />
@@ -535,7 +636,7 @@
                             </div>
                             <p class="project__mediaNote">Application Interface Layout</p>
                             <div class="project__head">
-                                <span class="project__no">03</span>
+                                <span class="project__no">04</span>
                             </div>
                             <h3 class="project__title">IODEX: GUI Expense Tracker</h3>
                             <p class="project__tagline">
@@ -568,10 +669,10 @@
                             </div>
                         </article>
 
-                        <article class="project project--wide">
+                        <article class="project project--wide" id="p-harmonycare">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false"
-                                    preserveAspectRatio="xMidYMid slice">
+                                    preserveAspectRatio="xMidYMid meet">
                                     <rect width="640" height="400" fill="var(--bg-2)" />
                                     <!-- Phone frame -->
                                     <rect x="232" y="18" width="176" height="364" rx="20" fill="var(--panel)" stroke="var(--line-strong)" />
@@ -579,11 +680,11 @@
                                     <rect x="244" y="48" width="152" height="322" rx="8" fill="var(--bg)" stroke="var(--line)" />
                                     <!-- App header -->
                                     <rect x="244" y="48" width="152" height="40" rx="8" fill="var(--accent)" />
-                                    <rect x="258" y="64" width="96" height="8" rx="4" fill="#ffffff" opacity="0.95" />
+                                    <rect x="258" y="64" width="96" height="8" rx="4" fill="var(--accent-ink)" opacity="0.95" />
                                     <!-- SOS button -->
                                     <circle cx="320" cy="158" r="46" fill="var(--accent)" opacity="0.14" />
                                     <circle cx="320" cy="158" r="34" fill="var(--accent)" />
-                                    <rect x="302" y="152" width="36" height="12" rx="6" fill="#ffffff" />
+                                    <rect x="302" y="152" width="36" height="12" rx="6" fill="var(--accent-ink)" />
                                     <rect x="284" y="222" width="72" height="7" rx="3.5" fill="var(--line-strong)" />
                                     <!-- Alert list -->
                                     <rect x="256" y="248" width="128" height="34" rx="6" fill="var(--panel)" stroke="var(--line)" />
@@ -605,7 +706,7 @@
                                     <rect x="104" y="146" width="72" height="6" rx="3" fill="var(--line-strong)" />
                                     <rect x="104" y="160" width="52" height="5" rx="2.5" fill="var(--line-strong)" opacity="0.55" />
                                     <rect x="104" y="174" width="60" height="18" rx="9" fill="var(--accent)" />
-                                    <rect x="122" y="181" width="24" height="5" rx="2.5" fill="#ffffff" />
+                                    <rect x="122" y="181" width="24" height="5" rx="2.5" fill="var(--accent-ink)" />
                                     <rect x="38" y="216" width="140" height="6" rx="3" fill="var(--line)" opacity="0.7" />
                                     <rect x="38" y="232" width="112" height="6" rx="3" fill="var(--line)" opacity="0.7" />
                                     <rect x="38" y="248" width="124" height="6" rx="3" fill="var(--line)" opacity="0.7" />
@@ -623,7 +724,7 @@
                             </div>
                             <div class="project__content">
                                 <div class="project__head">
-                                    <span class="project__no">04</span>
+                                    <span class="project__no">05</span>
                                 </div>
                                 <h3 class="project__title">HarmonyCare: Elderly Safety and Volunteer Response</h3>
                                 <p class="project__tagline">
@@ -664,98 +765,134 @@
             </div>
         </section>
 
+        <!-- ============ RESEARCH ============ -->
+        <section class="section" id="research">
+            <div class="container">
+                <header class="sec">
+                    <span class="sec__tag">Research</span>
+                    <h2 class="sec__title">Coursework research &amp; technical writing</h2>
+                    <p class="sec__lede">
+                        Four course-based research pieces spanning high-performance computing, cloud-native
+                        security, applied machine learning, and embedded systems. Each states its method and
+                        its limits.
+                    </p>
+                </header>
+
+                <div class="papers">
+                    <article class="paper" id="r-distributed-inference">
+                        <div class="paper__head">
+                            <span class="paper__course">High-Performance Computing</span>
+                            <span class="paper__year">2026</span>
+                        </div>
+                        <h3 class="paper__title">Distributed Inference Architectures for Generative AI</h3>
+                        <p class="paper__sub">Overcoming GPU memory bottlenecks in LLMs</p>
+                        <p class="paper__body">
+                            Survey of how tensor and pipeline parallelism split LLM inference across multi-GPU
+                            clusters, covering KV-cache memory management (virtual page mapping, hardware-aware
+                            attention scheduling) and its effect on fragmentation and communication delay.
+                        </p>
+                    </article>
+
+                    <article class="paper" id="r-cloud-native-security">
+                        <div class="paper__head">
+                            <span class="paper__course">New Technologies in Software Development</span>
+                            <span class="paper__year">2026</span>
+                        </div>
+                        <h3 class="paper__title">Cloud-Native Security: Protecting Modern Software Delivery in DevOps</h3>
+                        <p class="paper__body">
+                            Essay applying the CNCF 4C model (Cloud, Cluster, Container, Code) to DevSecOps
+                            pipelines. Analyses the Log4Shell vulnerability (CVE-2021-44228) and the roles of
+                            Snyk, Aqua Security, HashiCorp Vault, and Open Policy Agent.
+                        </p>
+                        <p class="paper__meta">Group project · team lead</p>
+                    </article>
+
+                    <article class="paper" id="r-wine-classification">
+                        <div class="paper__head">
+                            <span class="paper__course">Introduction to Artificial Intelligence</span>
+                            <span class="paper__year">2026</span>
+                        </div>
+                        <h3 class="paper__title">A Comparative Analysis of Linear and Ensemble Architectures for Chemical Attribute-Based Wine Classification</h3>
+                        <p class="paper__body">
+                            Compared Logistic Regression and Random Forest on the UCI Wine dataset (178 samples,
+                            13 chemical features) with standard scaling and an 80/20 split. Both reached 100%
+                            test accuracy.
+                        </p>
+                    </article>
+
+                    <article class="paper" id="r-stm32-voltmeter">
+                        <div class="paper__head">
+                            <span class="paper__course">Embedded Systems</span>
+                            <span class="paper__year">2025</span>
+                        </div>
+                        <h3 class="paper__title">Design and Simulation of a Digital Voltmeter using STM32</h3>
+                        <p class="paper__sub">An automated data acquisition system using ADC, DMA, and USART</p>
+                        <p class="paper__body">
+                            Designed and simulated a voltmeter on the STM32F103: a 12-bit ADC triggered by TIM2
+                            at 1 Hz, DMA transfer to memory, and readings sent over USART to a virtual terminal.
+                            Validated in simulation; no physical hardware.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- ============ SKILLS ============ -->
         <section class="section" id="skills">
             <div class="container">
                 <header class="sec">
                     <span class="sec__tag">Skills</span>
-                    <h2 class="sec__title">What I have actually used</h2>
+                    <h2 class="sec__title">Stack, and where I used it</h2>
                     <p class="sec__lede">
-                        Every skill below appears in the work above. Nothing listed that I have not built
-                        with and tested in practice.
+                        Grouped by area. Where a skill was used in a project or a study, it is
+                        linked.
                     </p>
                 </header>
 
-                <div class="skills">
-                    <!-- Card 1: Software Engineering Core -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                            </svg>
-                            <h3>Systems &amp; Backend</h3>
-                        </div>
-                        <ul>
-                            <li>Node.js + Express</li>
-                            <li>TypeScript</li>
-                            <li>Prisma ORM</li>
-                            <li>SQLite</li>
-                            <li>JWT authentication</li>
-                            <li>RESTful APIs</li>
-                            <li>Relational schema design</li>
-                        </ul>
+                <div class="stack">
+                    <div class="stack__row">
+                        <span class="stack__area">Languages</span>
+                        <span class="stack__items">Python · TypeScript · Java · JavaScript · SQL ·
+                            C <a class="stack__use" href="#r-stm32-voltmeter">↗ STM32 voltmeter</a></span>
                     </div>
 
-                    <!-- Card 2: AI / Machine Learning Core -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                            <h3>Applied AI &amp; Python</h3>
-                        </div>
-                        <ul>
-                            <li>Python 3</li>
-                            <li>Async pipelines (asyncio, aiohttp)</li>
-                            <li>Pydantic v2 schemas</li>
-                            <li>Ollama (local LLM inference)</li>
-                            <li>LLM-as-a-Judge evaluation</li>
-                            <li>Data analysis with Pandas</li>
-                            <li>Plotly visualization</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">Backend &amp; data</span>
+                        <span class="stack__items">Node/Express · FastAPI · Prisma · SQLite · REST ·
+                            JWT authentication</span>
+                        <a class="stack__use" href="#p-electrical-supplier">↗ B2B platform</a>
                     </div>
 
-                    <!-- Card 3: Cybersecurity, Testing & DevOps Core -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                            <h3>Testing &amp; Security DevOps</h3>
-                        </div>
-                        <ul>
-                            <li>Automated testing with pytest</li>
-                            <li>80+ unit test suites</li>
-                            <li>Adversarial LLM robustness benchmarks</li>
-                            <li>Git &amp; GitHub workflows</li>
-                            <li>Linux environments</li>
-                            <li>Docker &amp; docker-compose</li>
-                            <li>GitHub Actions CI</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">AI &amp; data</span>
+                        <span class="stack__items">asyncio/aiohttp · Pydantic v2 · Ollama ·
+                            LLM-as-a-Judge · pandas · Plotly ·
+                            scikit-learn</span>
+                        <span class="stack__uses">
+                            <a class="stack__use" href="#p-llm-guard-bench">↗ LLM Guard Bench</a>
+                            <a class="stack__use" href="#p-iodex">↗ IODEX</a>
+                        </span>
                     </div>
 
-                    <!-- Card 4: Computer Science Core & Mobile -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                            </svg>
-                            <h3>Client &amp; Mobile Systems</h3>
-                        </div>
-                        <ul>
-                            <li>React + Vite</li>
-                            <li>Java on Android (SDK 34)</li>
-                            <li>Room database persistence</li>
-                            <li>MVVM architecture</li>
-                            <li>Offline-first local networking</li>
-                            <li>Material Design interfaces</li>
-                            <li>HTML5 &amp; Modern CSS</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">Testing &amp; platform</span>
+                        <span class="stack__items">pytest · MyPy · Docker · GitHub Actions · Linux ·
+                            Git</span>
+                        <a class="stack__use" href="#p-llm-guard-bench">↗ LLM Guard Bench</a>
+                    </div>
+
+                    <div class="stack__row">
+                        <span class="stack__area">Host hardening</span>
+                        <span class="stack__items">nginx · UFW · fail2ban · Lynis · systemd ·
+                            key-only SSH · nmap</span>
+                        <a class="stack__use" href="#p-ml-host-hardening">↗ ML Host Hardening</a>
+                    </div>
+
+                    <div class="stack__row">
+                        <span class="stack__area">Mobile &amp; frontend</span>
+                        <span class="stack__items">React + Vite · Android SDK 34 · Room · MVVM ·
+                            Material Design</span>
+                        <a class="stack__use" href="#p-harmonycare">↗ HarmonyCare</a>
                     </div>
                 </div>
             </div>
@@ -804,10 +941,10 @@
                             <span class="timeline__date">2025</span>
                         </div>
                         <div class="timeline__body">
-                            <h3>Competitor, China International College Students' Innovation Competition (2025)</h3>
+                            <h3>Certificate of Honor, China International College Students' Innovation Competition (2025)</h3>
                             <p class="timeline__zh">中国国际大学生创新大赛 (2025)</p>
                             <ul class="bullets">
-                                <li>Project: UrbanAI, an AI-driven urban planning simulation platform for smart cities (<a href="https://github.com/eafte/UrbanAI" target="_blank"
+                                <li>Awarded a Certificate of Honor by the School of International Education, Zhengzhou University, for UrbanAI: an AI-driven urban planning platform for smart cities (<a href="https://github.com/eafte/UrbanAI" target="_blank"
                                         rel="noopener noreferrer">prototype repository ↗</a>)</li>
                                 <li>Co-authored technical specifications, structured feature requirements, and documented system design for the competitive entry</li>
                             </ul>
@@ -846,30 +983,58 @@
                     <article class="edu__card edu__card--lead">
                         <div class="edu__head">
                             <h3>Zhengzhou University</h3>
-                            <span class="edu__dates">Sep 2023 - Jun 2027</span>
+                            <span class="edu__dates">Sep 2023 - Jun 2027 (expected)</span>
                         </div>
                         <p class="edu__degree">BSc in Software Engineering</p>
                         <p class="edu__stats"><strong>108/130</strong> credits completed, GPA <strong>3.02/4.0</strong> (avg <strong>82.35/100</strong>)</p>
                         <ul class="bullets">
-                            <li>Core curriculum: Data Structures &amp; Algorithms, Object-Oriented Programming, Operating Systems, Database Systems, Computer Networks, and Discrete Mathematics</li>
+                            <li>Selected courses (score/100): High-Performance Computing (95), Computer Networks (95), Introduction to Embedded Systems (96), Mobile Programming (93), Discrete Mathematics (92), Introduction to Artificial Intelligence (92), Object-Oriented Programming in Java (91), Operating Systems (86), Object-Oriented Techniques (85), Principles of Database Systems (81)</li>
                             <li>Henan Provincial Government Scholarship (HPGS) recipient: awarded 100% full tuition coverage (2023 - 2027), renewed annually based on academic merit</li>
                             <li>Chinese language proficiency: HSK Level 4 certified (score 194/300, 汉语水平考试四级)</li>
                         </ul>
                     </article>
 
-                    <article class="edu__card">
+                    <article class="edu__card edu__card--hsc">
                         <div class="edu__head">
                             <h3>Sabujbagh Government College, Dhaka</h3>
-                            <span class="edu__dates">Jul 2019 - Feb 2022</span>
+                            <span class="edu__dates">Jun 2019 - Dec 2021</span>
                         </div>
                         <p class="edu__degree">Higher Secondary Certificate (HSC) in Science</p>
                         <p class="edu__stats">GPA <strong>5.00/5.00</strong> (perfect score, national curriculum)</p>
                         <ul class="bullets">
-                            <li>Quantitative focus in Higher Mathematics, Physics, and Chemistry</li>
+                            <li>Quantitative focus in Higher Mathematics, Physics, and Chemistry; final examinations December 2021</li>
                             <li>Athletic activities: Cricket, Football, Volleyball</li>
                         </ul>
                     </article>
+
+                <section class="certs" aria-labelledby="certsTitle">
+                        <header class="certs__head">
+                            <svg class="certs__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                            </svg>
+                            <h3 class="certs__title" id="certsTitle">Certifications &amp; Awards</h3>
+                        </header>
+    
+                        <ul class="certs__list">
+                            <li class="cert">
+                                <span class="cert__name">HSK Level 4 — Chinese Proficiency Test</span>
+                                <span class="cert__meta">CTI Beijing · May 2026</span>
+                            </li>
+                            <li class="cert">
+                                <span class="cert__name">Cyber Security &amp; Ethical Hacking</span>
+                                <span class="cert__meta">Udemy · January 2026</span>
+                            </li>
+                            <li class="cert">
+                                <span class="cert__name">Certificate of Honor</span>
+                                <span class="cert__meta">China International College Students' Innovation Competition · October 2025</span>
+                            </li>
+                        </ul>
+                    </section>
+    
                 </div>
+
             </div>
         </section>
 
@@ -908,7 +1073,7 @@
                                     rel="noopener noreferrer">LinkedIn ↗</a></li>
                             <li><a href="https://github.com/eafte" target="_blank"
                                     rel="noopener noreferrer">GitHub ↗</a></li>
-                            <li><a href="cv-ats.docx" download>Download CV (Word) ↓</a></li>
+                            <li><a href="Md-Eaftekhirul-Islam-CV.pdf" download>Download CV ↓</a></li>
                             <li><a href="key.asc" target="_blank"
                                     rel="noopener noreferrer">PGP Key ↗</a></li>
                         </ul>
@@ -942,7 +1107,16 @@
         </div>
     </footer>
 
-    <script src="script.js?v=4"></script>
+    <!-- Mobile only: the page is ~10 screens of reading on a phone. -->
+    <button class="toTop" id="toTop" type="button" aria-label="Back to top">
+        <svg class="toTop__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5"></path>
+            <path d="M5 12l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <script src="script.js?v=7"></script>
 </body>
 
 </html>
