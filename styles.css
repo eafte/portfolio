@@ -1426,80 +1426,76 @@ a:hover {
 
 
 
-/* ================= Skills ================= */
-.skills {
+/* ================= Skills: stack index ================= */
+/* Deliberately not a card grid. A table of areas, technologies and the
+   project each was used in: the project column is the part that cannot be
+   produced generically, and it keeps Skills tied to Work. */
+.stack {
+  border-top: 1px solid var(--line);
+}
+
+.stack__row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--s7);
+  grid-template-columns: 172px minmax(0, 1fr) auto;
+  gap: var(--s2) var(--s6);
+  align-items: baseline;
+  padding: var(--s5) 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.skill {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--accent);
-  border-radius: var(--radius);
-  padding: var(--s7);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
-}
-
-.skill:hover {
-  border-color: var(--line-strong);
-  border-top-color: var(--accent);
-  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 20px 32px -16px rgba(15, 23, 42, 0.12);
-}
-
-.skill__head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: var(--s4);
-}
-
-.skill__icon {
-  width: 18px;
-  height: 18px;
+.stack__area {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--accent);
-  flex-shrink: 0;
 }
 
-.skill h3 {
-  margin: 0;
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: var(--ink);
-}
-
-.skill ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-content: flex-start;
-  flex-grow: 1;
-}
-
-.skill li {
-  margin: 0;
-  padding: 5px 11px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+.stack__items {
   color: var(--ink-soft);
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
-.skill li:hover {
-  border-color: var(--line-strong);
-  color: var(--ink);
+/* Honest marker for tools that have not shipped in a project yet. */
+.stack__mark {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9999px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faint);
+  vertical-align: 1px;
+}
+
+.stack__uses {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+}
+
+.stack__use {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+
+.stack__use:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* Deep links from the stack land below the sticky header. */
+.feature,
+.project {
+  scroll-margin-top: calc(var(--header-h) + 24px);
 }
 
 /* ================= Research ================= */
@@ -1585,10 +1581,6 @@ a:hover {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--faint);
-}
-
-.skills > .skill:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
 }
 
 /* ================= Timeline ================= */
@@ -2160,11 +2152,6 @@ a:hover {
       "certs";
   }
 
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--s5);
-  }
-
   .header__cta {
     display: none;
   }
@@ -2335,13 +2322,15 @@ a:hover {
     padding: 0 0 var(--s6) var(--s6);
   }
 
-  .skills {
+  .stack__row {
     grid-template-columns: 1fr;
-    gap: var(--s4);
+    gap: var(--s2);
+    padding: var(--s4) 0;
   }
 
-  .skill {
-    padding: var(--s5);
+  .stack__use,
+  .stack__uses {
+    justify-self: start;
   }
 }
 

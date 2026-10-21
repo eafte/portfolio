@@ -118,6 +118,22 @@ Deliberately **not** carried over:
 - SSC (Dakhin Banasree) — Europass needs it; a portfolio does not.
 - The 163.com address — one contact route is clearer than three.
 
+## Skills section rework — Oct 2026
+
+Replaced the five-card / forty-pill grid, which read as generated.
+
+- Cards, line icons and pills removed. Skills are now a six-row index:
+  area, technologies, and the project each was used in.
+- Category names that nobody says out loud ("Client & Mobile Systems",
+  "Testing & Security DevOps") replaced with plain ones.
+- Duplicates removed: JWT appeared in two cards; "80+ unit test suites"
+  repeated the pytest claim.
+- The lede's claim ("every skill appears in the work above") was dropped
+  as it was not true of C or scikit-learn. Those are now marked
+  **coursework** instead.
+- Every project gained a stable id (`#p-...`) so the index deep-links
+  into Work.
+
 ## Done
 
 - [x] Audit completed (Sep 2026)

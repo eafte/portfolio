@@ -42,7 +42,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=27" />
+    <link rel="stylesheet" href="styles.css?v=28" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -269,7 +269,7 @@
                 </header>
 
                 <div class="work">
-                    <article class="feature">
+                    <article class="feature" id="p-llm-guard-bench">
                         <div class="feature__head">
                             <span class="feature__no">01</span>
                             <span class="feature__tag">Featured</span>
@@ -429,7 +429,7 @@
                     </article>
 
                     <div class="work__grid">
-                        <article class="project project--wide">
+                        <article class="project project--wide" id="p-ml-host-hardening">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
                                     <rect width="640" height="400" fill="var(--bg-2)" />
@@ -509,7 +509,7 @@
                             </div>
                         </article>
 
-                        <article class="project">
+                        <article class="project" id="p-electrical-supplier">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
                                     <rect width="640" height="400" fill="var(--bg-2)" />
@@ -587,7 +587,7 @@
                             </div>
                         </article>
 
-                        <article class="project">
+                        <article class="project" id="p-iodex">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false">
                                     <rect width="640" height="400" fill="var(--bg-2)" />
@@ -669,7 +669,7 @@
                             </div>
                         </article>
 
-                        <article class="project project--wide">
+                        <article class="project project--wide" id="p-harmonycare">
                             <div class="project__media" aria-hidden="true">
                                 <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" focusable="false"
                                     preserveAspectRatio="xMidYMid meet">
@@ -842,120 +842,57 @@
             <div class="container">
                 <header class="sec">
                     <span class="sec__tag">Skills</span>
-                    <h2 class="sec__title">What I have actually used</h2>
+                    <h2 class="sec__title">Stack, and where I used it</h2>
                     <p class="sec__lede">
-                        Every skill below appears in the work above. Nothing listed that I have not built
-                        with and tested in practice.
+                        Grouped by area, with the project each one was used in. Tools marked
+                        “coursework” have not shipped in a project yet.
                     </p>
                 </header>
 
-                <div class="skills">
-                    <!-- Card 1: Software Engineering Core -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                            </svg>
-                            <h3>Systems &amp; Backend</h3>
-                        </div>
-                        <ul>
-                            <li>Node.js + Express</li>
-                            <li>FastAPI</li>
-                            <li>TypeScript</li>
-                            <li>C</li>
-                            <li>Prisma ORM</li>
-                            <li>SQLite</li>
-                            <li>JWT authentication</li>
-                            <li>RESTful APIs</li>
-                            <li>Relational schema design</li>
-                        </ul>
+                <div class="stack">
+                    <div class="stack__row">
+                        <span class="stack__area">Languages</span>
+                        <span class="stack__items">Python · TypeScript · Java · JavaScript · SQL ·
+                            C <span class="stack__mark">coursework</span></span>
                     </div>
 
-                    <!-- Card 2: AI / Machine Learning Core -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                            <h3>Applied AI &amp; Python</h3>
-                        </div>
-                        <ul>
-                            <li>Python 3</li>
-                            <li>Async pipelines (asyncio, aiohttp)</li>
-                            <li>Pydantic v2 schemas</li>
-                            <li>Ollama (local LLM inference)</li>
-                            <li>LLM-as-a-Judge evaluation</li>
-                            <li>Data analysis with Pandas</li>
-                            <li>scikit-learn</li>
-                            <li>Plotly visualization</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">Backend &amp; data</span>
+                        <span class="stack__items">Node/Express · FastAPI · Prisma · SQLite · REST ·
+                            JWT authentication</span>
+                        <a class="stack__use" href="#p-electrical-supplier">↗ B2B platform</a>
                     </div>
 
-                    <!-- Card 3: Cybersecurity, Testing & DevOps Core -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                            <h3>Testing &amp; Security DevOps</h3>
-                        </div>
-                        <ul>
-                            <li>Automated testing with pytest</li>
-                            <li>80+ unit test suites</li>
-                            <li>Adversarial LLM robustness benchmarks</li>
-                            <li>MyPy static typing</li>
-                            <li>Git &amp; GitHub workflows</li>
-                            <li>Linux environments</li>
-                            <li>Docker &amp; docker-compose</li>
-                            <li>GitHub Actions CI</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">AI &amp; data</span>
+                        <span class="stack__items">asyncio/aiohttp · Pydantic v2 · Ollama ·
+                            LLM-as-a-Judge · pandas · Plotly ·
+                            scikit-learn <span class="stack__mark">coursework</span></span>
+                        <span class="stack__uses">
+                            <a class="stack__use" href="#p-llm-guard-bench">↗ LLM Guard Bench</a>
+                            <a class="stack__use" href="#p-iodex">↗ IODEX</a>
+                        </span>
                     </div>
 
-                    <!-- Card 5: Security & Host Hardening -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="2" y="4" width="20" height="6" rx="2"></rect>
-                                <rect x="2" y="14" width="20" height="6" rx="2"></rect>
-                                <circle cx="18" cy="7" r="0.6" fill="currentColor"></circle>
-                                <circle cx="18" cy="17" r="0.6" fill="currentColor"></circle>
-                            </svg>
-                            <h3>Security &amp; Host Hardening</h3>
-                        </div>
-                        <ul>
-                            <li>nmap</li>
-                            <li>nginx reverse proxy</li>
-                            <li>UFW default-deny</li>
-                            <li>fail2ban</li>
-                            <li>Lynis auditing</li>
-                            <li>systemd sandboxing</li>
-                            <li>Key-only SSH</li>
-                            <li>JWT authentication</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">Testing &amp; platform</span>
+                        <span class="stack__items">pytest · MyPy · Docker · GitHub Actions · Linux ·
+                            Git</span>
+                        <a class="stack__use" href="#p-llm-guard-bench">↗ LLM Guard Bench</a>
                     </div>
 
-                    <!-- Card 4: Computer Science Core & Mobile -->
-                    <div class="skill">
-                        <div class="skill__head">
-                            <svg class="skill__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                            </svg>
-                            <h3>Client &amp; Mobile Systems</h3>
-                        </div>
-                        <ul>
-                            <li>React + Vite</li>
-                            <li>Java on Android (SDK 34)</li>
-                            <li>Room database persistence</li>
-                            <li>MVVM architecture</li>
-                            <li>Offline-first local networking</li>
-                            <li>Material Design interfaces</li>
-                            <li>HTML5 &amp; Modern CSS</li>
-                        </ul>
+                    <div class="stack__row">
+                        <span class="stack__area">Host hardening</span>
+                        <span class="stack__items">nginx · UFW · fail2ban · Lynis · systemd ·
+                            key-only SSH · nmap</span>
+                        <a class="stack__use" href="#p-ml-host-hardening">↗ ML Host Hardening</a>
+                    </div>
+
+                    <div class="stack__row">
+                        <span class="stack__area">Mobile &amp; frontend</span>
+                        <span class="stack__items">React + Vite · Android SDK 34 · Room · MVVM ·
+                            Material Design</span>
+                        <a class="stack__use" href="#p-harmonycare">↗ HarmonyCare</a>
                     </div>
                 </div>
             </div>
