@@ -10,8 +10,10 @@ Work through P0 → P1 → P2. Check boxes as you go.
 - [x] **2. Add `robots.txt` + `sitemap.xml`** at site root
 - [x] **3. Favicon fallbacks** — add PNG favicon + `apple-touch-icon`
 - [x] **4. Real headshot** — `assets/photo.jpg` live (512px square crop, 27 KB)
-- [ ] **5. CV as PDF** — export `Md-Eaftekhirul-Islam-CV.pdf`, make it the primary button;
-      keep `.docx` as secondary ATS download
+- [x] **5. CV as PDF** — `Md-Eaftekhirul-Islam-CV.pdf` live (3 pages, Europass, 109 KB).
+      Hero and Contact both point at the PDF; `.docx` kept as the secondary ATS download.
+
+      ⚠️ The PDF and the site disagree in places — see "CV vs site" below.
 - [x] **6. Fix metrics row** — hero shows `HSK 4 · Certified` (move `194/300` to Education
       only); replace `450+ timezones` metric with an earned one
       (e.g. `5.00/5.00 HSC GPA`, `Full-tuition scholarship`, or `13k+ lines`)
@@ -81,7 +83,33 @@ Verified numerically against WCAG AA rather than by eye.
       balance/pretty`, `::selection`, `overflow-x: clip` (safer for sticky),
       print forces the light token set even in dark mode.
 
+## CV vs site — reconcile before publishing
+
+The uploaded CV (`10/2026`) contains material the site does not, and a few
+claims that contradict it. The site is now selling itself short in places.
+
+- **Missing project: ML Host Hardening** (`github.com/eafte/ml-host-hardening`) —
+  not on the site at all. Quantified outcomes (ports 22/8000 → 22/80, Lynis
+  61 → 71, systemd exposure 9.2 → 1.4) make it one of the strongest entries you
+  have, and it fits the security theme better than most of what is there.
+- **Missing: Academic Research (course-based)** — 4 pieces (distributed inference,
+  cloud-native security / Log4Shell, wine classification, STM32 voltmeter). The
+  audit flagged the absence of research signals; they exist, they are just not
+  published on the site.
+- **Competition result understated** — site says "Competitor"; CV says
+  **Certificate of Honor**. Update the site.
+- **LLM Guard Bench is described differently** — CV: 717 pytest cases, ~50.2 MiB
+  peak RSS, O(1) memory on 1M+ records, "codebase available upon request".
+  Site: 40 adversarial runs, repo linked publicly. These read as two different
+  projects; decide which story is current (and drop "upon request" if the repo
+  is public).
+- **Dates disagree** — HSC: CV `Jun 2019 – Dec 2021` (result Feb 2022) vs site
+  `Jul 2019 – Feb 2022`. Degree: CV `Current` vs site `Jun 2027`.
+- **Extra contact channels on the CV** — WeChat `khirul_2004`, a 163.com address,
+  Hindi + Urdu. Consider surfacing WeChat on the site for China-based readers.
+
 ## Done
 
 - [x] Audit completed (Sep 2026)
+- [x] CV PDF published (Oct 2026)
 - [x] UI/UX polish pass (Oct 2026)
