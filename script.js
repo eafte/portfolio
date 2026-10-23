@@ -139,7 +139,7 @@
 
     // Leaving mobile layout with the menu open would strand a hidden panel.
     if (window.matchMedia) {
-      const desktop = window.matchMedia("(min-width: 981px)");
+      const desktop = window.matchMedia("(min-width: 1101px)");
       const onChange = (event) => {
         if (event.matches) closeNav(false);
       };

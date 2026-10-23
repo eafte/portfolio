@@ -691,32 +691,6 @@ a:hover {
   margin: 0 var(--s1);
 }
 
-.chips {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: var(--s6) 0 0;
-  padding: 0;
-}
-
-.chips li {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  padding: 5px 13px;
-  border-radius: 9999px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  transition: border-color 160ms var(--ease), color 160ms var(--ease), background 160ms var(--ease);
-}
-
-.chips li:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 6%, transparent);
-}
-
 /* Profile card */
 .profile {
   position: relative;
@@ -726,61 +700,6 @@ a:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-}
-
-.profile__head {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: var(--s6) var(--s6) var(--s3);
-}
-
-.profile__avatar {
-  position: relative;
-  overflow: hidden;
-  flex: 0 0 auto;
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.15rem;
-}
-
-/* Real headshot (assets/photo.jpg). Covers the "EI" fallback once loaded;
-   if the file is missing, onerror removes the img and initials show. */
-.profile__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 22%;
-  opacity: 0;
-  transition: opacity 300ms var(--ease);
-}
-
-.profile__photo.is-loaded {
-  opacity: 1;
-}
-
-.profile__name {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.profile__role {
-  margin: 4px 0 0;
-  font-size: 0.82rem;
-  color: var(--muted);
 }
 
 .profile__status {
@@ -855,38 +774,73 @@ a:hover {
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
-/* Metrics */
+/* Metrics: one continuous, icon-led proof strip below the hero. */
 .metrics {
   margin: var(--gap-zone) 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--gap-tile);
-  background: transparent;
-  border: none;
-  overflow: visible;
-}
-
-.metric {
-  margin: 0;
-  padding: 32px 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  position: relative;
-  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+  overflow: hidden;
 }
 
-/* Cards that are not links do not lift on hover - a lift reads as
-   "clickable" and these are not. Border + shadow carry the response. */
-.metric:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 4px 12px -2px rgb(var(--shadow-rgb) / 0.08), 0 20px 32px -16px rgb(var(--shadow-rgb) / 0.12);
+.metric {
+  min-width: 0;
+  margin: 0;
+  padding: 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: transparent;
+  border: 0;
+}
+
+.metric:not(:last-child) {
+  border-right: 1px solid var(--line);
+}
+
+.metric__icon {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--panel));
+  transition: color 160ms var(--ease), background-color 160ms var(--ease),
+    border-color 160ms var(--ease), transform 160ms var(--ease);
+}
+
+/* Mouse-only feedback on the proof strip; touch and keyboard layouts stay still. */
+@media (hover: hover) and (pointer: fine) {
+  .metric__icon:hover {
+    color: var(--accent-deep);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+    transform: translateY(-2px);
+  }
+}
+
+.metric__icon svg {
+  display: block;
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .metric__num {
   display: block;
+  margin-top: var(--s3);
   font-family: var(--serif);
   font-weight: 600;
   font-size: 2rem;
@@ -897,7 +851,7 @@ a:hover {
 
 .metric__label {
   display: block;
-  margin: var(--s3) 0 0;
+  margin: var(--s2) 0 0;
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--ink-soft);
@@ -907,7 +861,7 @@ a:hover {
 .metric__src {
   display: block;
   margin: 8px 0 0;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--faint);
@@ -966,12 +920,6 @@ a:hover {
   box-shadow: var(--shadow);
   min-width: 0;
   overflow: hidden;
-  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
-}
-
-.feature:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .feature__head,
@@ -1225,12 +1173,17 @@ a:hover {
   border: 1px solid var(--line);
   padding: 5px 11px;
   border-radius: var(--radius-sm);
-  transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  transition: color 160ms var(--ease), background-color 160ms var(--ease),
+    border-color 160ms var(--ease), transform 160ms var(--ease);
 }
 
-.tags li:hover {
-  border-color: var(--line-strong);
-  color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .tags li:hover {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, var(--panel));
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    transform: translateY(-1px);
+  }
 }
 
 .bullets {
@@ -1341,12 +1294,6 @@ a:hover {
   gap: 0;
   min-width: 0;
   overflow: hidden;
-  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
-}
-
-.project:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 /* Schematic screenshot band at the top of every project card. */
@@ -1565,12 +1512,6 @@ a:hover {
   flex-direction: column;
   gap: 16px;
   min-width: 0;
-  transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
-}
-
-.paper:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .paper__head {
@@ -1690,9 +1631,7 @@ a:hover {
 .edu {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  /* Left: ZZU, spanning both rows. Right: HSC on top, certifications
-     beneath it - this fills the dead space the 432px column had when it
-     held only the short HSC card. */
+  /* Featured ZZU panel on the left; HSC and certifications stack on the right. */
   grid-template-areas:
     "lead hsc"
     "lead certs";
@@ -1710,12 +1649,6 @@ a:hover {
   padding: var(--pad-card);
   box-shadow: var(--shadow);
   min-width: 0;
-  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
-}
-
-.edu__card:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .edu__card--lead {
@@ -1776,12 +1709,6 @@ a:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   min-width: 0;
-  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
-}
-
-.certs:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 6px 16px -4px rgb(var(--shadow-rgb) / 0.08), 0 24px 38px -18px rgb(var(--shadow-rgb) / 0.14);
 }
 
 .certs__head {
@@ -1864,11 +1791,6 @@ a:hover {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
-}
-
-.contact__panel:hover {
-  border-color: var(--line-strong);
 }
 
 .contact__panel h3 {
@@ -1936,30 +1858,53 @@ a:hover {
   background: color-mix(in srgb, var(--green) 8%, transparent);
 }
 
-.contact__links {
-  list-style: none;
+.contact__icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin: 0;
   padding: var(--s4) 0 0;
   border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: var(--s3);
 }
 
-.contact__links a {
-  font-weight: 600;
-  font-size: 0.95rem;
+.contact__iconLink {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
   color: var(--accent);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  width: fit-content;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  background: transparent;
+  transition: color 160ms var(--ease), background-color 160ms var(--ease),
+    border-color 160ms var(--ease), transform 160ms var(--ease);
 }
 
-.contact__links a:hover {
-  border-bottom-color: var(--accent);
+.contact__iconLink:hover {
+  color: var(--accent-deep);
+  border-color: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent) 8%, var(--panel));
+  transform: translateY(-2px);
+}
+
+.contact__iconLink:focus-visible {
+  border-radius: 50%;
+}
+
+.contact__iconLink svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.contact__iconSvg--outline {
+  fill: none !important;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .contact__pgp {
@@ -2002,8 +1947,7 @@ a:hover {
 
 /* ================= Footer ================= */
 .footer {
-  /* A closing strip, not another section: 24px against the header's 64px
-     bar puts the two ends of the page at the same weight. */
+  /* Keep the footer compact; reserve horizontal room for the fixed Contact button. */
   padding: var(--s6) 0;
   background: var(--bg);
   border-top: none;
@@ -2027,6 +1971,7 @@ a:hover {
   justify-content: space-between;
   gap: var(--s5);
   flex-wrap: wrap;
+  padding-right: 148px;
 }
 
 .footer__inner p {
@@ -2067,13 +2012,18 @@ a:hover {
     width: calc(100% - 40px);
   }
 
-  /* The three items wrap here; keep the wrapped rows close. */
+  /* Stack the footer neatly on the left; the reserved right gutter keeps the
+     fixed Contact button from covering any footer copy or links. */
   .footer {
     padding: var(--s5) 0;
   }
 
   .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: var(--s2);
+    padding-right: 136px;
   }
 }
 
@@ -2089,8 +2039,8 @@ a:hover {
   .toTop {
     position: fixed;
     right: var(--s4);
-    bottom: calc(var(--s4) + env(safe-area-inset-bottom, 0px));
-    /* Below the sticky header (50) and the open mobile menu (40), so it
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    /* Stacked above the fixed contact action; still below the open menu, so it
        never pokes through either when they are on screen. */
     z-index: 35;
     width: 46px;
@@ -2129,6 +2079,27 @@ a:hover {
 .toTop__icon {
   width: 19px;
   height: 19px;
+}
+
+/* Persistent contact action: visible on every viewport, anchored clear of
+   the viewport edge and the mobile back-to-top control. */
+.floatingContact {
+  position: fixed;
+  right: var(--s4);
+  bottom: calc(var(--s4) + env(safe-area-inset-bottom, 0px));
+  z-index: 34;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgb(var(--shadow-rgb) / 0.12),
+    0 12px 28px -14px rgb(var(--shadow-rgb) / 0.35);
+}
+
+.floatingContact svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
 }
 
 /* ================= Scroll reveal ================= */
@@ -2231,48 +2202,8 @@ a:hover {
   }
 }
 
-@media (max-width: 980px) {
-  .hero {
-    padding: var(--s9) 0 var(--s9);
-  }
-
-  .hero__grid {
-    grid-template-columns: 1fr;
-    gap: var(--s8);
-  }
-
-  .metrics {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .metric:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
-
-  .work__grid,
-  .papers,
-  .edu,
-  .contact {
-    grid-template-columns: 1fr;
-  }
-
-  /* One column from here down, so the desktop 56px gutter would read as a
-     hole between stacked cards rather than as separation. */
-  .work,
-  .work__grid,
-  .papers,
-  .edu,
-  .contact {
-    gap: 40px;
-  }
-
-  .edu {
-    grid-template-areas:
-      "lead"
-      "hsc"
-      "certs";
-  }
-
+/* Switch the navigation before the full desktop row begins to wrap. */
+@media (max-width: 1100px) {
   .header__cta {
     display: none;
   }
@@ -2323,6 +2254,62 @@ a:hover {
   }
 }
 
+@media (max-width: 980px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .hero {
+    padding: var(--s9) 0 var(--s9);
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--s8);
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric:not(:last-child) {
+    border-right: 0;
+  }
+
+  .metric:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+
+  .metric:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work__grid,
+  .papers,
+  .edu,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  /* One column from here down, so the desktop 56px gutter would read as a
+     hole between stacked cards rather than as separation. */
+  .work,
+  .work__grid,
+  .papers,
+  .edu,
+  .contact {
+    gap: 40px;
+  }
+
+  .edu {
+    grid-template-areas:
+      "lead"
+      "hsc"
+      "certs";
+  }
+
+}
+
 @media (max-width: 720px) {
   /* Icon-only theme toggle on small screens so the header never crowds. */
   .theme {
@@ -2361,8 +2348,31 @@ a:hover {
     padding: var(--s8) 0;
   }
 
+  .hero__title {
+    line-height: 1.1;
+  }
+
+  .sec__title {
+    line-height: 1.18;
+  }
+
+  .feature__title,
+  .project__title {
+    line-height: 1.3;
+  }
+
   .hero__cta {
     margin-top: var(--s6);
+  }
+
+  .hero__cta-divider {
+    display: none;
+  }
+
+  .profile__row {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px 0;
   }
 
   .feature {
@@ -2428,15 +2438,39 @@ a:hover {
 
   .metrics {
     margin-top: var(--s9);
-    gap: var(--s3);
+    gap: 0;
   }
 
   .metric {
-    padding: var(--s5);
+    padding: var(--s4) 10px;
+  }
+
+  .metric__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .metric__icon svg {
+    width: 20px;
+    height: 20px;
   }
 
   .metric__num {
+    margin-top: var(--s2);
     font-size: 1.7rem;
+  }
+
+  .metric__label {
+    margin-top: var(--s2);
+    line-height: 1.5;
+  }
+
+  .metric__src {
+    margin-top: 6px;
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.45;
   }
 
   .timeline__item {
@@ -2465,6 +2499,40 @@ a:hover {
   .brand__mark {
     width: 36px;
     height: 36px;
+  }
+}
+
+/* Keep the full brand and both header controls inside very narrow phones. */
+@media (max-width: 360px) {
+  .header__inner,
+  .header__actions {
+    gap: var(--s2);
+  }
+
+  .brand {
+    gap: var(--s2);
+  }
+
+  .brand__mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand__text strong {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+  }
+
+  /* Give long facts the full card width instead of squeezing them beside
+     fixed-width labels on the narrowest phones. */
+  .profile__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  .profile__row dt {
+    padding-top: 0;
   }
 }
 
