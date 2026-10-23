@@ -134,8 +134,74 @@ Replaced the five-card / forty-pill grid, which read as generated.
 - Every project gained a stable id (`#p-...`) so the index deep-links
   into Work.
 
+## Approved UX/UI audit workflow — Oct 2026
+
+Working agreement: make changes in small, reviewable stages. After each stage,
+check the desktop, tablet, and phone layouts before moving on. Preserve the current
+project illustrations: the owner does not have authentic screenshots for the
+projects, and no stock or AI-generated replacements should be introduced. We may
+standardize their placement, captions, and accessibility without replacing them.
+
+### Stage 1 — Responsive fit and navigation
+
+- [ ] Check header fit at 320, 360, 390, 768, 981, 1024, 1100, 1280, and 1440px.
+- [x] Move the compact-navigation breakpoint to 1100px so the six-link desktop
+      row does not need to wrap in the crowded tablet/desktop range.
+- [x] Add a narrow-phone header spacing/type adjustment for widths up to 360px.
+- [x] Reduce mobile density in the hero/profile and stat strip: widen fact values,
+      relax wrapped heading leading, shrink stat icons, and remove the CTA divider.
+- [ ] Confirm sticky-header height, anchor offsets, open/close behavior, keyboard
+      focus, and scroll position after navigation.
+- [ ] Check hero, metrics, contact actions, and cards at the same narrow widths.
+- [ ] Review the live preview before considering Stage 1 complete.
+
+### Stage 2 — Consistent project-card presentation
+
+- [x] Keep all existing project illustrations; no screenshots were sourced or
+      generated.
+- [x] Standardize media-caption placement and styling across all project cards.
+- [x] Expose captions to assistive technology and mark decorative SVG artwork
+      as hidden from assistive technology.
+- [ ] Check card alignment at desktop, tablet, and phone widths.
+
+### Stage 3 — Improve the first-pass scan
+
+- [x] Reduce competition in the hero while preserving the important facts and links.
+- [x] Make the featured LLM Guard Bench card easier to scan; retain detailed
+      methodology and tables for visitors who want them.
+- [x] Remove repeated hero/profile identity and focus content without dropping
+      the underlying qualifications or contact links.
+- [x] Restyle the existing four verified metrics as an icon-led, responsive proof
+      strip; do not add unverified counts or duplicate the stats row.
+
+### Stage 4 — Visual and accessibility polish
+
+- [x] Reconcile the social-share card with the site's current visual identity;
+      keep its 1200×630 dimensions and refresh the image URL version.
+- [x] Improve the readability of chart takeaways at normal and phone widths by
+      exposing the key rates and latency range in the visible caption.
+- [x] Keep non-interactive cards still; retain mouse-only hover feedback on stat
+      icons and individual work-tech tags at the owner's request.
+- [x] Add a responsive, accessible icon row in Contact for the existing LinkedIn,
+      GitHub, CV, and PGP links only; no new social accounts added.
+- [x] Add a persistent bottom-right Contact button with an envelope icon; offset
+      the mobile back-to-top control and reserve footer space to avoid collisions.
+- [x] Tune section spacing for desktop/tablet/mobile and trim footer dead space
+      while preserving clearance for the fixed Contact button.
+- [ ] Verify light/dark themes, keyboard navigation, focus visibility, reduced
+      motion, contrast, and print output in the rendered preview.
+
+### Review gates
+
+1. Make one stage of changes at a time; do not combine a redesign with content
+   rewrites or unapproved project imagery.
+2. Preview each stage at the listed widths and report what changed and what still
+   needs attention.
+3. Ask for the owner's review before proceeding to the next stage.
+
 ## Done
 
 - [x] Audit completed (Sep 2026)
 - [x] CV PDF published (Oct 2026)
 - [x] UI/UX polish pass (Oct 2026)
+- [x] UX/UI audit workflow recorded (Oct 2026)
