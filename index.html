@@ -19,16 +19,21 @@
           ? saved
           : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         if (theme === "dark") root.setAttribute("data-theme", "dark");
+        var tc = document.querySelector('meta[name="theme-color"]');
+        if (tc) tc.setAttribute("content", theme === "dark" ? "#0b1210" : "#f5f5ec");
+        // The intro loader plays once per session - flag repeat views
+        // before first paint so it never flashes for returning visitors.
+        try { if (sessionStorage.getItem("ei_loader_seen")) root.classList.add("loader-skip"); } catch (e) { /* ignore */ }
       })();
     </script>
 
     <title>Md Eaftekhirul Islam | Software Engineering, Applied AI &amp; Security</title>
     <meta name="description"
-        content="Software Engineering undergraduate at Zhengzhou University with projects in AI security evaluation, full-stack systems, and tested applications. Preparing for Master's studies in Computer Science, Software Engineering, AI/ML, and Cybersecurity." />
+        content="Software Engineering undergraduate at Zhengzhou University. I build and test software: LLM security benchmarks, full-stack web systems, and desktop apps." />
 
     <meta property="og:title" content="Md Eaftekhirul Islam | Software Engineering, Applied AI &amp; Security" />
     <meta property="og:description"
-        content="Software Engineering undergraduate at Zhengzhou University with projects in AI security evaluation, full-stack systems, and tested applications. Preparing for Master's studies in Computer Science, Software Engineering, AI/ML, and Cybersecurity." />
+        content="Software Engineering undergraduate at Zhengzhou University. I build and test software: LLM security benchmarks, full-stack web systems, and desktop apps." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://eafte.github.io/portfolio/" />
     <meta property="og:image" content="https://eafte.github.io/portfolio/assets/og-card.png?v=2" />
@@ -38,11 +43,12 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Md Eaftekhirul Islam | Software Engineering, Applied AI &amp; Security" />
     <meta name="twitter:description"
-        content="Software Engineering undergraduate at Zhengzhou University with projects in AI security evaluation, full-stack systems, and tested applications. Preparing for Master's studies in Computer Science, Software Engineering, AI/ML, and Cybersecurity." />
+        content="Software Engineering undergraduate at Zhengzhou University. I build and test software: LLM security benchmarks, full-stack web systems, and desktop apps." />
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png?v=2" />
     <link rel="canonical" href="https://eafte.github.io/portfolio/" />
 
-    <link rel="stylesheet" href="styles.css?v=53" />
+    <link rel="stylesheet" href="styles.css?v=64" />
+    <link rel="preload" as="image" href="assets/photo.jpg" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -77,6 +83,26 @@
 
 <body>
     <a class="skip" href="#content">Skip to content</a>
+
+    <!-- Intro loader: a one-per-session brand ident, not a load gate. It
+         lifts away on its own via CSS (works without JS); script.js only
+         removes the node afterwards. aria-hidden - the real h1 is below. -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader__inner">
+            <svg class="loader__art" viewBox="0 0 140 48" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                <path class="loader__edge" pathLength="100" d="M14 34 44 14 72 32 100 12 126 30" />
+                <path class="loader__edge" pathLength="100" d="M44 14 100 12" />
+                <circle class="loader__node" cx="14" cy="34" r="3" />
+                <circle class="loader__node" cx="44" cy="14" r="3" />
+                <circle class="loader__node loader__seed" cx="72" cy="32" r="4" />
+                <circle class="loader__node" cx="100" cy="12" r="3" />
+                <circle class="loader__node" cx="126" cy="30" r="3" />
+            </svg>
+            <p class="loader__name">Md Eaftekhirul Islam<span class="loader__dot">.</span></p>
+            <span class="loader__rule"><span class="loader__fill"></span></span>
+            <p class="loader__note">Built, tested, and documented</p>
+        </div>
+    </div>
 
     <header class="header">
         <div class="container header__inner">
@@ -153,16 +179,26 @@
                 <div class="hero__grid">
                     <div class="hero__copy">
                         <p class="eyebrow">Software Engineering · Zhengzhou University</p>
-                        <h1 class="hero__title">Md Eaftekhirul Islam<span class="dot" aria-hidden="true">.</span></h1>
-                        <p class="hero__sub">
-                            I build software with a researcher's discipline: careful, measured, and
-                            <em>reproducible</em>.
-                        </p>
+                        <div class="hero__heading">
+                            <div class="hero__portrait">
+                                <span aria-hidden="true">E</span><img class="hero__photo" src="assets/photo.jpg"
+                                    alt="Portrait of Md Eaftekhirul Islam" width="512" height="512"
+                                    fetchpriority="high" decoding="async"
+                                    onload="this.classList.add('is-loaded')" onerror="this.remove()" />
+                            </div>
+                            <div class="hero__headingText">
+                                <h1 class="hero__title">Md Eaftekhirul Islam<span class="dot" aria-hidden="true">.</span></h1>
+                                <p class="hero__sub">
+                                    I build software carefully and test it properly before I call
+                                    it <em>done</em>.
+                                </p>
+                            </div>
+                        </div>
                         <p class="lede">
-                            At Zhengzhou University, I study Software Engineering and prepare for Master's
-                            programs in Computer Science, Software Engineering, AI/ML, and Cybersecurity. My
-                            work spans local LLM security evaluation, full-stack platforms, and carefully
-                            tested desktop software.
+                            I study Software Engineering at Zhengzhou University, and I'm preparing for
+                            Master's programs in Computer Science, Software Engineering, AI/ML, and
+                            Cybersecurity. My projects so far cover local LLM security testing,
+                            full-stack web systems, and desktop software.
                         </p>
 
                         <div class="hero__cta">
@@ -270,8 +306,8 @@
                     <span class="sec__tag">Selected Work</span>
                     <h2 class="sec__title">Built, tested, and documented</h2>
                     <p class="sec__lede">
-                        Selected software engineering, security, and machine learning projects with
-                        complete documentation, reproducible environments, and published codebases.
+                        Five projects I built and documented, with links to code, tests, reports,
+                        and evidence where I have them.
                     </p>
                 </header>
 
@@ -283,8 +319,8 @@
                         </div>
                         <h3 class="feature__title">LLM Guard Bench: Adversarial LLM Security Benchmark</h3>
                         <p class="feature__tagline">
-                            Empirical evaluation framework: automated adversarial robustness testing across
-                            5 attack categories and 4 local model families using Ollama (40 benchmark runs).
+                            A tool that tests local LLMs against attacks: 40 pilot runs, 5 attack
+                            types, 4 Ollama models.
                         </p>
 
                         <figure class="figure">
@@ -294,10 +330,10 @@
                                 width="1800" height="1097" loading="lazy" decoding="async"
                                 alt="Two-panel benchmark chart: average inference time for four local models on the left, and vulnerability rates across five attack categories on the right. See the caption for key results and the expandable tables for exact counts." />
                             <figcaption>
-                                Pilot-scale results across four local models: prompt injection reached 57%
-                                vulnerability and DAN jailbreak 50%; refusal bypass and system-prompt leakage
-                                stayed at 0%. One of 40 runs timed out; rates use only runs with verdicts. Mean inference
-                                latency ranged from 9.49 to 35.64 seconds.
+                                Pilot results: prompt injection 57%, DAN jailbreaks 50%; refusal
+                                bypass and system-prompt leakage 0%. One of 40 runs timed out, so
+                                percentages use the 39 with verdicts. Response times averaged 9.49
+                                to 35.64 seconds.
                             </figcaption>
                         </figure>
                         <ul class="tags" aria-label="Tech stack">
@@ -311,18 +347,14 @@
                             <li>Docker</li>
                         </ul>
                         <ul class="bullets feature__bullets">
-                            <li>Five attack categories across four local models (40 runs), using asynchronous
-                                execution, concurrency limits, heuristics, and LLM-as-a-Judge verdicts</li>
-                            <li>Auditable SQLite and JSONL records, retry/backoff handling, and a reproducible
-                                Docker environment</li>
-                            <li>Streams 1M+ synthetic records with O(1) memory growth (~50.2 MiB peak RSS)</li>
-                            <li>Released with strict Pydantic schemas, benchmark reporting, CITATION.cff,
-                                strict MyPy, and 717 automated pytest cases</li>
+                            <li>Async runs with concurrency limits, heuristics, and an LLM judge for verdicts</li>
+                            <li>Every run saved to SQLite and JSONL; failed calls retry with
+                                backoff; Docker setup so others can repeat the tests</li>
+                            <li>Streams 1M+ records with flat memory use (~50.2 MiB peak)</li>
+                            <li>Strict Pydantic schemas, strict MyPy, CITATION.cff, and 717 pytest cases</li>
                         </ul>
                         <p class="result">
-                            <strong>Finding:</strong> resistance varied by attack category: prompt injection and
-                            DAN jailbreaks were most effective, while refusal bypass and system-prompt leakage
-                            produced no vulnerable verdicts across the four tested models.
+                            <strong>Finding:</strong> prompt injection and DAN jailbreaks worked most often; refusal bypass and system-prompt leakage never worked.
                         </p>
 
                         <details class="results">
@@ -334,8 +366,8 @@
                             <div class="tablewrap">
                                 <table class="rtable">
                                     <caption>
-                                        Vulnerability by attack category. 39 of the 40 runs produced a
-                                        verdict; one timed out. Percentages use evaluated runs only.
+                                        Results by attack type. One of 40 runs timed out;
+                                        percentages use the 39 runs with verdicts.
                                     </caption>
                                     <thead>
                                         <tr>
@@ -389,9 +421,8 @@
                             <div class="tablewrap">
                                 <table class="rtable">
                                     <caption>
-                                        Models tested, with mean inference time per response. VRS is the
-                                        benchmark's own headline metric: passing runs over runs that reached
-                                        a verdict (30 of 39).
+                                        Models tested and average response time. VRS: passing runs
+                                        out of runs with a verdict (30 of 39).
                                     </caption>
                                     <thead>
                                         <tr>
@@ -425,10 +456,7 @@
                             </div>
                         </details>
                         <div class="linksrow">
-                            <a href="https://github.com/eafte/llm-guard-bench" target="_blank"
-                                rel="noopener noreferrer">Repository ↗</a>
-                            <a href="https://github.com/eafte/llm-guard-bench#architecture" target="_blank"
-                                rel="noopener noreferrer">Architecture ↗</a>
+                            <a href="mailto:eafte1@outlook.com?subject=LLM%20Guard%20Bench%20code%20request">Code available on request</a>
                         </div>
                     </article>
 
@@ -473,7 +501,7 @@
                                     <rect x="392" y="264" width="108" height="6" rx="3" fill="var(--line-strong)" opacity="0.5" />
                                     <rect x="392" y="282" width="122" height="6" rx="3" fill="var(--line-strong)" opacity="0.5" />
                                 </svg>
-                                <p class="project__mediaNote">Firewall Posture &amp; Open Ports</p>
+                                <p class="project__mediaNote">Illustration - firewall and open ports</p>
                             </div>
                             <div class="project__content">
                             <div class="project__head">
@@ -481,9 +509,9 @@
                             </div>
                             <h3 class="project__title">ML Host Hardening: Securing an ML Inference Server</h3>
                             <p class="project__tagline">
-                                Hardening a FastAPI inference service on Ubuntu 24.04: nginx reverse proxy,
-                                no-login service account, default-deny firewall and a systemd sandbox, with
-                                before-and-after measurements at every step.
+                                Hardening a FastAPI inference service on Ubuntu 24.04 with nginx, a
+                                no-login service account, a default-deny firewall, and a systemd
+                                sandbox - measured before and after.
                             </p>
                             <ul class="tags" aria-label="Tech stack">
                                 <li>Ubuntu 24.04</li>
@@ -494,20 +522,25 @@
                                 <li>Lynis</li>
                                 <li>SSH</li>
                             </ul>
-                            <ul class="bullets">
-                                <li>Reduced the exposed attack surface from ports 22 and 8000 to 22 and 80, with nginx proxying only two routes to the inference service</li>
-                                <li>Raised the Lynis hardening index from 61 to 71 and cut the systemd exposure score from 9.2 to 1.4</li>
-                                <li>Applied key-only SSH, UFW default-deny, a no-login service account, and a systemd sandbox restricting filesystem and privilege access</li>
-                                <li>Cross-checked live sysctl values against configuration files, which surfaced two settings being silently overridden by apport and UFW</li>
-                            </ul>
+                            <details class="project__more">
+                                <summary class="project__moreSummary"><span class="project__moreTitle">How it works</span><span class="project__moreHint" aria-hidden="true"></span></summary>
+                                <ul class="bullets">
+                                    <li>Open ports cut from 22 and 8000 to 22 and 80; nginx forwards only two routes</li>
+                                    <li>Raised the Lynis hardening index from 61 to 71 and cut the systemd exposure score from 9.2 to 1.4</li>
+                                    <li>Live sysctl checks found two settings quietly overridden by apport and UFW</li>
+                                </ul>
+                            </details>
                             <div class="project__foot">
                                 <p class="result">
-                                    <strong>Result:</strong> every change is measured rather than asserted - port
-                                    surface, Lynis index and systemd exposure score are all reported before and after.
+                                    <strong>Result:</strong> every change was measured: ports, Lynis index, and systemd exposure, before and after.
                                 </p>
                                 <div class="linksrow">
                                     <a href="https://github.com/eafte/ml-host-hardening" target="_blank"
                                         rel="noopener noreferrer">Repository ↗</a>
+                                    <a href="https://github.com/eafte/ml-host-hardening/blob/main/docs/REPORT.md" target="_blank"
+                                        rel="noopener noreferrer">Full report ↗</a>
+                                    <a href="https://github.com/eafte/ml-host-hardening/tree/main/docs/evidence" target="_blank"
+                                        rel="noopener noreferrer">Raw evidence ↗</a>
                                 </div>
                             </div>
                             </div>
@@ -555,14 +588,16 @@
                                     <rect x="390" y="306" width="92" height="6" rx="3" fill="var(--line-strong)" />
                                     <rect x="390" y="320" width="52" height="7" rx="3" fill="var(--accent)" />
                                 </svg>
-                                <p class="project__mediaNote">System Architecture &amp; UI Wireframe</p>
+                                <p class="project__mediaNote">Illustration - storefront and admin pages</p>
                             </div>
                             <div class="project__head">
                                 <span class="project__no">03</span>
                             </div>
                             <h3 class="project__title">Electrical Supplier Website (B2B)</h3>
                             <p class="project__tagline">
-                                Full-stack B2B commerce platform built for MR INTERNATIONAL, featuring role-based access control, relational data integrity, and a single-port architecture (deploy-ready, in end-to-end testing).
+                                Full-stack B2B website for MR INTERNATIONAL, with role-based access
+                                and a relational database. Deploy-ready; still in end-to-end
+                                testing.
                             </p>
                             <ul class="tags" aria-label="Tech stack">
                                 <li>React</li>
@@ -572,21 +607,25 @@
                                 <li>Prisma</li>
                                 <li>SQLite</li>
                             </ul>
-                            <ul class="bullets">
-                                <li>Relational schema modeling products, brands, categories, and quote inquiries with Prisma ORM and SQLite</li>
-                                <li>Quote request inquiry workflow designed specifically for business-to-business commerce</li>
-                                <li>Secure administrative console with signed JWT authentication, role-based CRUD operations, and multi-file uploads</li>
-                                <li>Single-port deployment model where an Express backend serves both RESTful API routes and production React client bundles</li>
-                            </ul>
+                            <details class="project__more">
+                                <summary class="project__moreSummary"><span class="project__moreTitle">How it works</span><span class="project__moreHint" aria-hidden="true"></span></summary>
+                                <ul class="bullets">
+                                    <li>Database for products, brands, categories, and quote requests, built with Prisma and SQLite</li>
+                                    <li>Admin area with signed JWT login, role-based add, edit, and delete access, and multi-file uploads</li>
+                                    <li>One Express server serves the API and the built React app on a single port</li>
+                                </ul>
+                            </details>
                             <div class="project__foot">
                                 <p class="result">
-                                    <strong>Result:</strong> a self-contained full-stack system run end-to-end locally against a seeded database - complete authentication, typed contracts, and an automated admin workflow initialised from a single command.
+                                    <strong>Result:</strong> the whole system runs locally from one command against a seeded database: login, admin flow, and typed API contracts.
                                 </p>
                                 <div class="linksrow">
                                     <a href="https://github.com/eafte/electrical-supplier-website" target="_blank"
                                         rel="noopener noreferrer">Repository ↗</a>
                                     <a href="https://github.com/eafte/electrical-supplier-website#quick-start"
                                         target="_blank" rel="noopener noreferrer">Run locally ↗</a>
+                                    <a href="https://github.com/eafte/electrical-supplier-website/tree/main/backend/tests"
+                                        target="_blank" rel="noopener noreferrer">Tests ↗</a>
                                 </div>
                             </div>
                         </article>
@@ -637,14 +676,15 @@
                                     <rect x="446" y="224" width="26" height="84" rx="3" fill="var(--accent)" opacity="0.45" />
                                     <rect x="486" y="172" width="26" height="136" rx="3" fill="var(--accent)" />
                                 </svg>
-                                <p class="project__mediaNote">Application Interface Layout</p>
+                                <p class="project__mediaNote">Illustration - expense list and chart</p>
                             </div>
                             <div class="project__head">
                                 <span class="project__no">04</span>
                             </div>
                             <h3 class="project__title">IODEX: GUI Expense Tracker</h3>
                             <p class="project__tagline">
-                                Desktop financial management application built with object-oriented architecture, automated schema migrations, and rigorous unit testing.
+                                A Python desktop expense tracker with automatic database migrations
+                                and unit tests.
                             </p>
                             <ul class="tags" aria-label="Tech stack">
                                 <li>Python</li>
@@ -654,21 +694,26 @@
                                 <li>Plotly</li>
                                 <li>PyInstaller</li>
                             </ul>
-                            <ul class="bullets">
-                                <li>Interactive desktop interface supporting granular expense manipulation, state tracking, and error handling</li>
-                                <li>Embedded SQLite persistence layer with automated schema migrations and transactional integrity</li>
-                                <li>Data processing and visualization pipeline utilizing Pandas and Plotly with structured CSV and JSON interoperability</li>
-                                <li>Comprehensive timezone handling system resolving across 450+ IANA global timezones</li>
-                            </ul>
+                            <details class="project__more">
+                                <summary class="project__moreSummary"><span class="project__moreTitle">How it works</span><span class="project__moreHint" aria-hidden="true"></span></summary>
+                                <ul class="bullets">
+                                    <li>Tkinter interface to add, edit, and follow expenses, with error handling</li>
+                                    <li>SQLite database inside the app, with automatic schema migrations and transactions</li>
+                                    <li>Pandas and Plotly charts, with CSV and JSON import and export</li>
+                                    <li>Handles dates and times across 450+ IANA time zones</li>
+                                </ul>
+                            </details>
                             <div class="project__foot">
                                 <p class="result">
-                                    <strong>Result:</strong> 80+ automated unit tests validating calculations, migrations, and UI handlers, paired with reproducible developer documentation.
+                                    <strong>Result:</strong> 80+ unit tests cover calculations, migrations, and the interface.
                                 </p>
                                 <div class="linksrow">
                                     <a href="https://github.com/eafte/IODEX_Expense_Tracker" target="_blank"
                                         rel="noopener noreferrer">Repository ↗</a>
                                     <a href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/QUICKSTART.md"
                                         target="_blank" rel="noopener noreferrer">Quickstart ↗</a>
+                                    <a href="https://github.com/eafte/IODEX_Expense_Tracker/blob/main/test_database.py"
+                                        target="_blank" rel="noopener noreferrer">Database tests ↗</a>
                                 </div>
                             </div>
                         </article>
@@ -724,7 +769,7 @@
                                     <circle cx="472" cy="240" r="13" fill="none" stroke="var(--accent)" opacity="0.4" />
                                     <circle cx="566" cy="168" r="7" fill="#ef4444" />
                                 </svg>
-                                <p class="project__mediaNote">System Architecture &amp; Mobile Flow</p>
+                                <p class="project__mediaNote">Illustration - alert phone and volunteer response</p>
                             </div>
                             <div class="project__content">
                                 <div class="project__head">
@@ -732,7 +777,9 @@
                                 </div>
                                 <h3 class="project__title">HarmonyCare: Elderly Safety and Volunteer Response</h3>
                                 <p class="project__tagline">
-                                    Collaborative 17-screen Android application featuring one-touch emergency alerting, volunteer dispatch workflows, and local mesh networking.
+                                    Team-built, 17-screen Android app: one-touch emergency alerts
+                                    for older users, volunteer response, and local-network alerts
+                                    without internet.
                                 </p>
                                 <ul class="tags" aria-label="Tech stack">
                                     <li>Java</li>
@@ -743,22 +790,27 @@
                                     <li>AMap / OSMDroid</li>
                                 </ul>
                                 <p class="project__roleline">
-                                    <strong>My role:</strong> co-designed the MVVM architecture, repository patterns with Room database persistence, and local network broadcast protocols.
+                                    <strong>My role:</strong> I helped design the MVVM structure, Room layer, and local alert broadcast.
                                 </p>
-                                <ul class="bullets">
-                                    <li>Structured MVVM design with Room repository layers and an 8-entity relational schema modeling alerts, users, communication, and offline state queues</li>
-                                    <li>Offline-first resilient alerting pipeline that stages emergencies locally and broadcasts across local WiFi networks without external cloud dependencies</li>
-                                    <li>Accessible mobile engineering incorporating confirmation countdown safety checks, haptic and TTS feedback, dynamic font scaling, and bilingual localization</li>
-                                </ul>
+                                <details class="project__more">
+                                    <summary class="project__moreSummary"><span class="project__moreTitle">How it works</span><span class="project__moreHint" aria-hidden="true"></span></summary>
+                                    <ul class="bullets">
+                                        <li>8 Room tables for alerts, users, messages, and queued offline actions</li>
+                                        <li>Offline-first: alerts save on the phone, then broadcast over local WiFi - no cloud service needed</li>
+                                        <li>For older users: cancel countdown, vibration and voice feedback, larger text, and two languages</li>
+                                    </ul>
+                                </details>
                                 <div class="project__foot">
                                     <p class="result">
-                                        <strong>Result:</strong> engineered and shipped a 17-screen mobile architecture spanning over 13,000 lines of Java, coordinating dual user roles and real-time offline synchronization.
+                                        <strong>Result:</strong> 17 screens, over 13,000 lines of Java, two user roles, and offline sync.
                                     </p>
                                     <div class="linksrow">
                                         <a href="https://github.com/eafte/HarmonyCare" target="_blank"
                                             rel="noopener noreferrer">Repository ↗</a>
                                         <a href="https://github.com/eafte/HarmonyCare/blob/main/PROJECT_STRUCTURE.md"
                                             target="_blank" rel="noopener noreferrer">Project structure ↗</a>
+                                        <a href="https://github.com/eafte/HarmonyCare/tree/main/app/src/main/java/com/harmonycare/app/data/database"
+                                            target="_blank" rel="noopener noreferrer">Database code ↗</a>
                                     </div>
                                 </div>
                             </div>
@@ -776,9 +828,8 @@
                     <span class="sec__tag">Research</span>
                     <h2 class="sec__title">Coursework research &amp; technical writing</h2>
                     <p class="sec__lede">
-                        Four course-based research pieces spanning high-performance computing, cloud-native
-                        security, applied machine learning, and embedded systems. Each states its method and
-                        its limits.
+                        Four pieces of course writing: high-performance computing, cloud security,
+                        machine learning, and embedded systems, each with its limits stated.
                     </p>
                 </header>
 
@@ -791,9 +842,9 @@
                         <h3 class="paper__title">Distributed Inference Architectures for Generative AI</h3>
                         <p class="paper__sub">Overcoming GPU memory bottlenecks in LLMs</p>
                         <p class="paper__body">
-                            Survey of how tensor and pipeline parallelism split LLM inference across multi-GPU
-                            clusters, covering KV-cache memory management (virtual page mapping, hardware-aware
-                            attention scheduling) and its effect on fragmentation and communication delay.
+                            Survey of tensor and pipeline parallelism for multi-GPU LLM inference,
+                            including KV-cache paging and attention scheduling and their effect on
+                            fragmentation and delay.
                         </p>
                     </article>
 
@@ -804,8 +855,8 @@
                         </div>
                         <h3 class="paper__title">Cloud-Native Security: Protecting Modern Software Delivery in DevOps</h3>
                         <p class="paper__body">
-                            Essay applying the CNCF 4C model (Cloud, Cluster, Container, Code) to DevSecOps
-                            pipelines. Analyses the Log4Shell vulnerability (CVE-2021-44228) and the roles of
+                            Essay on DevSecOps security using the CNCF 4C model (Cloud, Cluster,
+                            Container, Code), with Log4Shell (CVE-2021-44228) and tools such as
                             Snyk, Aqua Security, HashiCorp Vault, and Open Policy Agent.
                         </p>
                         <p class="paper__meta">Group project · team lead</p>
@@ -818,9 +869,9 @@
                         </div>
                         <h3 class="paper__title">A Comparative Analysis of Linear and Ensemble Architectures for Chemical Attribute-Based Wine Classification</h3>
                         <p class="paper__body">
-                            Compared Logistic Regression and Random Forest on the UCI Wine dataset (178 samples,
-                            13 chemical features) with standard scaling and an 80/20 split. Both reached 100%
-                            test accuracy.
+                            Logistic Regression versus Random Forest on the UCI Wine dataset (178
+                            samples, 13 features; 80/20 split, standard scaling). Both scored 100%
+                            on the small test set.
                         </p>
                     </article>
 
@@ -832,9 +883,9 @@
                         <h3 class="paper__title">Design and Simulation of a Digital Voltmeter using STM32</h3>
                         <p class="paper__sub">An automated data acquisition system using ADC, DMA, and USART</p>
                         <p class="paper__body">
-                            Designed and simulated a voltmeter on the STM32F103: a 12-bit ADC triggered by TIM2
-                            at 1 Hz, DMA transfer to memory, and readings sent over USART to a virtual terminal.
-                            Validated in simulation; no physical hardware.
+                            Simulation of an STM32F103 voltmeter: TIM2 triggers the 12-bit ADC at 1
+                            Hz, DMA stores the readings, and USART sends them to a virtual terminal.
+                            No physical hardware.
                         </p>
                     </article>
                 </div>
@@ -848,8 +899,7 @@
                     <span class="sec__tag">Skills</span>
                     <h2 class="sec__title">Stack, and where I used it</h2>
                     <p class="sec__lede">
-                        Grouped by area. Where a skill was used in a project or a study, it is
-                        linked.
+                        Grouped by area. The links show where I used each group of skills.
                     </p>
                 </header>
 
@@ -875,6 +925,7 @@
                         <span class="stack__uses">
                             <a class="stack__use" href="#p-llm-guard-bench">↗ LLM Guard Bench</a>
                             <a class="stack__use" href="#p-iodex">↗ IODEX</a>
+                            <a class="stack__use" href="#r-wine-classification">↗ Wine study</a>
                         </span>
                     </div>
 
@@ -907,9 +958,10 @@
             <div class="container">
                 <header class="sec">
                     <span class="sec__tag">Experience</span>
-                    <h2 class="sec__title">Applied Experience &amp; Leadership</h2>
+                    <h2 class="sec__title">Experience outside classes</h2>
                     <p class="sec__lede">
-                        Practical software engineering, business operations, and student leadership alongside academic coursework.
+                        Things I have done outside my classes: business work, student projects, a
+                        competition, and volunteering.
                     </p>
                 </header>
 
@@ -921,8 +973,8 @@
                         <div class="timeline__body">
                             <h3>Operations &amp; Software Development, MR INTERNATIONAL</h3>
                             <ul class="bullets">
-                                <li>Analyze wholesale business operations, client quote pipelines, and pricing workflows to identify software automation opportunities</li>
-                                <li>Designed and built the full-stack B2B Electrical Supplier Platform (featured in Projects) to streamline supplier catalog and quote workflows; currently in end-to-end testing as a deploy-ready system</li>
+                                <li>I look at wholesale orders, client quote requests, and pricing to find work that software can make easier</li>
+                                <li>I designed and built the B2B Electrical Supplier website above for the product catalog and quote flow. It is deploy-ready and still in end-to-end testing</li>
                             </ul>
                         </div>
                     </li>
@@ -934,8 +986,8 @@
                         <div class="timeline__body">
                             <h3>Technical Lead &amp; Co-Organizer, JRSphere</h3>
                             <ul class="bullets">
-                                <li>Coordinate project roadmaps, technical requirements, and collaboration workflows for student engineering projects</li>
-                                <li>Apply modular design and continuous iteration across early-stage prototypes and developer tooling</li>
+                                <li>I help plan student engineering projects: roadmaps, technical requirements, and how the team works together</li>
+                                <li>We build early prototypes and developer tools in small pieces and keep improving them</li>
                             </ul>
                         </div>
                     </li>
@@ -948,9 +1000,10 @@
                             <h3>Certificate of Honor, China International College Students' Innovation Competition (2025)</h3>
                             <p class="timeline__zh">中国国际大学生创新大赛 (2025)</p>
                             <ul class="bullets">
-                                <li>Awarded a Certificate of Honor by the School of International Education, Zhengzhou University, for UrbanAI: an AI-driven urban planning platform for smart cities (<a href="https://github.com/eafte/UrbanAI" target="_blank"
-                                        rel="noopener noreferrer">prototype repository ↗</a>)</li>
-                                <li>Co-authored technical specifications, structured feature requirements, and documented system design for the competitive entry</li>
+                                <li>Received a Certificate of Honor from the School of International Education, Zhengzhou University, for UrbanAI, an AI urban-planning platform for smart cities (<a href="https://github.com/eafte/UrbanAI" target="_blank"
+                                        rel="noopener noreferrer">prototype repository ↗</a> · <a href="https://github.com/eafte/UrbanAI/blob/main/Certificate%20of%20Honor.jpg" target="_blank"
+                                        rel="noopener noreferrer">certificate ↗</a>)</li>
+                                <li>I co-wrote the technical plan, feature list, and system design for the entry</li>
                             </ul>
                         </div>
                     </li>
@@ -962,9 +1015,9 @@
                         <div class="timeline__body">
                             <h3>Student Leadership &amp; Community Service, Zhengzhou University</h3>
                             <ul class="bullets">
-                                <li>International Students Association (ISA) Sports Department Volunteer (2024 - 2025): coordinated table tennis and tug-of-war events; served as team selector for the tug-of-war squad, securing 8th position among 41 competing teams in the Sunshine Sports Meeting 2025</li>
-                                <li>New student orientation volunteer (2024, 2025): guided incoming international undergraduates through campus registration and academic onboarding</li>
-                                <li>Event logistics: assisted tournament operations for the 4th ZZU Bangladesh Premier League (2024) and university athletic meets</li>
+                                <li>Volunteered with the International Students Association Sports Department (2024 - 2025), helping run table tennis and tug-of-war. I also picked the tug-of-war team, which finished 8th of 41 teams at the Sunshine Sports Meeting 2025</li>
+                                <li>Helped new international students register and settle in during orientation in 2024 and 2025</li>
+                                <li>Helped with event setup and match-day work for the 4th ZZU Bangladesh Premier League (2024) and university sports meets</li>
                             </ul>
                         </div>
                     </li>
@@ -977,9 +1030,10 @@
             <div class="container">
                 <header class="sec">
                     <span class="sec__tag">Education</span>
-                    <h2 class="sec__title">Academic Foundation &amp; Credentials</h2>
+                    <h2 class="sec__title">Education and certificates</h2>
                     <p class="sec__lede">
-                        Rigorous undergraduate coursework in software engineering, competitive scholarship honors, and strong quantitative foundations.
+                        My degree, my earlier science certificate from Dhaka, and the certificates I
+                        have earned so far.
                     </p>
                 </header>
 
@@ -989,13 +1043,20 @@
                             <h3>Zhengzhou University</h3>
                             <span class="edu__dates">Sep 2023 - Jun 2027 (expected)</span>
                         </div>
-                        <p class="edu__degree">BSc in Software Engineering</p>
-                        <p class="edu__stats"><strong>108/130</strong> credits completed, GPA <strong>3.02/4.0</strong> (avg <strong>82.35/100</strong>)</p>
-                        <ul class="bullets">
-                            <li>Selected courses (score/100): High-Performance Computing (95), Computer Networks (95), Introduction to Embedded Systems (96), Mobile Programming (93), Discrete Mathematics (92), Introduction to Artificial Intelligence (92), Object-Oriented Programming in Java (91), Operating Systems (86), Object-Oriented Techniques (85), Principles of Database Systems (81)</li>
-                            <li>Henan Provincial Government Scholarship (HPGS) recipient: awarded 100% full tuition coverage (2023 - 2027), renewed annually based on academic merit</li>
-                            <li>Chinese language proficiency: HSK Level 4 certified (score 194/300, 汉语水平考试四级)</li>
-                        </ul>
+                        <dl class="edu__list">
+                            <div class="edu__row">
+                                <dt>Degree</dt>
+                                <dd>BSc in Software Engineering</dd>
+                            </div>
+                            <div class="edu__row">
+                                <dt>Scholarship</dt>
+                                <dd>Henan Provincial Government — 100% of my tuition (2023 - 2027), renewed each year for academic merit</dd>
+                            </div>
+                            <div class="edu__row">
+                                <dt>Language</dt>
+                                <dd>Chinese — HSK Level 4 <span lang="zh-Hans">(汉语水平考试四级)</span></dd>
+                            </div>
+                        </dl>
                     </article>
 
                     <article class="edu__card edu__card--hsc">
@@ -1003,12 +1064,20 @@
                             <h3>Sabujbagh Government College, Dhaka</h3>
                             <span class="edu__dates">Jun 2019 - Dec 2021</span>
                         </div>
-                        <p class="edu__degree">Higher Secondary Certificate (HSC) in Science</p>
-                        <p class="edu__stats">GPA <strong>5.00/5.00</strong> (perfect score, national curriculum)</p>
-                        <ul class="bullets">
-                            <li>Quantitative focus in Higher Mathematics, Physics, and Chemistry; final examinations December 2021</li>
-                            <li>Athletic activities: Cricket, Football, Volleyball</li>
-                        </ul>
+                        <dl class="edu__list">
+                            <div class="edu__row">
+                                <dt>Degree</dt>
+                                <dd>Higher Secondary Certificate (HSC) in Science</dd>
+                            </div>
+                            <div class="edu__row">
+                                <dt>Subjects</dt>
+                                <dd>Higher Mathematics, Physics, and Chemistry. Final exams in December 2021</dd>
+                            </div>
+                            <div class="edu__row">
+                                <dt>Sports</dt>
+                                <dd>Cricket, football, and volleyball</dd>
+                            </div>
+                        </dl>
                     </article>
 
                 <section class="certs" aria-labelledby="certsTitle">
@@ -1047,17 +1116,18 @@
             <div class="container">
                 <header class="sec">
                     <span class="sec__tag">Contact</span>
-                    <h2 class="sec__title">Connect &amp; Inquire</h2>
+                    <h2 class="sec__title">Get in touch</h2>
                     <p class="sec__lede">
-                        Open to Master's admissions inquiries, faculty research opportunities, internships, and technical collaboration.
+                        I am happy to hear about Master's programs, research work, internships, or
+                        technical projects.
                     </p>
                 </header>
 
                 <div class="contact">
                     <div class="contact__panel">
-                        <h3>Direct Contact</h3>
+                        <h3>Email and profiles</h3>
                         <p class="contact__sub">
-                            I reply within 24 hours. Feel free to reach out directly via email or professional profiles.
+                            Email is the fastest way to reach me. I reply within 24 hours.
                         </p>
                         <div class="contact__action">
                             <a class="btn btn--primary" href="mailto:eafte1@outlook.com?subject=Hello%20Eafte%20from%20your%20portfolio">eafte1@outlook.com</a>
@@ -1109,14 +1179,15 @@
                     </div>
 
                     <div class="contact__panel">
-                        <h3>What I'm Looking For</h3>
+                        <h3>What I'm looking for</h3>
                         <ul class="bullets">
-                            <li>Master's degree programs in Computer Science, Software Engineering, AI/ML, or Cybersecurity, especially programs with research assistantships or scholarship support</li>
-                            <li>Graduate research opportunities and academic collaborations in AI model security, empirical benchmark evaluation, and dependable software systems</li>
-                            <li>Technical internships and engineering roles where rigorous testing, secure architecture, and reproducible systems are valued</li>
+                            <li>Master's programs in Computer Science, Software Engineering, AI/ML, or Cybersecurity - especially with a research assistantship or scholarship</li>
+                            <li>Research work on AI model security, benchmark testing, and reliable software systems</li>
+                            <li>Internships or engineering roles where careful testing, security, and results that other people can repeat matter</li>
                         </ul>
                         <p class="contact__note">
-                            Include a brief description of the role, project, or research scope in your message for the fastest response.
+                            Please tell me a little about the role, project, or research topic. That
+                            helps me reply faster.
                         </p>
                     </div>
                 </div>
@@ -1150,7 +1221,7 @@
         <span>Contact</span>
     </a>
 
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=10"></script>
 </body>
 
 </html>
