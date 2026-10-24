@@ -37,7 +37,11 @@
     0 16px 36px -24px rgb(var(--shadow-rgb) / 0.12);
   --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
 
-  --max: 1120px;
+  /* Content width: fluid, so the page holds the full screen on desktop
+     instead of floating as a narrow 1120px column (58% of a 1920px
+     monitor). The cap only engages past ~1900px so lines and cards
+     stay readable on ultrawide displays. */
+  --max: 1760px;
   --radius: 8px;
   --radius-sm: 6px;
 
@@ -200,7 +204,7 @@ a:hover {
 }
 
 .container {
-  width: min(var(--max), calc(100% - 48px));
+  width: min(var(--max), calc(100% - clamp(48px, 5vw, 112px)));
   margin: 0 auto;
 }
 
@@ -314,7 +318,10 @@ a:hover {
   transition: color 160ms var(--ease), background 160ms var(--ease);
 }
 
-.nav a:hover,
+.nav a:hover {
+  color: var(--accent);
+}
+
 .nav a.is-active {
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 7%, transparent);
@@ -346,6 +353,8 @@ a:hover {
 }
 
 /* ================= Buttons ================= */
+/* Interaction feedback is deliberately still: colour, border and shadow
+   respond, but controls never lift or slide under the pointer. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -359,8 +368,8 @@ a:hover {
   font-weight: 600;
   font-size: 0.94rem;
   cursor: pointer;
-  transition: transform 160ms var(--ease), box-shadow 160ms var(--ease),
-    background 160ms var(--ease), border-color 160ms var(--ease), color 160ms var(--ease);
+  transition: box-shadow 160ms var(--ease), background 160ms var(--ease),
+    border-color 160ms var(--ease), color 160ms var(--ease);
 }
 
 .btn--primary {
@@ -372,10 +381,15 @@ a:hover {
 
 .btn--primary:hover {
   background: var(--accent-deep);
-  transform: translateY(-2px);
   color: var(--accent-ink);
   box-shadow: 0 2px 4px color-mix(in srgb, var(--accent) 25%, transparent),
     0 16px 30px -14px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.btn--primary:active {
+  background: var(--accent-deep);
+  color: var(--accent-ink);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 .btn--ghost {
@@ -388,7 +402,12 @@ a:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 6%, transparent);
-  transform: translateY(-2px);
+}
+
+.btn--ghost:active {
+  border-color: var(--accent);
+  color: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 /* Quiet tertiary action: reads as a link, not a fourth button.
@@ -409,6 +428,10 @@ a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
+}
+
+.btn--quiet:active {
+  color: var(--accent-deep);
 }
 
 /* ================= Theme toggle ================= */
@@ -435,6 +458,12 @@ a:hover {
   border-color: var(--line-strong);
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.theme:active {
+  border-color: var(--line-strong);
+  color: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 /* In dark mode the toggle is "active" - keyed off the theme attribute
@@ -486,11 +515,16 @@ a:hover {
   border: 1px solid var(--line);
   background: transparent;
   cursor: pointer;
-  transition: border-color 160ms var(--ease);
+  transition: border-color 160ms var(--ease), background 160ms var(--ease);
 }
 
 .navToggle:hover {
   border-color: var(--line-strong);
+}
+
+.navToggle:active {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
 .navToggle__bar {
@@ -517,6 +551,10 @@ a:hover {
 /* ================= Hero ================= */
 .hero {
   position: relative;
+  /* The decorative line art bleeds 40px past the container's right edge;
+     clip it at the hero's own (full-width) bounds so that bleed can never
+     widen the page now that the container sits near the viewport edge. */
+  overflow-x: clip;
   /* Heavier at the top than the bottom: the hero should read as a title
      page, and .metrics adds its own 56px underneath. */
   padding: 96px 0 80px;
@@ -602,13 +640,85 @@ a:hover {
   flex: 0 0 auto;
 }
 
+/* Profile header lockup: portrait and name as one title block.
+   Squared and framed like a print rather than a round social avatar
+   (the navbar already carries the small round crop), on the site's own
+   radius token with a soft offset block of accent behind it. Same
+   fallback as .brand__mark: the accent tile with the "E" monogram sits
+   underneath, and the photo fades in over it when it loads. */
+.hero__heading {
+  display: flex;
+  /* Top-aligned, never centred: the portrait has a fixed height while the
+     title wraps to 3 lines on desktop, 1 on tablet and 2 on phones, so
+     centring made the name float a different distance below the photo's
+     top edge at every width (46px on tablet, 28px on phone). A shared
+     top edge is the one alignment that holds at all of them. */
+  align-items: flex-start;
+  gap: clamp(20px, 3vw, 32px);
+  /* s6, was s4: the tagline now sits inside this row, so the gap it used
+     to leave below itself belongs to the row instead. */
+  margin: 0 0 var(--s6);
+}
+
+/* Name and tagline share one left edge beside the portrait. Before, the
+   tagline restarted under the photo at the copy's left edge, so the text
+   column jumped 190px sideways between the name and the line under it. */
+.hero__headingText {
+  min-width: 0;
+}
+
+.hero__headingText .hero__sub {
+  margin: var(--s4) 0 0;
+}
+
+.hero__portrait {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  /* Optical alignment: the H1's box starts at its line box, a few pixels
+     above the first cap. Nudging the frame down 4px lines its top edge up
+     with the letters you actually see instead of the invisible box. */
+  margin-top: 4px;
+  width: clamp(112px, 13vw, 158px);
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 2.6rem;
+  box-shadow: 0 0 0 1px var(--line-strong),
+    8px 8px 0 0 color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  opacity: 0;
+  transition: opacity 300ms var(--ease);
+}
+
+.hero__photo.is-loaded {
+  opacity: 1;
+}
+
 .hero__title {
-  margin: 0 0 var(--s3);
+  /* Bottom margin moved to .hero__heading - the gap below the lockup
+     belongs to the row, not to one of its two children. */
+  margin: 0;
+  min-width: 0;
   font-family: var(--serif);
   font-weight: 600;
-  /* Floor lowered from 2.9rem: phones were rendering this at 46px.
-     Ceiling and the 7vw ramp are unchanged, so desktop is identical. */
-  font-size: clamp(2.1rem, 7vw, 4.7rem);
+  /* Ramp eased from 7vw / 4.7rem: the title now shares its row with the
+     portrait, and at the old size the longest word would outgrow the
+     space left beside it at two-column widths. */
+  font-size: clamp(2.05rem, 5.8vw, 4.25rem);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -740,7 +850,8 @@ a:hover {
   padding: var(--s3) var(--s6) var(--s6);
 }
 
-.profile__row {
+.profile__row,
+.edu__row {
   display: grid;
   grid-template-columns: 100px 1fr;
   gap: var(--s4);
@@ -748,11 +859,13 @@ a:hover {
   border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
 }
 
-.profile__row:last-child {
+.profile__row:last-child,
+.edu__row:last-child {
   border-bottom: none;
 }
 
-.profile__row dt {
+.profile__row dt,
+.edu__row dt {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -761,7 +874,8 @@ a:hover {
   padding-top: 3px;
 }
 
-.profile__row dd {
+.profile__row dd,
+.edu__row dd {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 550;
@@ -813,18 +927,6 @@ a:hover {
   border-radius: 50%;
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 5%, var(--panel));
-  transition: color 160ms var(--ease), background-color 160ms var(--ease),
-    border-color 160ms var(--ease), transform 160ms var(--ease);
-}
-
-/* Mouse-only feedback on the proof strip; touch and keyboard layouts stay still. */
-@media (hover: hover) and (pointer: fine) {
-  .metric__icon:hover {
-    color: var(--accent-deep);
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 12%, var(--panel));
-    transform: translateY(-2px);
-  }
 }
 
 .metric__icon svg {
@@ -1070,7 +1172,8 @@ a:hover {
   display: inline;
 }
 
-.results__summary:hover .results__title {
+.results__summary:hover .results__title,
+.results__summary:hover .results__hint {
   color: var(--accent);
 }
 
@@ -1173,17 +1276,6 @@ a:hover {
   border: 1px solid var(--line);
   padding: 5px 11px;
   border-radius: var(--radius-sm);
-  transition: color 160ms var(--ease), background-color 160ms var(--ease),
-    border-color 160ms var(--ease), transform 160ms var(--ease);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .tags li:hover {
-    color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, var(--panel));
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-    transform: translateY(-1px);
-  }
 }
 
 .bullets {
@@ -1264,13 +1356,12 @@ a:hover {
   align-items: center;
   gap: 4px;
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  transition: border-color 160ms var(--ease), color 160ms var(--ease), transform 160ms var(--ease);
+  transition: border-color 160ms var(--ease), color 160ms var(--ease);
 }
 
 .linksrow a:hover {
   color: var(--accent-deep);
   border-bottom-color: var(--accent-deep);
-  transform: translateX(2px);
 }
 
 .work__grid {
@@ -1366,6 +1457,82 @@ a:hover {
   padding-top: var(--s4);
 }
 
+/* Secondary projects keep their workings one tap away: the first scan of
+   a card is title, one-line summary, stack, result and proof links, and
+   the bullet detail opens only for readers who want it. The featured
+   card stays fully open - that contrast is the hierarchy. Same summary
+   pattern as .results, with the Show/Hide hint generated in CSS so it
+   can never disagree with the open state. */
+.project__more {
+  margin-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+
+.project__moreSummary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 10px 0;
+  min-height: 44px;
+}
+
+.project__moreSummary::-webkit-details-marker {
+  display: none;
+}
+
+.project__moreTitle {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.02rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project__moreTitle::after {
+  content: "+";
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 200ms var(--ease);
+}
+
+.project__more[open] .project__moreTitle::after {
+  transform: rotate(45deg);
+}
+
+.project__moreHint {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project__moreHint::before {
+  content: "Show";
+}
+
+.project__more[open] .project__moreHint::before {
+  content: "Hide";
+}
+
+.project__moreSummary:hover .project__moreTitle,
+.project__moreSummary:hover .project__moreHint {
+  color: var(--accent);
+}
+
+.project__more .bullets {
+  margin-top: var(--s2);
+  padding-bottom: var(--s2);
+}
+
 /* Full-width team card: media beside content on desktop. */
 .project--wide {
   display: grid;
@@ -1424,6 +1591,7 @@ a:hover {
   color: var(--muted);
   font-size: 0.93rem;
   line-height: 1.6;
+  max-width: 72ch;
 }
 
 .project .tags {
@@ -1496,21 +1664,23 @@ a:hover {
 }
 
 /* ================= Research ================= */
+/* A list, not more cards: Work already spends the page's card budget, and
+   four short text entries read faster as ruled entries in two open
+   columns - closer to a publications list than to product tiles. The
+   2px top rule does the separating work the box used to do, without the
+   40px of padding and the empty card bottoms equal-height rows forced. */
 .papers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap-card);
+  gap: var(--s10) var(--gap-card);
 }
 
 .paper {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: var(--pad-card);
-  box-shadow: var(--shadow);
+  border-top: 2px solid var(--line-strong);
+  padding-top: var(--s6);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   min-width: 0;
 }
 
@@ -1559,6 +1729,8 @@ a:hover {
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.65;
+  /* Full-screen columns would otherwise run 110+ characters per line. */
+  max-width: 68ch;
 }
 
 .paper__meta {
@@ -1631,10 +1803,12 @@ a:hover {
 .edu {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  /* Featured ZZU panel on the left; HSC and certifications stack on the right. */
+  /* The two degree cards sit side by side at their natural height;
+     certifications get a full-width ledger underneath. */
   grid-template-areas:
     "lead hsc"
-    "lead certs";
+    "certs certs";
+  align-items: start;
   gap: var(--gap-card);
 }
 
@@ -1678,24 +1852,22 @@ a:hover {
   color: var(--muted);
 }
 
-.edu__degree {
-  margin: var(--s2) 0;
-  font-weight: 600;
+.edu__list {
+  margin: var(--gap-block) 0 0;
+}
+
+.edu__row:last-child {
+  padding-bottom: 0;
+}
+
+.edu__row dd {
+  max-width: 68ch;
+}
+
+/* Keep the degree as the one accent-coloured fact, as in the old card. */
+.edu__row:first-child dd {
   color: var(--accent);
-  font-size: 0.96rem;
-}
-
-.edu__stats {
-  margin: 0 0 var(--gap-block);
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.6;
-}
-
-.edu__stats strong {
-  color: var(--ink);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
 
 /* Certifications sit in their own panel below the education cards,
@@ -1733,27 +1905,21 @@ a:hover {
   color: var(--ink);
 }
 
-/* Stacked rows divided by hairlines. In a 432px column, three side-by-side
-   columns were too narrow - the 75-character award line wrapped to two lines
-   while its neighbours stayed on one, leaving the row edges ragged. */
+/* A full-width, three-column ledger on desktop: each award gets a ruled
+   column inside the same panel shell as the degree cards. */
 .certs__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--s4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-block) var(--gap-card);
 }
 
 .cert {
   min-width: 0;
   padding-top: var(--s4);
-  border-top: 1px solid var(--line);
-}
-
-.cert:first-child {
-  padding-top: 0;
-  border-top: none;
+  border-top: 2px solid var(--line-strong);
 }
 
 .cert__name {
@@ -1878,14 +2044,19 @@ a:hover {
   color: var(--accent);
   background: transparent;
   transition: color 160ms var(--ease), background-color 160ms var(--ease),
-    border-color 160ms var(--ease), transform 160ms var(--ease);
+    border-color 160ms var(--ease);
 }
 
 .contact__iconLink:hover {
   color: var(--accent-deep);
   border-color: var(--accent-deep);
   background: color-mix(in srgb, var(--accent) 8%, var(--panel));
-  transform: translateY(-2px);
+}
+
+.contact__iconLink:active {
+  color: var(--accent-deep);
+  border-color: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
 }
 
 .contact__iconLink:focus-visible {
@@ -1960,7 +2131,7 @@ a:hover {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(var(--max), calc(100% - 48px));
+  width: min(var(--max), calc(100% - clamp(48px, 5vw, 112px)));
   height: 2px;
   background: var(--line-strong);
 }
@@ -2074,6 +2245,11 @@ a:hover {
     border-color: var(--accent);
     background: color-mix(in srgb, var(--accent) 8%, var(--panel));
   }
+
+  .toTop:active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+  }
 }
 
 .toTop__icon {
@@ -2152,6 +2328,150 @@ a:hover {
 @keyframes seedPulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.14); opacity: 0.92; }
+}
+
+/* ================= Intro loader ================= */
+/* A one-per-session brand ident (~1.2s), not a load gate: this page is
+   light enough that a progress spinner would fake a wait. The network
+   motif and hairline rule echo the hero artwork, then the curtain lifts.
+   The exit is pure CSS so the page can never get stuck behind it - no JS,
+   a JS error, or a slow script all still reveal the content on time.
+   Repeat views in a session skip it via .loader-skip (set pre-paint). */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  animation: loaderLift 1150ms var(--ease) 50ms forwards;
+}
+
+/* Accent edge that trails the curtain as it lifts. */
+.loader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.loader-skip .loader {
+  display: none;
+}
+
+/* Click-to-skip (wired in script.js): hand control from the keyframes
+   to a transition so the curtain leaves from wherever it is. */
+.loader.is-done {
+  animation: none;
+  transform: translateY(-101%);
+  transition: transform 550ms var(--ease);
+}
+
+.loader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+  animation: loaderIn 500ms var(--ease) both, loaderOut 300ms ease 620ms forwards;
+}
+
+.loader__art {
+  width: 132px;
+  height: auto;
+  color: var(--faint);
+}
+
+.loader__edge {
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 700ms var(--ease) 100ms forwards;
+}
+
+.loader__node {
+  fill: var(--accent);
+  opacity: 0;
+  transform: scale(0.85);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodeIn 400ms var(--ease) forwards;
+}
+
+.loader__node:nth-of-type(1) { animation-delay: 150ms; }
+.loader__node:nth-of-type(2) { animation-delay: 230ms; }
+.loader__node:nth-of-type(3) { animation-delay: 310ms; }
+.loader__node:nth-of-type(4) { animation-delay: 390ms; }
+.loader__node:nth-of-type(5) { animation-delay: 470ms; }
+
+.loader__seed {
+  animation: nodeIn 400ms var(--ease) 310ms forwards,
+    seedPulse 1600ms ease-in-out 800ms infinite;
+}
+
+.loader__name {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.55rem, 4.5vw, 2.1rem);
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.loader__dot {
+  color: var(--accent);
+}
+
+.loader__rule {
+  width: 180px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.loader__fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: loaderFill 620ms var(--ease) 150ms forwards;
+}
+
+.loader__note {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+@keyframes loaderLift {
+  0%, 58% { transform: translateY(0); }
+  100% { transform: translateY(-101%); visibility: hidden; }
+}
+
+@keyframes loaderIn {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes loaderOut {
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes loaderFill {
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader { display: none !important; }
 }
 
 /* ================= Reduced motion ================= */
@@ -2308,6 +2628,20 @@ a:hover {
       "certs";
   }
 
+  .certs__list {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+  }
+
+  .cert {
+    border-top: 1px solid var(--line);
+  }
+
+  .cert:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
 }
 
 @media (max-width: 720px) {
@@ -2348,8 +2682,21 @@ a:hover {
     padding: var(--s8) 0;
   }
 
+  /* Phones keep the same profile header - photo beside the name - just
+     smaller on both sides, so the title never has to squeeze or stack
+     away from the portrait it belongs to. */
+  .hero__heading {
+    gap: var(--s4);
+  }
+
+  .hero__portrait {
+    width: clamp(88px, 26vw, 108px);
+    font-size: 1.9rem;
+  }
+
   .hero__title {
-    line-height: 1.1;
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+    line-height: 1.08;
   }
 
   .sec__title {
@@ -2369,10 +2716,18 @@ a:hover {
     display: none;
   }
 
-  .profile__row {
-    grid-template-columns: 80px minmax(0, 1fr);
+  .profile__row,
+  .edu__row {
+    /* 80px was too narrow: "Scholarship" needs ~105px at this size and
+       tracking, and overflowed into the value column on phones. */
+    grid-template-columns: 104px minmax(0, 1fr);
     gap: 10px;
     padding: 12px 0;
+  }
+
+  .profile__row dt,
+  .edu__row dt {
+    letter-spacing: 0.06em;
   }
 
   .feature {
@@ -2525,13 +2880,15 @@ a:hover {
 
   /* Give long facts the full card width instead of squeezing them beside
      fixed-width labels on the narrowest phones. */
-  .profile__row {
+  .profile__row,
+  .edu__row {
     grid-template-columns: minmax(0, 1fr);
     gap: 4px;
     padding: 10px 0;
   }
 
-  .profile__row dt {
+  .profile__row dt,
+  .edu__row dt {
     padding-top: 0;
   }
 }
@@ -2558,13 +2915,22 @@ a:hover {
     color-scheme: light;
   }
 
-  .header, .navToggle, .theme, .header__cta, .hero__art { display: none !important; }
+  .header, .navToggle, .theme, .header__cta, .hero__art, .floatingContact, .toTop, .loader { display: none !important; }
   /* Drop the grain and the hero wash so a printed page stays clean. */
   body { background: #fff !important; color: #20382a !important; }
   .hero { background-image: none !important; }
   .section { padding: 32px 0 !important; }
   .profile, .metric, .feature, .project, .edu__card, .contact__panel, .paper, .certs { box-shadow: none !important; border: 1px solid #dce7e0 !important; }
+  /* The portrait's offset accent block is a screen flourish - paper gets a plain frame. */
+  .hero__portrait { box-shadow: 0 0 0 1px #dce7e0 !important; }
+  /* Research entries are a ruled list now, not cards - keep the rule, drop the box. */
+  .paper { border: none !important; border-top: 1px solid #dce7e0 !important; }
   a { color: #2e6b4e !important; }
   .footer::before { background: #c6cbb8 !important; }
-  .hero, .section { break-inside: avoid; }
+  /* Sections are scroll-revealed on screen; on paper everything must
+     show even if the visitor prints before scrolling there. */
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  /* Keep whole blocks together where one can fit a page; a full section
+     cannot, and forcing it only leaves half-blank pages. */
+  .hero, .project, .paper, .metric, .edu__card { break-inside: avoid; }
 }

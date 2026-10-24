@@ -262,6 +262,45 @@
     details.addEventListener("toggle", sync);
   });
 
+  // ---------- Intro loader ----------
+  // CSS lifts the curtain on its own (see .loader in styles.css); this
+  // only tidies up: mark the session so it plays once, let a click skip
+  // it, and remove the node from the DOM once it is off screen.
+  const loader = document.getElementById("loader");
+  if (loader) {
+    const reduceMotionLoader =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (root.classList.contains("loader-skip") || reduceMotionLoader) {
+      loader.remove();
+    } else {
+      try { sessionStorage.setItem("ei_loader_seen", "1"); } catch (e) { /* ignore */ }
+      const removeLoader = () => loader.remove();
+      loader.addEventListener("click", () => {
+        loader.classList.add("is-done");
+        window.setTimeout(removeLoader, 600);
+      });
+      window.setTimeout(removeLoader, 1500);
+    }
+  }
+
+  // ---------- Print: expand disclosures ----------
+  // A printed page cannot be clicked open, so print with every <details>
+  // expanded (project workings and the benchmark tables alike), then put
+  // each one back exactly as the visitor left it.
+  const allDetails = document.querySelectorAll("details");
+  if (allDetails.length) {
+    let printStates = null;
+    window.addEventListener("beforeprint", () => {
+      printStates = Array.from(allDetails, (d) => d.open);
+      allDetails.forEach((d) => { d.open = true; });
+    });
+    window.addEventListener("afterprint", () => {
+      if (!printStates) return;
+      allDetails.forEach((d, i) => { d.open = printStates[i]; });
+      printStates = null;
+    });
+  }
+
   // ---------- Copy Email ----------
   const copyBtn = document.getElementById("copyEmailBtn");
   if (copyBtn) {
