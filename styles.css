@@ -28,9 +28,7 @@
   --accent: #2e6b4e;          /* 5.75:1 on --bg, 6.31:1 on --panel */
   --accent-deep: #23553d;     /* hover - white on it is 8.61:1 */
   --accent-ink: #ffffff;      /* white on the accent (6.31:1) */
-  --accent-glow: 14%;         /* share of accent used in button shadows */
   --green: #2e6b4e;           /* status / verified */
-  --green-deep: #24573e;
   --green-ink: #2e6b4e;       /* 6.31:1 on --panel */
   --shadow-rgb: 32 40 34;     /* warm green-black, not blue-slate */
   --shadow: 0 1px 3px rgb(var(--shadow-rgb) / 0.05),
@@ -68,7 +66,6 @@
   --s8: 40px;
   --s9: 48px;
   --s10: 64px;
-  --s11: 88px;
 
   /* Desktop spacing roles. Every gap on the page resolves to one of these,
      so a block always sits the same distance from its neighbour instead of
@@ -82,7 +79,6 @@
   --pad-card: 40px;           /* inside a card */
   --gap-block: 24px;          /* block -> block inside a card */
   --gap-hair: 8px;            /* a label and its own sub-line */
-  --gap-tile: 24px;           /* small stat tiles, not content cards */
 
   --serif: "Spectral", "Georgia", "Times New Roman", serif;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -110,9 +106,7 @@
   --accent: #5bf2ae;          /* acid mint */
   --accent-deep: #86f7c6;     /* hover */
   --accent-ink: #06110c;
-  --accent-glow: 22%;
   --green: #5bf2ae;
-  --green-deep: #86f7c6;
   --green-ink: #5bf2ae;
   --shadow-rgb: 0 0 0;
   --shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 20px 36px -20px rgb(0 0 0 / 0.75);
@@ -158,7 +152,7 @@ body {
 
 /* Balance long headings, avoid orphans in body copy. Neither changes the
    type colour or sizing - just how the browser breaks lines. */
-h1, h2, h3, h4 {
+h1, h2, h3 {
   text-wrap: balance;
 }
 
@@ -749,39 +743,6 @@ a:hover {
   font-size: clamp(0.98rem, 2.6vw, 1.06rem);
   line-height: 1.62;
   max-width: 56ch;
-}
-
-.lede + .lede {
-  margin-top: var(--s4);
-}
-
-.research {
-  margin: var(--s7) 0 0;
-  padding-top: var(--s5);
-  border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
-  display: flex;
-  align-items: baseline;
-  gap: var(--s4);
-  flex-wrap: wrap;
-  max-width: 56ch;
-}
-
-.research__label {
-  flex: 0 0 auto;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding-top: 3px;
-}
-
-.research__text {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.02rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
 }
 
 .hero__cta {
@@ -2507,6 +2468,18 @@ a:hover {
 }
 
 /* ================= Responsive ================= */
+/* Keep the static site usable when JavaScript is disabled. */
+html:not(.js) .theme,
+html:not(.js) .navToggle,
+html:not(.js) .contact__copy {
+  display: none;
+}
+
+html:not(.js) .brand__photo,
+html:not(.js) .hero__photo {
+  opacity: 1;
+}
+
 @media (max-width: 1220px) {
   /* The CTA duplicates the Contact link - drop it before the header
      gets crowded and the six-item nav has to wrap to a second line. */
@@ -2515,16 +2488,10 @@ a:hover {
   }
 }
 
+/* Switch the navigation before the full desktop row begins to wrap. */
 @media (max-width: 1100px) {
   /* Keep the decorative schematic from bleeding past the viewport edge. */
   .hero__art {
-    display: none;
-  }
-}
-
-/* Switch the navigation before the full desktop row begins to wrap. */
-@media (max-width: 1100px) {
-  .header__cta {
     display: none;
   }
 
@@ -2571,6 +2538,37 @@ a:hover {
      and the collapsed bars left stray raster fragments at the panel edge. */
   .nav a::after {
     display: none;
+  }
+
+  /* Without JavaScript, show the links instead of an inoperable menu. */
+  html:not(.js) .header {
+    position: static;
+  }
+
+  html:not(.js) .header__inner {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  html:not(.js) .nav {
+    position: static;
+    display: flex;
+    flex: 0 0 100%;
+    order: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  html:not(.js) .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 10px;
   }
 }
 
@@ -2915,7 +2913,7 @@ a:hover {
     color-scheme: light;
   }
 
-  .header, .navToggle, .theme, .header__cta, .hero__art, .floatingContact, .toTop, .loader { display: none !important; }
+  .header, .hero__art, .floatingContact, .toTop, .loader, .contact__copy, .footer__top { display: none !important; }
   /* Drop the grain and the hero wash so a printed page stays clean. */
   body { background: #fff !important; color: #20382a !important; }
   .hero { background-image: none !important; }
