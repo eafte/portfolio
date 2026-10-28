@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  var root = document.documentElement;
+  const root = document.documentElement;
+  root.classList.add("js");
 
   // ---------- Footer year ----------
   const yearEl = document.getElementById("year");
@@ -148,51 +149,38 @@
     }
   }
 
-  // ---------- Header elevation on scroll ----------
+  // ---------- Scroll controls ----------
   const header = document.querySelector(".header");
-  if (header) {
+  const toTop = document.getElementById("toTop");
+  const motionPreference =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (header || toTop) {
     let ticking = false;
-    const syncHeader = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 8);
+    const syncScrollControls = () => {
+      if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+      if (toTop) {
+        const showAfter = Math.max(window.innerHeight * 1.2, 600);
+        toTop.classList.toggle("is-visible", window.scrollY > showAfter);
+      }
       ticking = false;
     };
-    syncHeader();
+    syncScrollControls();
     window.addEventListener(
       "scroll",
       () => {
         if (ticking) return;
         ticking = true;
-        window.requestAnimationFrame(syncHeader);
+        window.requestAnimationFrame(syncScrollControls);
       },
       { passive: true }
     );
   }
 
-  // ---------- Back to top (mobile) ----------
-  const toTop = document.getElementById("toTop");
   if (toTop) {
-    const showAfter = () => Math.max(window.innerHeight * 1.2, 600);
-    let toTopTicking = false;
-    const syncToTop = () => {
-      toTop.classList.toggle("is-visible", window.scrollY > showAfter());
-      toTopTicking = false;
-    };
-    syncToTop();
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (toTopTicking) return;
-        toTopTicking = true;
-        window.requestAnimationFrame(syncToTop);
-      },
-      { passive: true }
-    );
-
     toTop.addEventListener("click", () => {
-      const prefersReduced =
-        window.matchMedia &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
+      const behavior = motionPreference && motionPreference.matches ? "auto" : "smooth";
+      window.scrollTo({ top: 0, behavior });
       // Keyboard users land back at the top of the document, not mid-page.
       const brand = document.querySelector(".brand");
       if (brand) brand.focus({ preventScroll: true });
@@ -200,11 +188,9 @@
   }
 
   // ---------- Scroll reveal ----------
-  const reduceMotion =
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const sections = document.querySelectorAll(".section, .metrics");
 
-  if (!reduceMotion && "IntersectionObserver" in window) {
+  if (!(motionPreference && motionPreference.matches) && "IntersectionObserver" in window) {
     sections.forEach((s) => s.classList.add("reveal"));
 
     const io = new IntersectionObserver(
@@ -268,9 +254,7 @@
   // it, and remove the node from the DOM once it is off screen.
   const loader = document.getElementById("loader");
   if (loader) {
-    const reduceMotionLoader =
-      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (root.classList.contains("loader-skip") || reduceMotionLoader) {
+    if (root.classList.contains("loader-skip") || (motionPreference && motionPreference.matches)) {
       loader.remove();
     } else {
       try { sessionStorage.setItem("ei_loader_seen", "1"); } catch (e) { /* ignore */ }
@@ -301,48 +285,60 @@
     });
   }
 
-  // ---------- Copy Email ----------
+  // ---------- Copy email ----------
   const copyBtn = document.getElementById("copyEmailBtn");
-  if (copyBtn) {
+  const emailLink = document.querySelector('.contact__action a[href^="mailto:"]');
+  if (copyBtn && emailLink) {
+    const textSpan = copyBtn.querySelector(".copy__text");
+    let resetTimer;
+
+    function showCopyStatus(copied) {
+      if (textSpan) textSpan.textContent = copied ? "Copied!" : "Copy failed";
+      copyBtn.classList.toggle("is-copied", copied);
+      copyBtn.setAttribute(
+        "aria-label",
+        copied ? "Email address copied" : "Unable to copy email address"
+      );
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(() => {
+        if (textSpan) textSpan.textContent = "Copy";
+        copyBtn.classList.remove("is-copied");
+        copyBtn.setAttribute("aria-label", "Copy email address");
+      }, 2000);
+    }
+
     copyBtn.addEventListener("click", async () => {
-      const email = "eafte1@outlook.com";
-      const textSpan = copyBtn.querySelector(".copy__text");
-      const onSuccess = () => {
-        if (textSpan) textSpan.textContent = "Copied!";
-        copyBtn.classList.add("is-copied");
-        // Keep the label in sync with the icon swap for screen readers.
-        copyBtn.setAttribute("aria-label", "Email address copied");
-        setTimeout(() => {
-          if (textSpan) textSpan.textContent = "Copy";
-          copyBtn.classList.remove("is-copied");
-          copyBtn.setAttribute("aria-label", "Copy email address");
-        }, 2000);
-      };
+      const address = emailLink.getAttribute("href").slice("mailto:".length);
+      const email = decodeURIComponent(address.split("?")[0]);
 
       if (navigator.clipboard && window.isSecureContext) {
         try {
           await navigator.clipboard.writeText(email);
-          onSuccess();
+          showCopyStatus(true);
           return;
         } catch (e) {
-          /* fallback */
+          /* Try the fallback below. */
         }
       }
 
+      const input = document.createElement("input");
+      input.value = email;
+      input.tabIndex = -1;
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      let copied = false;
       try {
-        const input = document.createElement("input");
-        input.value = email;
-        input.style.position = "fixed";
-        input.style.opacity = "0";
         document.body.appendChild(input);
         input.focus();
         input.select();
-        document.execCommand("copy");
-        document.body.removeChild(input);
-        onSuccess();
-      } catch (err) {
-        /* ignore */
+        copied = document.execCommand("copy");
+      } catch (e) {
+        /* The browser may deny clipboard access. */
+      } finally {
+        input.remove();
+        copyBtn.focus({ preventScroll: true });
       }
+      showCopyStatus(copied);
     });
   }
 })();
