@@ -144,16 +144,31 @@ standardize their placement, captions, and accessibility without replacing them.
 
 ### Stage 1 — Responsive fit and navigation
 
-- [ ] Check header fit at 320, 360, 390, 768, 981, 1024, 1100, 1280, and 1440px.
+- [x] Check header fit at 320, 360, 390, 768, 981, 1024, 1100, 1280, and 1440px.
+      Also checked 1101, 1220 and 1920px around the compact-nav boundary.
 - [x] Move the compact-navigation breakpoint to 1100px so the six-link desktop
       row does not need to wrap in the crowded tablet/desktop range.
 - [x] Add a narrow-phone header spacing/type adjustment for widths up to 360px.
 - [x] Reduce mobile density in the hero/profile and stat strip: widen fact values,
       relax wrapped heading leading, shrink stat icons, and remove the CTA divider.
-- [ ] Confirm sticky-header height, anchor offsets, open/close behavior, keyboard
+- [x] Confirm sticky-header height, anchor offsets, open/close behavior, keyboard
       focus, and scroll position after navigation.
-- [ ] Check hero, metrics, contact actions, and cards at the same narrow widths.
-- [ ] Review the live preview before considering Stage 1 complete.
+- [x] Check hero, metrics, contact actions, and cards at the same narrow widths.
+- [x] Review the live preview before considering Stage 1 complete.
+
+Stage 1 completed Nov 2026 in a headless Chromium pass at 320, 360, 390, 768,
+981, 1024, 1100, 1101, 1220, 1280, 1440 and 1920px, in light/dark, reduced
+motion, JS on/off and print. Section/hero spacing is now token-driven, so nav
+clicks reveal the heading ~15px below the sticky header instead of ~200px of
+empty padding. Nav activation moves focus to the destination heading, deep
+links keep the correct nav item active, the 320px email and hero CTA no longer
+clip, the PGP fingerprint wraps between four-character groups, and the fixed
+Contact control is hidden on desktop and compact, scroll-aware on mobile.
+
+Design decisions deliberately left for a later stage, because they are not fit
+bugs: the dark-mode acid-mint accent, the one-session intro loader, and the
+schematic project illustrations. The owner's direction is a restrained,
+professional look rather than an AI-polished or decorative one.
 
 ### Stage 2 — Consistent project-card presentation
 
