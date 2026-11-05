@@ -758,8 +758,9 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* Thin rule separates the two profile links from the two real actions,
-   so the row reads as 2 primary/1 secondary/2 tertiary instead of 4 equals. */
+/* Thin rule separates the two profile links from the two real actions on
+   wide desktop, so the row reads as 2 primary/1 secondary/2 tertiary
+   instead of 4 equals. Hidden at <=1100px, where it would force a wrap. */
 .hero__cta-divider {
   width: 1px;
   height: 22px;
@@ -2564,6 +2565,12 @@ html:not(.js) .hero__photo {
     display: none;
   }
 
+  /* In the narrow two-column hero (981-1100px) this 1px rule pushed the
+     fourth action onto a second row. Keep all four on one line. */
+  .hero__cta-divider {
+    display: none;
+  }
+
   .navToggle {
     display: inline-flex;
   }
@@ -2798,10 +2805,6 @@ html:not(.js) .hero__photo {
 
   .hero__cta {
     margin-top: var(--s6);
-  }
-
-  .hero__cta-divider {
-    display: none;
   }
 
   .profile__row,

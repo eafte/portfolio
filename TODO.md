@@ -195,6 +195,12 @@ padding matches every other card. No project imagery was added or replaced.
 - [x] Restyle the existing four verified metrics as an icon-led, responsive proof
       strip; do not add unverified counts or duplicate the stats row.
 
+Stage 3 verified Nov 2026 at 1440, 981, 768 and 390px. The featured card's
+"Finding" now sits above the chart, so the takeaway is inside the first
+viewport at every width instead of 1,400px down the card. The hero CTA divider
+is hidden below 1100px, which keeps all four actions on one row at 981px. No
+copy was rewritten and no project imagery was added or replaced.
+
 ### Stage 4 — Visual and accessibility polish
 
 - [x] Reconcile the social-share card with the site's current visual identity;
