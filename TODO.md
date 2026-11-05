@@ -215,8 +215,18 @@ copy was rewritten and no project imagery was added or replaced.
       the mobile back-to-top control and reserve footer space to avoid collisions.
 - [x] Tune section spacing for desktop/tablet/mobile and trim footer dead space
       while preserving clearance for the fixed Contact button.
-- [ ] Verify light/dark themes, keyboard navigation, focus visibility, reduced
+- [x] Verify light/dark themes, keyboard navigation, focus visibility, reduced
       motion, contrast, and print output in the rendered preview.
+
+Stage 4 completed Nov 2026. Composite text contrast was measured across the
+hero wash, cards, active nav and result panels: the lowest light value is
+5.16:1 and the lowest dark value is 5.79:1, both above WCAG AA. Focus rings,
+keyboard order, reduced-motion state (JS on/off) and print output were checked
+in headless Chromium; the 14-page PDF includes every section and all expanded
+tables. The skip link was the one real failure: it changed the hash but left
+keyboard focus on <body>. <main> is now a -1 focus target, with the landmark
+ring suppressed, so Tab lands on the first hero action instead of restarting at
+the header. No palette, loader or project imagery was changed.
 
 ### Review gates
 

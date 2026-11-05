@@ -202,6 +202,15 @@ a:hover {
   left: var(--s3);
 }
 
+/* The skip link targets <main>. -1 keeps it out of the tab order while
+   letting fragment navigation move focus there. A programmatic focus on a
+   whole landmark should not paint a 2px ring around the entire page. */
+main[tabindex="-1"]:focus,
+main[tabindex="-1"]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 .container {
   width: min(var(--max), calc(100% - clamp(48px, 5vw, 112px)));
   margin: 0 auto;
