@@ -2687,6 +2687,30 @@ html:not(.js) .hero__photo {
     gap: 40px;
   }
 
+  /* Below the two-column breakpoint every other card is full width. Wide
+     cards stack here too, instead of keeping a cramped desktop media/content
+     split that no other card on the page uses. */
+  .project--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .project--wide .project__media {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    justify-content: flex-start;
+  }
+
+  .project--wide .project__media svg {
+    max-height: 240px;
+    width: 100%;
+    height: auto;
+  }
+
+  .project--wide .project__media .project__mediaNote {
+    border-top: none;
+    border-bottom: 1px solid var(--line);
+  }
+
   .edu {
     grid-template-areas:
       "lead"
@@ -2820,25 +2844,11 @@ html:not(.js) .hero__photo {
     padding-top: var(--s6);
   }
 
-  .project--wide {
-    grid-template-columns: 1fr;
-  }
-
-  .project--wide .project__media {
-    border-right: none;
-    border-bottom: 1px solid var(--line);
-    justify-content: flex-start;
-  }
-
-  .project--wide .project__media svg {
-    max-height: 240px;
-    width: 100%;
-    height: auto;
-  }
-
-  .project--wide .project__media .project__mediaNote {
-    border-top: none;
-    border-bottom: 1px solid var(--line);
+  /* The wide card's own wrapper must use the same phone gutter as the
+     direct children of every other project card. */
+  .project--wide .project__content {
+    padding-left: var(--s5);
+    padding-right: var(--s5);
   }
 
   .edu__card,

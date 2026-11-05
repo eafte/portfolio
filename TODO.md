@@ -177,7 +177,13 @@ professional look rather than an AI-polished or decorative one.
 - [x] Standardize media-caption placement and styling across all project cards.
 - [x] Expose captions to assistive technology and mark decorative SVG artwork
       as hidden from assistive technology.
-- [ ] Check card alignment at desktop, tablet, and phone widths.
+- [x] Check card alignment at desktop, tablet, and phone widths.
+
+Stage 2 completed Nov 2026: checked 320, 390, 640, 768, 900, 981, 1100 and
+1440px. Two-column rows have equal card heights, media captions and pinned
+footers; no card overflows. Wide cards now stack with the rest of the grid at
+<=980px instead of keeping a cramped desktop split on tablets, and their phone
+padding matches every other card. No project imagery was added or replaced.
 
 ### Stage 3 — Improve the first-pass scan
 
