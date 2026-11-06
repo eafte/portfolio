@@ -228,6 +228,29 @@ keyboard focus on <body>. <main> is now a -1 focus target, with the landmark
 ring suppressed, so Tab lands on the first hero action instead of restarting at
 the header. No palette, loader or project imagery was changed.
 
+### Header hover feedback — Nov 2026
+
+- [x] Audit desktop and dropdown nav at 320, 390, 768, 981, 1100, 1101, 1220,
+      1280 and 1440px in light and dark themes, including pointer hit-testing,
+      focus, reduced motion and the scrollspy current-section state.
+- [x] Fix the weak hover feedback: nav links now have a 44px minimum target,
+      an explicit pointer cursor, a tinted hover/focus/pressed pill, and a
+      static left marker in the stacked dropdown. The desktop underline and
+      scrollspy active link are retained; no palette, copy, structure, project
+      imagery or JavaScript behaviour was changed.
+
+The scrollspy current-section indicator was verified correct at every section
+and was not changed. Hover previously produced no background on desktop and no
+indicator at all in the dropdown, where animated underlines are intentionally
+disabled for touch and rendering reasons.
+
+Verified in headless Chromium: 37/37 header-specific checks, 139/139 full
+responsive/accessibility checks, 17/17 Stage 4 regression checks, all six
+scrollspy sections, no-JS fallback, and a touch context without sticky hover.
+The lowest measured hover-text contrast is 5.05:1 in light mode and 9.30:1 in
+dark mode, both above WCAG AA. The preview still serves the current worktree;
+`styles.css` was cache-busted to `?v=72`.
+
 ### Review gates
 
 1. Make one stage of changes at a time; do not combine a redesign with content
