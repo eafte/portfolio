@@ -144,16 +144,31 @@ standardize their placement, captions, and accessibility without replacing them.
 
 ### Stage 1 — Responsive fit and navigation
 
-- [ ] Check header fit at 320, 360, 390, 768, 981, 1024, 1100, 1280, and 1440px.
+- [x] Check header fit at 320, 360, 390, 768, 981, 1024, 1100, 1280, and 1440px.
+      Also checked 1101, 1220 and 1920px around the compact-nav boundary.
 - [x] Move the compact-navigation breakpoint to 1100px so the six-link desktop
       row does not need to wrap in the crowded tablet/desktop range.
 - [x] Add a narrow-phone header spacing/type adjustment for widths up to 360px.
 - [x] Reduce mobile density in the hero/profile and stat strip: widen fact values,
       relax wrapped heading leading, shrink stat icons, and remove the CTA divider.
-- [ ] Confirm sticky-header height, anchor offsets, open/close behavior, keyboard
+- [x] Confirm sticky-header height, anchor offsets, open/close behavior, keyboard
       focus, and scroll position after navigation.
-- [ ] Check hero, metrics, contact actions, and cards at the same narrow widths.
-- [ ] Review the live preview before considering Stage 1 complete.
+- [x] Check hero, metrics, contact actions, and cards at the same narrow widths.
+- [x] Review the live preview before considering Stage 1 complete.
+
+Stage 1 completed Nov 2026 in a headless Chromium pass at 320, 360, 390, 768,
+981, 1024, 1100, 1101, 1220, 1280, 1440 and 1920px, in light/dark, reduced
+motion, JS on/off and print. Section/hero spacing is now token-driven, so nav
+clicks reveal the heading ~15px below the sticky header instead of ~200px of
+empty padding. Nav activation moves focus to the destination heading, deep
+links keep the correct nav item active, the 320px email and hero CTA no longer
+clip, the PGP fingerprint wraps between four-character groups, and the fixed
+Contact control is hidden on desktop and compact, scroll-aware on mobile.
+
+Design decisions deliberately left for a later stage, because they are not fit
+bugs: the dark-mode acid-mint accent, the one-session intro loader, and the
+schematic project illustrations. The owner's direction is a restrained,
+professional look rather than an AI-polished or decorative one.
 
 ### Stage 2 — Consistent project-card presentation
 
@@ -162,7 +177,13 @@ standardize their placement, captions, and accessibility without replacing them.
 - [x] Standardize media-caption placement and styling across all project cards.
 - [x] Expose captions to assistive technology and mark decorative SVG artwork
       as hidden from assistive technology.
-- [ ] Check card alignment at desktop, tablet, and phone widths.
+- [x] Check card alignment at desktop, tablet, and phone widths.
+
+Stage 2 completed Nov 2026: checked 320, 390, 640, 768, 900, 981, 1100 and
+1440px. Two-column rows have equal card heights, media captions and pinned
+footers; no card overflows. Wide cards now stack with the rest of the grid at
+<=980px instead of keeping a cramped desktop split on tablets, and their phone
+padding matches every other card. No project imagery was added or replaced.
 
 ### Stage 3 — Improve the first-pass scan
 
@@ -173,6 +194,12 @@ standardize their placement, captions, and accessibility without replacing them.
       the underlying qualifications or contact links.
 - [x] Restyle the existing four verified metrics as an icon-led, responsive proof
       strip; do not add unverified counts or duplicate the stats row.
+
+Stage 3 verified Nov 2026 at 1440, 981, 768 and 390px. The featured card's
+"Finding" now sits above the chart, so the takeaway is inside the first
+viewport at every width instead of 1,400px down the card. The hero CTA divider
+is hidden below 1100px, which keeps all four actions on one row at 981px. No
+copy was rewritten and no project imagery was added or replaced.
 
 ### Stage 4 — Visual and accessibility polish
 
@@ -188,8 +215,41 @@ standardize their placement, captions, and accessibility without replacing them.
       the mobile back-to-top control and reserve footer space to avoid collisions.
 - [x] Tune section spacing for desktop/tablet/mobile and trim footer dead space
       while preserving clearance for the fixed Contact button.
-- [ ] Verify light/dark themes, keyboard navigation, focus visibility, reduced
+- [x] Verify light/dark themes, keyboard navigation, focus visibility, reduced
       motion, contrast, and print output in the rendered preview.
+
+Stage 4 completed Nov 2026. Composite text contrast was measured across the
+hero wash, cards, active nav and result panels: the lowest light value is
+5.16:1 and the lowest dark value is 5.79:1, both above WCAG AA. Focus rings,
+keyboard order, reduced-motion state (JS on/off) and print output were checked
+in headless Chromium; the 14-page PDF includes every section and all expanded
+tables. The skip link was the one real failure: it changed the hash but left
+keyboard focus on <body>. <main> is now a -1 focus target, with the landmark
+ring suppressed, so Tab lands on the first hero action instead of restarting at
+the header. No palette, loader or project imagery was changed.
+
+### Header hover feedback — Nov 2026
+
+- [x] Audit desktop and dropdown nav at 320, 390, 768, 981, 1100, 1101, 1220,
+      1280 and 1440px in light and dark themes, including pointer hit-testing,
+      focus, reduced motion and the scrollspy current-section state.
+- [x] Fix the weak hover feedback: nav links now have a 44px minimum target,
+      an explicit pointer cursor, a tinted hover/focus/pressed pill, and a
+      static left marker in the stacked dropdown. The desktop underline and
+      scrollspy active link are retained; no palette, copy, structure, project
+      imagery or JavaScript behaviour was changed.
+
+The scrollspy current-section indicator was verified correct at every section
+and was not changed. Hover previously produced no background on desktop and no
+indicator at all in the dropdown, where animated underlines are intentionally
+disabled for touch and rendering reasons.
+
+Verified in headless Chromium: 37/37 header-specific checks, 139/139 full
+responsive/accessibility checks, 17/17 Stage 4 regression checks, all six
+scrollspy sections, no-JS fallback, and a touch context without sticky hover.
+The lowest measured hover-text contrast is 5.05:1 in light mode and 9.30:1 in
+dark mode, both above WCAG AA. The preview still serves the current worktree;
+`styles.css` was cache-busted to `?v=72`.
 
 ### Review gates
 

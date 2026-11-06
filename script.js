@@ -124,7 +124,16 @@
     });
 
     nav.addEventListener("click", (ev) => {
-      if (ev.target.closest("a")) closeNav(false);
+      const link = ev.target.closest("a[href^='#']");
+      if (!link) return;
+      const target = document.getElementById(link.getAttribute("href").slice(1));
+      closeNav(false);
+      if (!target) return;
+      // Closing the dropdown used to leave focus on a now-hidden link.
+      // Move it to the destination heading for keyboard and screen readers.
+      const heading = target.querySelector("h1, h2") || target;
+      heading.setAttribute("tabindex", "-1");
+      window.requestAnimationFrame(() => heading.focus({ preventScroll: true }));
     });
 
     document.addEventListener("click", (ev) => {
@@ -152,29 +161,37 @@
   // ---------- Scroll controls ----------
   const header = document.querySelector(".header");
   const toTop = document.getElementById("toTop");
+  const floatingContact = document.querySelector(".floatingContact");
+  const contactSection = document.getElementById("contact");
   const motionPreference =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (header || toTop) {
+  if (header || toTop || floatingContact) {
     let ticking = false;
     const syncScrollControls = () => {
       if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+      const showAfter = Math.max(window.innerHeight * 1.2, 600);
       if (toTop) {
-        const showAfter = Math.max(window.innerHeight * 1.2, 600);
         toTop.classList.toggle("is-visible", window.scrollY > showAfter);
+      }
+      if (floatingContact) {
+        const rect = contactSection && contactSection.getBoundingClientRect();
+        const overContact = rect && rect.top < window.innerHeight && rect.bottom > 0;
+        floatingContact.classList.toggle(
+          "is-visible",
+          window.scrollY > showAfter && !overContact
+        );
       }
       ticking = false;
     };
+    const requestSync = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(syncScrollControls);
+    };
     syncScrollControls();
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(syncScrollControls);
-      },
-      { passive: true }
-    );
+    window.addEventListener("scroll", requestSync, { passive: true });
+    window.addEventListener("resize", requestSync);
   }
 
   if (toTop) {
@@ -212,21 +229,37 @@
 
   // ---------- Navigation Scrollspy ----------
   const navLinks = document.querySelectorAll(".nav a[href^='#']");
-  const observedSections = document.querySelectorAll("section[id]");
+  const navTargets = new Set(
+    Array.from(navLinks, (link) => link.getAttribute("href").slice(1))
+  );
+  // Only sections with a matching nav link drive the active state. Project,
+  // paper and education card IDs are deep-link targets, not nav targets;
+  // observing them used to clear the active link after a stack link was used.
+  const observedSections = Array.from(
+    document.querySelectorAll("section[id]")
+  ).filter((section) => navTargets.has(section.id));
 
   if ("IntersectionObserver" in window && navLinks.length && observedSections.length) {
     const navObserver = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const id = entry.target.getAttribute("id");
-          navLinks.forEach((link) => {
-            const isCurrent = link.getAttribute("href") === `#${id}`;
-            link.classList.toggle("is-active", isCurrent);
-            // Announce the current section to assistive tech too, not just visually.
-            if (isCurrent) link.setAttribute("aria-current", "true");
-            else link.removeAttribute("aria-current");
-          });
+        // If two adjacent sections touch the observation band, prefer the one
+        // nearest its upper edge rather than whichever callback arrives last.
+        const bandTop = window.innerHeight * 0.2;
+        const current = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              Math.abs(a.boundingClientRect.top - bandTop) -
+              Math.abs(b.boundingClientRect.top - bandTop)
+          )[0];
+        if (!current) return;
+        const id = current.target.getAttribute("id");
+        navLinks.forEach((link) => {
+          const isCurrent = link.getAttribute("href") === `#${id}`;
+          link.classList.toggle("is-active", isCurrent);
+          // Announce the current section to assistive tech too, not just visually.
+          if (isCurrent) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
         });
       },
       { rootMargin: "-20% 0px -70% 0px" }

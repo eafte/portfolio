@@ -46,7 +46,7 @@
     <meta name="twitter:image" content="https://eafte.github.io/portfolio/assets/og-card.png?v=2">
     <link rel="canonical" href="https://eafte.github.io/portfolio/">
 
-    <link rel="stylesheet" href="styles.css?v=65">
+    <link rel="stylesheet" href="styles.css?v=72">
     <link rel="preload" as="image" href="assets/photo.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,7 +146,7 @@
         </div>
     </header>
 
-    <main id="content">
+    <main id="content" tabindex="-1">
         <!-- ============ HERO ============ -->
         <section class="hero" id="top">
             <div class="container">
@@ -322,6 +322,10 @@
                             types, 4 Ollama models.
                         </p>
 
+                        <p class="result">
+                            <strong>Finding:</strong> prompt injection and DAN jailbreaks worked most often; refusal bypass and system-prompt leakage never worked.
+                        </p>
+
                         <figure class="figure">
                             <img src="assets/llm-guard-bench-report.png"
                                 srcset="assets/llm-guard-bench-report-900.png 900w, assets/llm-guard-bench-report.png 1800w"
@@ -352,10 +356,6 @@
                             <li>Streams 1M+ records with flat memory use (~50.2 MiB peak)</li>
                             <li>Strict Pydantic schemas, strict MyPy, CITATION.cff, and 717 pytest cases</li>
                         </ul>
-                        <p class="result">
-                            <strong>Finding:</strong> prompt injection and DAN jailbreaks worked most often; refusal bypass and system-prompt leakage never worked.
-                        </p>
-
                         <details class="results">
                             <summary class="results__summary">
                                 <span class="results__title">The numbers behind the figure</span>
@@ -1173,7 +1173,7 @@
                         </nav>
                         <div class="contact__pgp">
                             <span class="contact__pgp-label">PGP Fingerprint</span>
-                            <code class="contact__pgp-val">6320 37F7 8EE1 4704 7EA0 FC27 FDB2 9EC3 3300 F789</code>
+                            <code class="contact__pgp-val"><span>6320</span> <span>37F7</span> <span>8EE1</span> <span>4704</span> <span>7EA0</span> <span>FC27</span> <span>FDB2</span> <span>9EC3</span> <span>3300</span> <span>F789</span></code>
                         </div>
                     </div>
 
@@ -1220,7 +1220,7 @@
         <span>Contact</span>
     </a>
 
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=12"></script>
 </body>
 
 </html>
